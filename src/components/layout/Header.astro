@@ -1,0 +1,98 @@
+---
+import { navigation } from "../../data/navigation";
+
+import LanguageSwitcher from "../navigation/LanguageSwitcher.astro";
+
+interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+
+const links = navigation[lang];
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-brand" href={`/${lang}/`}> Software Developer </a>
+
+    <div class="header-actions">
+      <nav
+        aria-label={lang === "es" ? "Navegación principal" : "Main navigation"}
+      >
+        <ul class="navigation-list">
+          {
+            links.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <LanguageSwitcher lang={lang} />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+
+  .header-inner {
+    width: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+    min-height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .site-brand {
+    color: var(--color-text);
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .navigation-list {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .navigation-list a {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    text-decoration: none;
+  }
+
+  .navigation-list a:hover {
+    color: var(--color-text);
+  }
+
+  @media (max-width: 900px) {
+    .header-inner {
+      align-items: flex-start;
+      flex-direction: column;
+      padding-block: 1rem;
+    }
+
+    .navigation-list {
+      flex-wrap: wrap;
+    }
+  }
+</style>

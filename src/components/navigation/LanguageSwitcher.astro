@@ -1,0 +1,50 @@
+---
+interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+
+const targetLang = lang === "es" ? "en" : "es";
+const targetLabel = lang === "es" ? "English" : "Español";
+const currentLabel = lang === "es" ? "Español" : "English";
+
+const currentPath = Astro.url.pathname;
+
+const targetPath =
+  lang === "es"
+    ? currentPath.replace(/^\/es(?=\/|$)/, "/en")
+    : currentPath.replace(/^\/en(?=\/|$)/, "/es");
+---
+
+<div class="language-switcher">
+  <span class="current-language">{currentLabel}</span>
+
+  <a href={targetPath} hreflang={targetLang}>
+    {targetLabel}
+  </a>
+</div>
+
+<style>
+  .language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .current-language {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  a {
+    color: var(--color-text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover {
+    color: var(--color-text);
+  }
+</style>

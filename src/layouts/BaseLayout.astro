@@ -1,0 +1,39 @@
+---
+import "../styles/tokens.css";
+import "../styles/global.css";
+import "../styles/typography.css";
+
+import Header from "../components/layout/Header.astro";
+
+import Footer from "../components/layout/Footer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  lang: "es" | "en";
+}
+
+const { title, description, lang } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>{title}</title>
+
+    <meta name="description" content={description} />
+  </head>
+
+  <body>
+    <Header lang={lang} />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+  </body>
+</html>
