@@ -1,0 +1,120 @@
+---
+interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+
+const content =
+  lang === "es"
+    ? {
+        eyebrow: "SOBRE MÍ",
+        title:
+          "Desarrollador orientado a crear soluciones útiles y mantenibles.",
+        paragraphs: [
+          "Soy Software Developer con formación en Desarrollo de Aplicaciones Multiplataforma y especialización en desarrollo Full Stack.",
+          "Mi experiencia combina desarrollo de aplicaciones web, bases de datos, automatización de procesos, configuración de entornos y sistemas, y gestión de contenidos mediante CMS.",
+          "Me interesa seguir creciendo técnicamente, comprender bien los problemas antes de implementar soluciones y construir software que sea claro, mantenible y útil.",
+        ],
+        link: "Conocer más sobre mí",
+      }
+    : {
+        eyebrow: "ABOUT ME",
+        title:
+          "A developer focused on building useful and maintainable solutions.",
+        paragraphs: [
+          "I am a Software Developer with a Higher Technician qualification in Multiplatform Application Development and further training in Full Stack Development.",
+          "My experience combines web application development, databases, process automation, environment and systems configuration, and content management through CMS platforms.",
+          "I am interested in continuing to grow technically, understanding problems before implementing solutions, and building software that is clear, maintainable and useful.",
+        ],
+        link: "Learn more about me",
+      };
+---
+
+<section class="about-preview" aria-labelledby="about-preview-title">
+  <div class="about-content">
+    <div class="section-header">
+      <p class="eyebrow">{content.eyebrow}</p>
+
+      <h2 id="about-preview-title">{content.title}</h2>
+    </div>
+
+    <div class="about-text">
+      {content.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+
+    <a class="about-link" href={lang === "es" ? "/es/sobre-mi/" : "/en/about/"}>
+      {content.link}
+    </a>
+  </div>
+</section>
+
+<style>
+  .about-preview {
+    width: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+    padding-block: 5rem;
+  }
+
+  .about-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 4rem;
+    padding-block: 4rem;
+    border-block: 1px solid var(--color-border);
+  }
+
+  .section-header {
+    max-width: 520px;
+  }
+
+  .eyebrow {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .section-header h2 {
+    max-width: 520px;
+  }
+
+  .about-text {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .about-text p {
+    max-width: 65ch;
+    font-size: 1.05rem;
+  }
+
+  .about-link {
+    grid-column: 2;
+    justify-self: start;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .about-link:hover {
+    color: var(--color-primary-hover);
+  }
+
+  @media (max-width: 800px) {
+    .about-preview {
+      padding-block: 4rem;
+    }
+
+    .about-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding-block: 3rem;
+    }
+
+    .about-link {
+      grid-column: auto;
+    }
+  }
+</style>

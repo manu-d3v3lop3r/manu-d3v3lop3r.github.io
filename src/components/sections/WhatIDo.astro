@@ -1,0 +1,154 @@
+---
+interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+
+const content =
+  lang === "es"
+    ? {
+        eyebrow: "ÁREAS DE TRABAJO",
+        title: "Qué hago",
+        description:
+          "Un perfil orientado al desarrollo de software, con experiencia también en aplicaciones web, automatización y entornos IT.",
+        items: [
+          {
+            title: "Software Development",
+            description:
+              "Desarrollo de aplicaciones y soluciones de software, desde la definición del problema hasta su implementación.",
+          },
+          {
+            title: "Web & Full Stack",
+            description:
+              "Desarrollo de aplicaciones web utilizando tecnologías de frontend, backend, bases de datos y APIs.",
+          },
+          {
+            title: "Automation",
+            description:
+              "Automatización de procesos para reducir tareas manuales y mejorar el flujo de trabajo.",
+          },
+          {
+            title: "IT & Systems",
+            description:
+              "Experiencia en configuración de entornos, servidores, aplicaciones, permisos, conexiones y soporte técnico.",
+          },
+        ],
+      }
+    : {
+        eyebrow: "AREAS OF WORK",
+        title: "What I do",
+        description:
+          "A software development-oriented profile, with additional experience in web applications, automation and IT environments.",
+        items: [
+          {
+            title: "Software Development",
+            description:
+              "Application and software solution development, from understanding the problem to implementation.",
+          },
+          {
+            title: "Web & Full Stack",
+            description:
+              "Web application development using frontend, backend, databases and APIs.",
+          },
+          {
+            title: "Automation",
+            description:
+              "Process automation to reduce manual tasks and improve workflows.",
+          },
+          {
+            title: "IT & Systems",
+            description:
+              "Experience with environment configuration, servers, applications, permissions, connections and technical support.",
+          },
+        ],
+      };
+---
+
+<section class="what-i-do" aria-labelledby="what-i-do-title">
+  <div class="section-header">
+    <p class="eyebrow">{content.eyebrow}</p>
+
+    <h2 id="what-i-do-title">{content.title}</h2>
+
+    <p>{content.description}</p>
+  </div>
+
+  <div class="areas-grid">
+    {
+      content.items.map((item) => (
+        <article class="area-card">
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .what-i-do {
+    width: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+    padding-block: 5rem;
+  }
+
+  .section-header {
+    max-width: 800px;
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .section-header h2 {
+    margin-bottom: 1.25rem;
+  }
+
+  .section-header > p:last-child {
+    font-size: 1.1rem;
+  }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .area-card {
+    min-height: 220px;
+    padding: 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .area-card h3 {
+    margin-bottom: 1rem;
+  }
+
+  .area-card p {
+    max-width: 55ch;
+  }
+
+  @media (max-width: 700px) {
+    .what-i-do {
+      padding-block: 4rem;
+    }
+
+    .areas-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .area-card {
+      min-height: auto;
+      padding: 1.5rem;
+    }
+  }
+</style>

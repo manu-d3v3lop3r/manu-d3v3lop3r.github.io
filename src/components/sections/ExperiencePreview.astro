@@ -1,0 +1,186 @@
+---
+interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+
+const content =
+  lang === "es"
+    ? {
+        eyebrow: "EXPERIENCIA",
+        title: "Experiencia profesional",
+        description:
+          "Experiencia en desarrollo de software, aplicaciones web, sistemas, automatización de procesos y gestión de contenidos.",
+        first: {
+          role: "Técnico en Operaciones de Sistemas Informáticos",
+          company: "Empresa confidencial",
+          duration: "≈ 1 año",
+          description:
+            "Desarrollo y mantenimiento de aplicaciones web, configuración de entornos y servidores, automatización de procesos y soporte técnico.",
+        },
+        second: {
+          role: "Web Application Developer",
+          company: "Prácticas",
+          duration: "3 meses",
+          description:
+            "Desarrollo de una aplicación web para digitalización y gestión documental.",
+        },
+        link: "Ver experiencia",
+      }
+    : {
+        eyebrow: "EXPERIENCE",
+        title: "Professional experience",
+        description:
+          "Experience in software development, web applications, systems, process automation and content management.",
+        first: {
+          role: "IT Systems Operations Technician",
+          company: "Confidential company",
+          duration: "≈ 1 year",
+          description:
+            "Web application development and maintenance, environment and server configuration, process automation and technical support.",
+        },
+        second: {
+          role: "Web Application Developer",
+          company: "Internship",
+          duration: "3 months",
+          description:
+            "Development of a web application for document digitization and management.",
+        },
+        link: "View experience",
+      };
+---
+
+<section class="experience-preview" aria-labelledby="experience-title">
+  <header class="section-header">
+    <p class="eyebrow">{content.eyebrow}</p>
+
+    <h2 id="experience-title">{content.title}</h2>
+
+    <p>{content.description}</p>
+  </header>
+
+  <div class="experience-list">
+    <article class="experience-item">
+      <div class="experience-heading">
+        <div>
+          <h3>{content.first.role}</h3>
+          <p class="company">{content.first.company}</p>
+        </div>
+
+        <p class="duration">{content.first.duration}</p>
+      </div>
+
+      <p>{content.first.description}</p>
+    </article>
+
+    <article class="experience-item">
+      <div class="experience-heading">
+        <div>
+          <h3>{content.second.role}</h3>
+          <p class="company">{content.second.company}</p>
+        </div>
+
+        <p class="duration">{content.second.duration}</p>
+      </div>
+
+      <p>{content.second.description}</p>
+    </article>
+  </div>
+
+  <div class="section-action">
+    <a href={lang === "es" ? "/es/experiencia/" : "/en/experience/"}>
+      {content.link}
+    </a>
+  </div>
+</section>
+
+<style>
+  .experience-preview {
+    width: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+    padding-block: 5rem;
+  }
+
+  .section-header {
+    max-width: 800px;
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .section-header h2 {
+    margin-bottom: 1.25rem;
+  }
+
+  .section-header > p:last-child {
+    font-size: 1.1rem;
+  }
+
+  .experience-list {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .experience-item {
+    padding-block: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .experience-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .experience-item h3 {
+    margin-bottom: 0.4rem;
+  }
+
+  .company,
+  .duration {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .duration {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+  }
+
+  .experience-item > p:last-child {
+    max-width: 70ch;
+  }
+
+  .section-action {
+    margin-top: 2rem;
+  }
+
+  .section-action a {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .section-action a:hover {
+    color: var(--color-primary-hover);
+  }
+
+  @media (max-width: 650px) {
+    .experience-preview {
+      padding-block: 4rem;
+    }
+
+    .experience-heading {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

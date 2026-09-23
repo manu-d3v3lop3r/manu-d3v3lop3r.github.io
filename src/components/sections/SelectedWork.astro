@@ -1,0 +1,139 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "../projects/ProjectCard.astro";
+
+interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+
+const projects = await getCollection(
+  "projects",
+  ({ data }) => data.language === lang && data.featured,
+);
+
+const sortedProjects = projects.sort(
+  (a, b) => (b.data.year ?? 0) - (a.data.year ?? 0),
+);
+
+const content =
+  lang === "es"
+    ? {
+        eyebrow: "TRABAJO DESTACADO",
+        title: "Proyectos seleccionados",
+        description:
+          "Una selección de proyectos que muestra diferentes áreas de experiencia y formas de abordar problemas técnicos.",
+        technologiesLabel: "Tecnologías utilizadas",
+        linkLabel: "Ver proyecto",
+        allProjects: "Ver todos los proyectos",
+      }
+    : {
+        eyebrow: "SELECTED WORK",
+        title: "Selected projects",
+        description:
+          "A selection of projects showing different areas of experience and approaches to solving technical problems.",
+        technologiesLabel: "Technologies used",
+        linkLabel: "View project",
+        allProjects: "View all projects",
+      };
+---
+
+<section class="selected-work" aria-labelledby="selected-work-title">
+  <header class="section-header">
+    <p class="eyebrow">{content.eyebrow}</p>
+
+    <h2 id="selected-work-title">{content.title}</h2>
+
+    <p>{content.description}</p>
+  </header>
+
+  {
+    sortedProjects.length > 0 ? (
+      <div class="projects-list">
+        {sortedProjects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            summary={project.data.summary}
+            type={project.data.type}
+            technologies={project.data.technologies}
+            technologiesLabel={content.technologiesLabel}
+            href={
+              lang === "es"
+                ? `/es/proyectos/${project.data.routeSlug ?? project.data.slug}/`
+                : `/en/projects/${project.data.routeSlug ?? project.data.slug}/`
+            }
+            linkLabel={content.linkLabel}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">
+        {lang === "es"
+          ? "Todavía no hay proyectos destacados."
+          : "There are no selected projects yet."}
+      </p>
+    )
+  }
+
+  <div class="section-action">
+    <a href={lang === "es" ? "/es/proyectos/" : "/en/projects/"}>
+      {content.allProjects}
+    </a>
+  </div>
+</section>
+
+<style>
+  .selected-work {
+    width: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+    padding-block: 5rem;
+  }
+
+  .section-header {
+    max-width: 800px;
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .section-header h2 {
+    margin-bottom: 1.25rem;
+  }
+
+  .section-header > p:last-child {
+    font-size: 1.1rem;
+  }
+
+  .projects-list {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .section-action {
+    margin-top: 2rem;
+  }
+
+  .section-action a {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .section-action a:hover {
+    color: var(--color-primary-hover);
+  }
+
+  .empty-state {
+    padding: 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-subtle);
+  }
+</style>

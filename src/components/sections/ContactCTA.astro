@@ -1,0 +1,99 @@
+---
+interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+
+const content =
+  lang === "es"
+    ? {
+        eyebrow: "CONTACTO",
+        title: "¿Hablamos?",
+        description:
+          "Si quieres conocer más sobre mi experiencia, proyectos o perfil profesional, puedes ponerte en contacto conmigo.",
+        link: "Contactar",
+      }
+    : {
+        eyebrow: "CONTACT",
+        title: "Let's talk",
+        description:
+          "If you'd like to learn more about my experience, projects or professional profile, feel free to get in touch.",
+        link: "Get in touch",
+      };
+---
+
+<section class="contact-cta" aria-labelledby="contact-cta-title">
+  <div class="cta-content">
+    <p class="eyebrow">{content.eyebrow}</p>
+
+    <h2 id="contact-cta-title">{content.title}</h2>
+
+    <p>{content.description}</p>
+
+    <a class="cta-link" href={lang === "es" ? "/es/contacto/" : "/en/contact/"}>
+      {content.link}
+    </a>
+  </div>
+</section>
+
+<style>
+  .contact-cta {
+    width: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+    padding-block: 5rem 6rem;
+  }
+
+  .cta-content {
+    padding: 4rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-subtle);
+  }
+
+  .eyebrow {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .cta-content h2 {
+    margin-bottom: 1.25rem;
+  }
+
+  .cta-content > p:not(.eyebrow) {
+    max-width: 650px;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  .cta-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1.1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-primary);
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .cta-link:hover {
+    background: var(--color-primary-hover);
+  }
+
+  @media (max-width: 700px) {
+    .contact-cta {
+      padding-block: 4rem 5rem;
+    }
+
+    .cta-content {
+      padding: 2rem;
+    }
+  }
+</style>

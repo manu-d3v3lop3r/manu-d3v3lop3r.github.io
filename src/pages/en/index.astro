@@ -1,5 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/sections/Hero.astro";
+import WhatIDo from "../../components/sections/WhatIDo.astro";
+import SelectedWork from "../../components/sections/SelectedWork.astro";
+import ExperiencePreview from "../../components/sections/ExperiencePreview.astro";
+import TechStack from "../../components/sections/TechStack.astro";
+import AboutPreview from "../../components/sections/AboutPreview.astro";
+import ContactCTA from "../../components/sections/ContactCTA.astro";
 ---
 
 <BaseLayout
@@ -7,9 +14,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   description="Professional Software Developer portfolio."
   lang="en"
 >
-  <main>
-    <h1>Portfolio</h1>
-    <p>Software Developer</p>
-    <p>English</p>
-  </main>
+  <Hero lang="en" />
+  <WhatIDo lang="en" />
+  <SelectedWork lang="en" />
+  <ExperiencePreview lang="en" />
+  <TechStack lang="en" />
+  <AboutPreview lang="en" />
+  <ContactCTA lang="en" />
 </BaseLayout>

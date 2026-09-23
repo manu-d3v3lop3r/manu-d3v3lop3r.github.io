@@ -1,0 +1,233 @@
+---
+interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+
+const content =
+  lang === "es"
+    ? {
+        eyebrow: "TECNOLOGÍAS",
+        title: "Tech Stack",
+        description:
+          "Tecnologías utilizadas en proyectos profesionales, académicos y formación.",
+        categories: [
+          {
+            title: "Lenguajes",
+            items: [
+              "Java",
+              "Kotlin",
+              "Python",
+              "JavaScript",
+              "PHP",
+              "SQL",
+              "HTML",
+              "CSS",
+              "XML",
+            ],
+          },
+          {
+            title: "Frameworks y librerías",
+            items: [
+              "Spring Boot",
+              "Bootstrap",
+              "jQuery",
+              "DataTables",
+              "Materialize",
+              "SweetAlert2",
+            ],
+          },
+          {
+            title: "Web y APIs",
+            items: [
+              "REST APIs",
+              "AJAX",
+              "JSON",
+              "Firebase",
+              "Google Apps Script",
+            ],
+          },
+          {
+            title: "CMS y plataformas",
+            items: ["Magnolia", "WordPress", "SharePoint", "Joomla"],
+          },
+          {
+            title: "Herramientas y sistemas",
+            items: [
+              "Power Automate",
+              "Git",
+              "GitHub",
+              "Postman",
+              "XAMPP",
+              "Apache",
+              "VirtualBox",
+              "MySQL Workbench",
+            ],
+          },
+        ],
+      }
+    : {
+        eyebrow: "TECHNOLOGIES",
+        title: "Tech Stack",
+        description:
+          "Technologies used across professional projects, academic work and training.",
+        categories: [
+          {
+            title: "Languages",
+            items: [
+              "Java",
+              "Kotlin",
+              "Python",
+              "JavaScript",
+              "PHP",
+              "SQL",
+              "HTML",
+              "CSS",
+              "XML",
+            ],
+          },
+          {
+            title: "Frameworks & libraries",
+            items: [
+              "Spring Boot",
+              "Bootstrap",
+              "jQuery",
+              "DataTables",
+              "Materialize",
+              "SweetAlert2",
+            ],
+          },
+          {
+            title: "Web & APIs",
+            items: [
+              "REST APIs",
+              "AJAX",
+              "JSON",
+              "Firebase",
+              "Google Apps Script",
+            ],
+          },
+          {
+            title: "CMS & platforms",
+            items: ["Magnolia", "WordPress", "SharePoint", "Joomla"],
+          },
+          {
+            title: "Tools & systems",
+            items: [
+              "Power Automate",
+              "Git",
+              "GitHub",
+              "Postman",
+              "XAMPP",
+              "Apache",
+              "VirtualBox",
+              "MySQL Workbench",
+            ],
+          },
+        ],
+      };
+---
+
+<section class="tech-stack" aria-labelledby="tech-stack-title">
+  <header class="section-header">
+    <p class="eyebrow">{content.eyebrow}</p>
+
+    <h2 id="tech-stack-title">{content.title}</h2>
+
+    <p>{content.description}</p>
+  </header>
+
+  <div class="categories">
+    {
+      content.categories.map((category) => (
+        <article class="category">
+          <h3>{category.title}</h3>
+
+          <ul>
+            {category.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .tech-stack {
+    width: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+    padding-block: 5rem;
+  }
+
+  .section-header {
+    max-width: 800px;
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .section-header h2 {
+    margin-bottom: 1.25rem;
+  }
+
+  .section-header > p:last-child {
+    font-size: 1.1rem;
+  }
+
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .category {
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .category h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .category ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .category li {
+    padding: 0.35rem 0.65rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface-subtle);
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 700px) {
+    .tech-stack {
+      padding-block: 4rem;
+    }
+
+    .categories {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
