@@ -1,0 +1,91 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ProjectCard from "../../../components/projects/ProjectCard.astro";
+
+const projects = await getCollection(
+  "projects",
+  ({ data }) => data.language === "es",
+);
+
+const featuredProjects = projects
+  .filter((project) => project.data.featured)
+  .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+---
+
+<BaseLayout
+  title="Proyectos | Portfolio"
+  description="Proyectos profesionales, académicos y personales de Software Developer."
+  lang="es"
+>
+  <section class="projects-page">
+    <header class="page-header">
+      <p class="eyebrow">PROYECTOS</p>
+
+      <h1>Proyectos</h1>
+
+      <p>
+        Una selección de proyectos profesionales, académicos y personales,
+        explicados desde el problema hasta la solución y las decisiones
+        técnicas.
+      </p>
+    </header>
+
+    <div class="projects-list">
+      {
+        featuredProjects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            summary={project.data.summary}
+            type={project.data.type}
+            technologies={project.data.technologies}
+            technologiesLabel="Tecnologías utilizadas"
+            href={`/es/proyectos/${project.data.slug}/`}
+            linkLabel="Ver proyecto"
+          />
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .projects-page {
+    width: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+    padding-block: 4rem;
+  }
+
+  .page-header {
+    max-width: 800px;
+    margin-bottom: 4rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .page-header h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .page-header > p:last-child {
+    font-size: 1.2rem;
+  }
+
+  .projects-list {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 700px) {
+    .projects-page {
+      padding-block: 3rem;
+    }
+  }
+</style>

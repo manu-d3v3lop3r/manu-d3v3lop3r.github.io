@@ -1,4 +1,6 @@
 ---
+import { localeRoutes } from "../../data/locales";
+
 interface Props {
   lang: "es" | "en";
 }
@@ -11,14 +13,21 @@ const currentLabel = lang === "es" ? "Español" : "English";
 
 const currentPath = Astro.url.pathname;
 
-const targetPath =
-  lang === "es"
-    ? currentPath.replace(/^\/es(?=\/|$)/, "/en")
-    : currentPath.replace(/^\/en(?=\/|$)/, "/es");
+const routeEntry = Object.values(localeRoutes).find(
+  (route) => route.es === currentPath || route.en === currentPath,
+);
+
+const targetPath = routeEntry
+  ? routeEntry[targetLang]
+  : targetLang === "es"
+    ? "/es/"
+    : "/en/";
 ---
 
 <div class="language-switcher">
-  <span class="current-language">{currentLabel}</span>
+  <span class="current-language" aria-current="true">
+    {currentLabel}
+  </span>
 
   <a href={targetPath} hreflang={targetLang}>
     {targetLabel}

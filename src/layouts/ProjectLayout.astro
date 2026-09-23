@@ -1,0 +1,215 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  lang: "es" | "en";
+  type: string;
+  year?: number;
+  technologies: string[];
+  role: string;
+  team?: string;
+  confidential: boolean;
+}
+
+const {
+  title,
+  description,
+  lang,
+  type,
+  year,
+  technologies,
+  role,
+  team,
+  confidential,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+  <article class="project">
+    <header class="project-header">
+      <p class="project-type">{type}</p>
+
+      <h1>{title}</h1>
+
+      <p class="project-description">
+        {description}
+      </p>
+
+      <div class="project-meta">
+        {
+          year && (
+            <div>
+              <dt>{lang === "es" ? "Año" : "Year"}</dt>
+              <dd>{year}</dd>
+            </div>
+          )
+        }
+
+        <div>
+          <dt>{lang === "es" ? "Rol" : "Role"}</dt>
+          <dd>{role}</dd>
+        </div>
+
+        {
+          team && (
+            <div>
+              <dt>{lang === "es" ? "Equipo" : "Team"}</dt>
+              <dd>{team}</dd>
+            </div>
+          )
+        }
+      </div>
+
+      {
+        confidential && (
+          <p class="confidential">
+            {lang === "es"
+              ? "Proyecto profesional confidencial. El código fuente no está disponible públicamente."
+              : "Confidential professional project. The source code is not publicly available."}
+          </p>
+        )
+      }
+    </header>
+
+    <section class="technologies" aria-labelledby="technologies-title">
+      <h2 id="technologies-title">
+        {lang === "es" ? "Tecnologías" : "Technologies"}
+      </h2>
+
+      <ul>
+        {technologies.map((technology) => <li>{technology}</li>)}
+      </ul>
+    </section>
+
+    <div class="project-content">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .project {
+    width: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+    padding-block: 4rem;
+  }
+
+  .project-header {
+    max-width: 850px;
+    margin-bottom: 4rem;
+  }
+
+  .project-type {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .project-header h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .project-description {
+    font-size: 1.25rem;
+  }
+
+  .project-meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-block: 2rem;
+    border-block: 1px solid var(--color-border);
+  }
+
+  .project-meta div {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .project-meta dt {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  .project-meta dd {
+    margin: 0;
+    color: var(--color-text);
+  }
+
+  .confidential {
+    margin-top: 2rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-subtle);
+  }
+
+  .technologies {
+    margin-bottom: 4rem;
+  }
+
+  .technologies h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  .technologies ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .technologies li {
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  .project-content {
+    max-width: 800px;
+  }
+
+  .project-content :global(h2) {
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-content :global(h3) {
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-content :global(p),
+  .project-content :global(ul),
+  .project-content :global(ol) {
+    margin-bottom: 1.25rem;
+  }
+
+  .project-content :global(ul),
+  .project-content :global(ol) {
+    padding-left: 1.5rem;
+  }
+
+  @media (max-width: 700px) {
+    .project {
+      padding-block: 3rem;
+    }
+
+    .project-meta {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+</style>
