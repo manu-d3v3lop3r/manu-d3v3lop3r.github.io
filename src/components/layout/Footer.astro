@@ -1,6 +1,4 @@
 ---
-import { socialLinks } from "../../data/social";
-
 interface Props {
   lang: "es" | "en";
 }
@@ -22,20 +20,6 @@ const copyright =
       <p class="footer-name">Software Developer</p>
       <p class="footer-location">{footerText}</p>
     </div>
-
-    <nav aria-label={lang === "es" ? "Enlaces externos" : "External links"}>
-      <ul class="social-list">
-        {
-          socialLinks.map((social) => (
-            <li>
-              <a href={social.href} target="_blank" rel="noopener noreferrer">
-                {social.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
 
     <p class="copyright">
       © {new Date().getFullYear()} · {copyright}
@@ -66,22 +50,5 @@ const copyright =
   .copyright {
     color: var(--color-text-muted);
     font-size: 0.875rem;
-  }
-
-  .social-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .social-list a {
-    color: var(--color-text-secondary);
-  }
-
-  .social-list a:hover {
-    color: var(--color-text);
   }
 </style>

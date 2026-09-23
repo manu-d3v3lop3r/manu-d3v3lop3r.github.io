@@ -22,7 +22,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
     <div class="experience-list">
       <section class="experience-item">
         <header class="experience-header">
-          <div>
+          <div class="experience-heading">
             <h2>Técnico en Operaciones de Sistemas Informáticos</h2>
             <p class="company">Empresa confidencial</p>
           </div>
@@ -31,103 +31,115 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
         </header>
 
         <div class="experience-content">
-          <p>
+          <p class="experience-summary">
             Desarrollo y mantenimiento de una aplicación web orientada a la
             digitalización y gestión de documentación para un entorno
-            profesional.
+            profesional, junto con tareas de sistemas, automatización, CMS y
+            soporte técnico.
           </p>
 
-          <h3>Desarrollo de software y web</h3>
+          <div class="experience-area">
+            <h3>Desarrollo de software y web</h3>
 
-          <ul>
-            <li>
-              Desarrollo y mantenimiento de funcionalidades de una aplicación
-              web.
-            </li>
-            <li>
-              Trabajo con HTML, CSS, JavaScript, Bootstrap, jQuery y DataTables.
-            </li>
-            <li>Desarrollo con PHP y trabajo con bases de datos MySQL.</li>
-            <li>
-              Integración de almacenamiento y gestión documental mediante Google
-              Drive y Google Apps Script.
-            </li>
-          </ul>
+            <ul>
+              <li>
+                Desarrollo y mantenimiento de funcionalidades de una aplicación
+                web.
+              </li>
+              <li>
+                Trabajo con HTML, CSS, JavaScript, Bootstrap, jQuery y
+                DataTables.
+              </li>
+              <li>Desarrollo con PHP y trabajo con bases de datos MySQL.</li>
+              <li>
+                Integración de almacenamiento y gestión documental mediante
+                Google Drive y Google Apps Script.
+              </li>
+            </ul>
+          </div>
 
-          <h3>Entornos y sistemas</h3>
+          <div class="experience-area">
+            <h3>Entornos y sistemas</h3>
 
-          <ul>
-            <li>
-              Configuración de un equipo físico con Windows para utilizarlo como
-              servidor junto con otro compañero.
-            </li>
-            <li>Configuración y trabajo con Apache, PHP y MySQL.</li>
-            <li>
-              Uso de XAMPP para facilitar el desarrollo, ejecución y
-              configuración del entorno.
-            </li>
-            <li>Uso de VirtualBox.</li>
-            <li>
-              Configuración de IPs, puertos, usuarios, permisos y estructura de
-              carpetas.
-            </li>
-            <li>
-              Investigación y resolución de problemas relacionados con
-              conexiones y seguridad.
-            </li>
-          </ul>
+            <ul>
+              <li>
+                Configuración de un equipo físico con Windows para utilizarlo
+                como servidor junto con otro compañero.
+              </li>
+              <li>Configuración y trabajo con Apache, PHP y MySQL.</li>
+              <li>
+                Uso de XAMPP para facilitar el desarrollo, ejecución y
+                configuración del entorno.
+              </li>
+              <li>Uso de VirtualBox.</li>
+              <li>
+                Configuración de IPs, puertos, usuarios, permisos y estructura
+                de carpetas.
+              </li>
+              <li>
+                Investigación y resolución de problemas relacionados con
+                conexiones y seguridad.
+              </li>
+            </ul>
+          </div>
 
-          <h3>Automatización</h3>
+          <div class="experience-area">
+            <h3>Automatización</h3>
 
-          <ul>
-            <li>
-              Desarrollo y configuración de automatizaciones mediante Microsoft
-              Power Automate.
-            </li>
-            <li>
-              Automatización de procesos internos relacionados con la gestión de
-              solicitudes.
-            </li>
-          </ul>
+            <ul>
+              <li>
+                Desarrollo y configuración de automatizaciones mediante
+                Microsoft Power Automate.
+              </li>
+              <li>
+                Automatización de procesos internos relacionados con la gestión
+                de solicitudes.
+              </li>
+            </ul>
+          </div>
 
-          <h3>CMS y portal institucional</h3>
+          <div class="experience-area">
+            <h3>CMS y portal institucional</h3>
 
-          <ul>
-            <li>Trabajo con Magnolia CMS mediante su interfaz gráfica.</li>
-            <li>Creación y modificación de páginas.</li>
-            <li>
-              Trabajo con componentes, plantillas, contenidos, imágenes, menús,
-              navegación y formularios.
-            </li>
-            <li>
-              Participación en la migración y reorganización de contenidos.
-            </li>
-            <li>
-              Organización de los elementos teniendo en cuenta la accesibilidad
-              y la facilidad de navegación.
-            </li>
-          </ul>
+            <ul>
+              <li>Trabajo con Magnolia CMS mediante su interfaz gráfica.</li>
+              <li>Creación y modificación de páginas.</li>
+              <li>
+                Trabajo con componentes, plantillas, contenidos, imágenes,
+                menús, navegación y formularios.
+              </li>
+              <li>
+                Participación en la migración y reorganización de contenidos.
+              </li>
+              <li>
+                Organización de los elementos teniendo en cuenta la
+                accesibilidad y la facilidad de navegación.
+              </li>
+            </ul>
+          </div>
 
-          <h3>Mantenimiento y soporte</h3>
+          <div class="experience-area">
+            <h3>Mantenimiento y soporte</h3>
 
-          <ul>
-            <li>Revisiones de seguridad y pruebas.</li>
-            <li>Copias de seguridad.</li>
-            <li>Soporte a usuarios.</li>
-            <li>Instalación y configuración de software.</li>
-            <li>Creación y configuración de equipos.</li>
-            <li>Gestión de permisos y cuentas.</li>
-            <li>
-              Uso de PowerShell para ejecutar comandos relacionados con
-              conexiones e instalaciones.
-            </li>
-          </ul>
+            <ul>
+              <li>Revisiones de seguridad y pruebas.</li>
+              <li>Copias de seguridad.</li>
+              <li>Soporte a usuarios.</li>
+              <li>Instalación y configuración de software.</li>
+              <li>Creación y configuración de equipos.</li>
+              <li>Gestión de permisos y cuentas.</li>
+              <li>
+                Uso de PowerShell para ejecutar comandos relacionados con
+                conexiones e instalaciones.
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
       <section class="experience-item">
         <header class="experience-header">
-          <div>
+          <div class="experience-heading">
             <h2>Web Application Developer</h2>
             <p class="company">Prácticas</p>
           </div>
@@ -136,24 +148,28 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
         </header>
 
         <div class="experience-content">
-          <p>
+          <p class="experience-summary">
             Participación en el desarrollo de una aplicación web orientada a la
             digitalización y gestión documental.
           </p>
 
-          <h3>Principales tecnologías y tareas</h3>
+          <div class="experience-area">
+            <h3>Principales tecnologías y tareas</h3>
 
-          <ul>
-            <li>HTML, CSS y JavaScript.</li>
-            <li>Bootstrap, jQuery y DataTables.</li>
-            <li>PHP y MySQL.</li>
-            <li>Google Apps Script.</li>
-            <li>
-              Desarrollo y trabajo con funcionalidades relacionadas con la carga
-              y gestión de documentación.
-            </li>
-            <li>Trabajo con el entorno local y configuración del servidor.</li>
-          </ul>
+            <ul>
+              <li>HTML, CSS y JavaScript.</li>
+              <li>Bootstrap, jQuery y DataTables.</li>
+              <li>PHP y MySQL.</li>
+              <li>Google Apps Script.</li>
+              <li>
+                Desarrollo y trabajo con funcionalidades relacionadas con la
+                carga y gestión de documentación.
+              </li>
+              <li>
+                Trabajo con el entorno local y configuración del servidor.
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
     </div>
@@ -209,7 +225,11 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
     align-items: flex-start;
     justify-content: space-between;
     gap: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .experience-heading {
+    min-width: 0;
   }
 
   .experience-header h2 {
@@ -231,13 +251,16 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
     max-width: 800px;
   }
 
-  .experience-content > p {
-    margin-bottom: 2.5rem;
+  .experience-summary {
+    margin-bottom: 3rem;
     font-size: 1.1rem;
   }
 
-  .experience-content h3 {
+  .experience-area + .experience-area {
     margin-top: 2.5rem;
+  }
+
+  .experience-content h3 {
     margin-bottom: 1rem;
     font-size: 1.25rem;
   }

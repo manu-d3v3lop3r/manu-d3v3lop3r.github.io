@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { socialLinks } from "../../../data/social";
 ---
 
 <BaseLayout
@@ -42,27 +41,6 @@ import { socialLinks } from "../../../data/social";
             <strong>GitHub:</strong> to be added
           </p>
         </div>
-      </section>
-
-      <section class="contact-section">
-        <h2>Profiles</h2>
-
-        <p>
-          These links will be replaced with the actual professional profiles
-          once they are confirmed.
-        </p>
-
-        <ul class="social-list">
-          {
-            socialLinks.map((social) => (
-              <li>
-                <a href={social.href} target="_blank" rel="noopener noreferrer">
-                  {social.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
       </section>
 
       <section class="contact-section">
@@ -150,32 +128,6 @@ import { socialLinks } from "../../../data/social";
     margin: 0;
   }
 
-  .social-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin: 2rem 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .social-list a {
-    display: inline-flex;
-    min-height: 2.75rem;
-    align-items: center;
-    padding: 0.7rem 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background: var(--color-surface);
-    color: var(--color-primary);
-    font-weight: 600;
-  }
-
-  .social-list a:hover {
-    background: var(--color-surface-subtle);
-    color: var(--color-primary-hover);
-  }
-
   @media (max-width: 700px) {
     .contact-page {
       padding-block: 3rem 5rem;
@@ -187,14 +139,6 @@ import { socialLinks } from "../../../data/social";
 
     .contact-section {
       padding-block: 2.5rem;
-    }
-
-    .social-list {
-      flex-direction: column;
-    }
-
-    .social-list a {
-      justify-content: center;
     }
   }
 </style>
