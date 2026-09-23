@@ -11,6 +11,12 @@ const projects = await getCollection(
 const sortedProjects = projects.sort(
   (a, b) => (b.data.year ?? 0) - (a.data.year ?? 0),
 );
+
+const projectTypeLabels = {
+  professional: "Profesional",
+  academic: "Académico",
+  personal: "Personal",
+} as const;
 ---
 
 <BaseLayout
@@ -37,7 +43,7 @@ const sortedProjects = projects.sort(
           <ProjectCard
             title={project.data.title}
             summary={project.data.summary}
-            type={project.data.type}
+            type={projectTypeLabels[project.data.type]}
             technologies={project.data.technologies}
             technologiesLabel="Tecnologías utilizadas"
             href={`/es/proyectos/${project.data.slug}/`}

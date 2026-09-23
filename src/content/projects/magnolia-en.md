@@ -11,28 +11,35 @@ summary: "Redesign and migration of an institutional portal using Magnolia CMS, 
 technologies:
   - Magnolia CMS
 role: "Configuration, creation and modification of pages and components, content organization and migration."
-team: "Work team"
+team: "Team environment"
 ---
 
 ## Context
 
-The project consisted of renewing an existing institutional portal using Magnolia CMS.
+The project involved renewing an existing institutional portal using
+Magnolia CMS.
 
-It started from existing material and content that had to be adapted and reorganized within the new portal structure.
+The project started from existing material and content that had to be adapted
+and reorganized within the new portal structure.
 
 ## Problem
 
-The existing content needed to be transferred and reorganized within the new portal while maintaining a clear structure and making navigation easier for users.
+The existing content needed to be transferred and reorganized within the new
+portal while maintaining a clear structure and making navigation easier for
+users.
 
-The content also had to be adapted to the components and field types available in Magnolia CMS.
+The content also had to be adapted to the components and field types
+available in Magnolia CMS.
 
 ## Solution
 
-The work was carried out directly through the Magnolia CMS graphical interface to create and modify the portal pages.
+The work was carried out directly through the Magnolia CMS graphical
+interface to create and modify the portal pages.
 
-Content was organized using the components, templates and field types available on the platform.
+Content was organized using the components, templates and field types
+available on the platform.
 
-The work also included:
+The work included:
 
 - Content.
 - Images.
@@ -42,21 +49,26 @@ The work also included:
 - Page structure.
 - Components and templates.
 
-The organization of the elements took accessibility and ease of navigation into account.
+The organization of these elements took accessibility and ease of navigation
+into account.
 
 ## My contribution
 
-I participated in both content organization and the configuration and creation of pages within Magnolia CMS.
+I participated in both content organization and the configuration and
+creation of pages within Magnolia CMS.
 
-I worked with the available components and templates and adapted the content to the structure of the new portal.
+I worked with the available components and templates and adapted the content
+to the structure of the new portal.
 
 I also participated in the design and implementation of the pages.
 
 ## Main challenge
 
-The main challenge was understanding how Magnolia CMS worked and learning how to use the structure and capabilities provided by the platform.
+The main challenge was understanding how Magnolia CMS worked and learning how
+to work with the structure and possibilities provided by the platform.
 
-It was necessary to understand how to use the different components, templates and field types to build the pages correctly.
+It was necessary to understand how to use the different components, templates
+and field types to build the pages correctly.
 
 ## Publication
 
@@ -64,12 +76,14 @@ The result was published and integrated into the institutional portal.
 
 ## Result
 
-The portal was redesigned and its content was migrated and reorganized within the new structure.
+The portal was redesigned and its content was migrated and reorganized within
+the new structure.
 
-The project provided practical experience in content management, information organization, navigation and CMS configuration.
+The work provided practical experience with content management, information
+organization, navigation and CMS configuration.
 
 ## What I would improve today
 
-I would not make specific changes to the result of this project today.
+Today I would not make specific changes to the result of the project.
 
 The work fulfilled its intended objective and was successfully published.

@@ -1,85 +1,214 @@
 ---
-title: "Gestión documental"
+title: "Gestión y digitalización documental"
 slug: "gestion-documental"
 language: "es"
 type: "professional"
 status: "completed"
 featured: true
 confidential: true
-summary: "Aplicación web para digitalizar, almacenar y consultar documentación de un departamento administrativo."
+summary: "Aplicación web profesional para digitalizar, almacenar y gestionar documentación, combinando desarrollo web, base de datos y configuración de un entorno de servidor."
 technologies:
+  - HTML
+  - CSS
+  - JavaScript
+  - Bootstrap
+  - jQuery
+  - DataTables
   - PHP
   - MySQL
-  - JavaScript
-  - jQuery
-  - Bootstrap
-  - DataTables
   - Google Drive
   - Google Apps Script
   - Apache
   - XAMPP
   - VirtualBox
-role: "Desarrollo de la aplicación, definición del flujo de trabajo y configuración del entorno."
+role: "Desarrollo de la aplicación, configuración del entorno y participación en la puesta en funcionamiento."
 team: "2 personas"
 ---
 
 ## Contexto
 
-El departamento administrativo trabajaba con documentación principalmente en papel, organizada mediante carpetas y archivadores.
+El proyecto surgió de una necesidad interna de la empresa relacionada con la
+digitalización y gestión de documentación.
 
-Esto dificultaba la conservación, organización y consulta de la documentación.
+Antes de la aplicación, gran parte de la documentación se gestionaba en
+formato físico mediante documentos, carpetas y archivadores. Esto dificultaba
+la localización de información y aumentaba el riesgo de pérdida o deterioro
+de documentos.
+
+El objetivo era disponer de un proceso digital que permitiera almacenar la
+documentación y consultar la información asociada de una forma más
+estructurada.
 
 ## Problema
 
-Era necesario disponer de una forma más organizada de digitalizar la documentación y facilitar su consulta posterior.
+El proceso anterior dependía en gran medida de documentación física.
+
+Esto generaba varios problemas:
+
+- Dificultad para localizar determinados documentos.
+- Dependencia del almacenamiento físico.
+- Mayor riesgo de pérdida o deterioro.
+- Necesidad de realizar búsquedas manuales.
+- Falta de una gestión centralizada de la información asociada a los
+  documentos.
+
+También era necesario disponer de un entorno donde la aplicación pudiera
+ejecutarse y almacenar la información de forma controlada.
+
+## Objetivos
+
+Los principales objetivos del proyecto eran:
+
+- Digitalizar la documentación.
+- Facilitar su almacenamiento y consulta.
+- Relacionar los documentos con la información introducida por los usuarios.
+- Reducir la dependencia de la documentación física.
+- Disponer de una aplicación adaptada al flujo de trabajo real.
+- Configurar un entorno donde la aplicación pudiera ejecutarse.
 
 ## Solución
 
-Se desarrolló una aplicación web que permitía registrar la información asociada a los documentos y gestionar su almacenamiento digital.
+Se desarrolló una aplicación web para gestionar el proceso de digitalización
+documental.
 
-El flujo general era:
+El flujo general comenzaba cuando una persona accedía a la aplicación y
+utilizaba el formulario correspondiente.
 
-1. Selección de la opción de carga.
-2. Introducción de la información correspondiente.
-3. Carga del documento.
-4. Almacenamiento del documento.
-5. Registro de la información asociada.
-6. Consulta posterior desde la aplicación.
+El proceso podía resumirse de la siguiente forma:
 
-La información estructurada se almacenaba en MySQL y los documentos se gestionaban mediante Google Drive.
+1. El usuario accedía al formulario.
+2. Introducía la información asociada al documento.
+3. Seleccionaba y cargaba el documento.
+4. El documento se almacenaba en Google Drive.
+5. La información del formulario se almacenaba en MySQL.
+6. La aplicación mostraba posteriormente la información registrada y la
+   referencia correspondiente al documento.
+
+La aplicación combinaba una interfaz web con el procesamiento realizado en el
+servidor y el almacenamiento de información y documentación.
+
+## Tecnologías y desarrollo
+
+La parte web se desarrolló utilizando HTML, CSS y JavaScript, junto con
+Bootstrap, jQuery y DataTables.
+
+PHP se utilizó dentro de la aplicación y para trabajar con el entorno de
+servidor y la gestión de la información.
+
+MySQL se utilizó como base de datos relacional para almacenar los datos
+asociados a la documentación.
+
+Google Drive se utilizó como almacenamiento de los documentos y Google Apps
+Script formó parte del ecosistema utilizado para trabajar con los servicios
+de Google.
+
+## Entorno y servidor
+
+Una parte importante del proyecto fue la preparación del entorno donde debía
+ejecutarse la aplicación.
+
+Junto con otro compañero se configuró desde cero un equipo físico con
+Windows para utilizarlo como servidor.
+
+Durante este proceso se trabajó con:
+
+- Apache.
+- PHP.
+- MySQL.
+- XAMPP.
+- VirtualBox.
+- Direcciones IP.
+- Puertos.
+- Usuarios.
+- Permisos.
+- Estructura de carpetas.
+
+XAMPP se utilizó para facilitar la ejecución y configuración del entorno con
+Apache, PHP y MySQL.
+
+También fue necesario investigar y resolver problemas relacionados con
+conexiones y seguridad durante la configuración.
 
 ## Mi participación
 
-El proyecto fue desarrollado por un equipo de dos personas.
+El desarrollo se realizó entre dos personas y participé de forma directa en
+la construcción de la solución.
 
-Mi participación cubrió una parte muy amplia de la solución, incluyendo el desarrollo de la aplicación, la definición del flujo de trabajo y parte importante de la configuración del entorno necesario para ejecutarla.
+Mi participación incluyó el desarrollo de la aplicación y de su flujo de
+trabajo, así como tareas relacionadas con la configuración del entorno y el
+servidor.
 
-## Entorno técnico
+También participé en la investigación necesaria para resolver problemas de
+configuración, conexión y seguridad.
 
-El entorno incluía Windows, Apache, PHP, MySQL, XAMPP y VirtualBox, además de configuración de red, usuarios, permisos y estructura de carpetas.
+Una parte importante del trabajo consistió en comprender primero el proceso
+que debía resolver la aplicación. Para ello fue necesario analizar el flujo
+real de trabajo y contrastarlo con las necesidades de las personas que
+utilizarían la solución.
 
-## Retos
+## Retos principales
 
-Uno de los principales retos fue comprender correctamente el flujo que debía seguir la documentación dentro de la aplicación.
+Uno de los principales retos fue comprender correctamente el flujo de trabajo
+que debía representar la aplicación.
 
-También surgieron problemas relacionados con la configuración del servidor, conexiones y seguridad.
+No se trataba únicamente de desarrollar formularios, sino de entender cómo
+se utilizaba realmente la documentación y qué información debía quedar
+asociada a cada documento.
+
+Otro reto importante fue la configuración del servidor.
+
+La preparación del equipo físico, las conexiones, los permisos y los
+problemas de seguridad requirieron investigación y pruebas hasta conseguir
+un entorno funcional.
+
+## Decisiones y aprendizaje
+
+El proyecto permitió trabajar de forma conjunta con desarrollo web, bases de
+datos, almacenamiento documental y configuración de sistemas.
+
+También fue especialmente importante aprender a investigar problemas
+técnicos de forma autónoma.
+
+Cuando aparecieron problemas relacionados con el servidor, las conexiones o
+la configuración, fue necesario buscar información, probar alternativas y
+adaptar la solución al entorno disponible.
 
 ## Resultado
 
-La aplicación fue desplegada y utilizada en el entorno profesional para el que había sido desarrollada.
+La aplicación se utilizó en un entorno profesional real y permitió gestionar
+digitalmente la documentación y la información asociada.
 
-No se incluyen métricas cuantitativas porque no se dispone de datos históricos verificables.
+El proyecto ayudó a reducir la dependencia del proceso basado exclusivamente
+en documentación física y facilitó la consulta de la información desde la
+aplicación.
+
+No se incluyen métricas cuantitativas porque no se dispone de datos fiables
+sobre ahorro de tiempo, volumen de documentación u otros indicadores.
 
 ## Qué mejoraría actualmente
 
-Con los conocimientos actuales, revisaría principalmente:
+Si desarrollara actualmente una solución equivalente desde cero, prestaría
+especial atención a:
 
-- La estructura interna de la aplicación.
-- La seguridad.
-- La interfaz visual.
-- La organización del código.
-- Las tecnologías y frameworks utilizados.
+- Una arquitectura de aplicación más estructurada.
+- Mejoras de seguridad.
+- Una separación más clara de responsabilidades.
+- Una interfaz más moderna y cuidada.
+- Soporte para diferentes idiomas.
+- Una solución técnica más mantenible y preparada para evolucionar.
+
+Estas mejoras se plantean como una valoración actual del proyecto y no como
+características que formaran parte de la implementación original.
 
 ## Confidencialidad
 
-El código fuente y los materiales originales no están disponibles públicamente debido al carácter profesional y confidencial del proyecto.
+Este proyecto pertenece a un entorno profesional y contiene información y
+procesos internos de la empresa.
+
+Por este motivo, el código fuente no está disponible públicamente y no se
+publican datos internos, credenciales, configuraciones sensibles ni
+documentación privada.
+
+La información mostrada en este caso de estudio se limita a describir de
+forma general mi participación, las tecnologías utilizadas y el problema que
+se resolvió.

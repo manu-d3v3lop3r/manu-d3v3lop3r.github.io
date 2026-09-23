@@ -1,85 +1,207 @@
 ---
-title: "Document Management"
+title: "Document Management and Digitization"
 slug: "document-management"
 language: "en"
 type: "professional"
 status: "completed"
 featured: true
 confidential: true
-summary: "Web application for digitizing, storing and consulting documentation for an administrative department."
+summary: "Professional web application for digitizing, storing and managing documents, combining web development, database management and server environment configuration."
 technologies:
+  - HTML
+  - CSS
+  - JavaScript
+  - Bootstrap
+  - jQuery
+  - DataTables
   - PHP
   - MySQL
-  - JavaScript
-  - jQuery
-  - Bootstrap
-  - DataTables
   - Google Drive
   - Google Apps Script
   - Apache
   - XAMPP
   - VirtualBox
-role: "Application development, workflow definition and environment configuration."
+role: "Application development, environment configuration and participation in putting the solution into operation."
 team: "2 people"
 ---
 
 ## Context
 
-The administrative department worked mainly with paper documentation, organized through folders and filing cabinets.
+The project arose from an internal company need related to document
+digitization and management.
 
-This made document preservation, organization and retrieval more difficult.
+Before the application was introduced, a significant part of the
+documentation was managed in physical form using documents, folders and
+filing cabinets. This made information harder to locate and increased the
+risk of documents being lost or damaged.
+
+The goal was to provide a digital process that could store the documentation
+and make the associated information easier to manage and consult.
 
 ## Problem
 
-A more organized way of digitizing documentation and making it easier to retrieve later was needed.
+The previous process relied heavily on physical documentation.
+
+This created several problems:
+
+- Difficulty locating specific documents.
+- Dependence on physical storage.
+- Increased risk of loss or deterioration.
+- Need for manual searches.
+- Lack of centralized management for information associated with documents.
+
+A controlled environment was also required where the application could run
+and store its information.
+
+## Objectives
+
+The main objectives were:
+
+- Digitize the documentation.
+- Make document storage and retrieval easier.
+- Associate documents with information entered by users.
+- Reduce dependence on physical documentation.
+- Provide an application adapted to the real workflow.
+- Configure an environment where the application could run.
 
 ## Solution
 
-A web application was developed to register information associated with documents and manage their digital storage.
+A web application was developed to manage the document digitization process.
 
-The general workflow was:
+The general workflow started when a person accessed the application and used
+the corresponding form.
 
-1. Selecting the upload option.
-2. Entering the required information.
-3. Uploading the document.
-4. Storing the document.
-5. Registering the associated information.
-6. Retrieving the information later through the application.
+The process could be summarized as follows:
 
-Structured information was stored in MySQL, while documents were managed through Google Drive.
+1. The user accessed the form.
+2. The user entered the information associated with the document.
+3. The user selected and uploaded the document.
+4. The document was stored in Google Drive.
+5. Form information was stored in MySQL.
+6. The application subsequently displayed the registered information and the
+   corresponding document reference.
+
+The application combined a web interface with server-side processing and
+information and document storage.
+
+## Technologies and development
+
+The web interface was developed using HTML, CSS and JavaScript, together with
+Bootstrap, jQuery and DataTables.
+
+PHP was used within the application and to work with the server environment
+and information management.
+
+MySQL was used as a relational database for storing data associated with the
+documentation.
+
+Google Drive was used for document storage, while Google Apps Script formed
+part of the ecosystem used to work with Google services.
+
+## Environment and server
+
+An important part of the project was preparing the environment where the
+application would run.
+
+Together with another colleague, a physical Windows computer was configured
+from scratch to be used as a server.
+
+The work included:
+
+- Apache.
+- PHP.
+- MySQL.
+- XAMPP.
+- VirtualBox.
+- IP addresses.
+- Ports.
+- Users.
+- Permissions.
+- Folder structures.
+
+XAMPP was used to facilitate the execution and configuration of the
+environment with Apache, PHP and MySQL.
+
+It was also necessary to research and solve connection and security-related
+problems during the configuration process.
 
 ## My contribution
 
-The project was developed by a two-person team.
+The development was carried out by two people, and I was directly involved
+in building the solution.
 
-My contribution covered a broad part of the solution, including application development, workflow definition and a significant part of the environment configuration required to run it.
+My contribution included application development and its workflow, as well
+as tasks related to environment and server configuration.
 
-## Technical environment
+I also participated in the research required to solve configuration,
+connection and security problems.
 
-The environment included Windows, Apache, PHP, MySQL, XAMPP and VirtualBox, together with network configuration, users, permissions and folder structure.
+An important part of the work was first understanding the process that the
+application needed to solve. This required analysing the real workflow and
+discussing it with the people who would use the solution.
 
-## Challenges
+## Main challenges
 
-One of the main challenges was correctly understanding the workflow that documentation had to follow within the application.
+One of the main challenges was correctly understanding the workflow that the
+application needed to represent.
 
-There were also issues related to server configuration, connections and security.
+The task was not simply to develop forms, but to understand how documentation
+was actually handled and what information needed to remain associated with
+each document.
+
+Another important challenge was server configuration.
+
+Preparing the physical machine, connections, permissions and security
+required research and testing until a functional environment was achieved.
+
+## Decisions and learning
+
+The project provided practical experience combining web development,
+databases, document storage and systems configuration.
+
+It was also particularly valuable for developing the ability to investigate
+technical problems independently.
+
+When server, connection or configuration problems appeared, it was necessary
+to research the issue, test alternatives and adapt the solution to the
+available environment.
 
 ## Result
 
-The application was deployed and used in the professional environment for which it had been developed.
+The application was used in a real professional environment and enabled
+documentation and associated information to be managed digitally.
 
-No quantitative metrics are included because there are no verifiable historical data available.
+The project helped reduce dependence on a process based exclusively on
+physical documentation and made the associated information easier to consult
+through the application.
+
+No quantitative metrics are included because reliable data about time
+savings, document volume or other indicators are not available.
 
 ## What I would improve today
 
-With my current knowledge, I would mainly review:
+If I were developing an equivalent solution from scratch today, I would pay
+particular attention to:
 
-- The internal application structure.
-- Security.
-- The visual interface.
-- Code organization.
-- The technologies and frameworks used.
+- A more structured application architecture.
+- Security improvements.
+- Clearer separation of responsibilities.
+- A more modern and refined user interface.
+- Support for multiple languages.
+- A more maintainable technical solution prepared for future evolution.
+
+These improvements are a current assessment of the project and were not part
+of the original implementation.
 
 ## Confidentiality
 
-The source code and original materials are not publicly available because the project was developed in a professional and confidential environment.
+This project belongs to a professional environment and contains internal
+company information and processes.
+
+For this reason, the source code is not publicly available, and internal
+data, credentials, sensitive configurations and private documentation are not
+published.
+
+The information presented in this case study is limited to describing my
+general contribution, the technologies used and the problem that was
+addressed.

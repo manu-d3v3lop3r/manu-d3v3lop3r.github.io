@@ -34,6 +34,26 @@ const projects = defineCollection({
     role: z.string(),
 
     team: z.string().optional(),
+
+    context: z.string().optional(),
+
+    problem: z.string().optional(),
+
+    objectives: z.array(z.string()).optional(),
+
+    solution: z.string().optional(),
+
+    architecture: z.string().optional(),
+
+    challenges: z.array(z.string()).optional(),
+
+    decisions: z.array(z.string()).optional(),
+
+    result: z.string().optional(),
+
+    learnings: z.array(z.string()).optional(),
+
+    future: z.string().optional(),
   }),
 });
 

@@ -24,10 +24,25 @@ const {
   team,
   confidential,
 } = Astro.props;
+
+const projectsHref = lang === "es" ? "/es/proyectos/" : "/en/projects/";
+const projectsLabel = lang === "es" ? "Volver a proyectos" : "Back to projects";
 ---
 
 <BaseLayout title={title} description={description} lang={lang}>
   <article class="project">
+    <nav
+      class="project-navigation"
+      aria-label={lang === "es"
+        ? "Navegación del proyecto"
+        : "Project navigation"}
+    >
+      <a href={projectsHref}>
+        <span aria-hidden="true">←</span>
+        {projectsLabel}
+      </a>
+    </nav>
+
     <header class="project-header">
       <p class="project-type">{type}</p>
 
@@ -37,7 +52,7 @@ const {
         {description}
       </p>
 
-      <div class="project-meta">
+      <dl class="project-meta">
         {
           year && (
             <div>
@@ -60,7 +75,7 @@ const {
             </div>
           )
         }
-      </div>
+      </dl>
 
       {
         confidential && (
@@ -93,7 +108,34 @@ const {
   .project {
     width: min(calc(100% - 2rem), var(--content-width));
     margin-inline: auto;
-    padding-block: 4rem;
+    padding-block: 2rem 4rem;
+  }
+
+  .project-navigation {
+    margin-bottom: 3rem;
+  }
+
+  .project-navigation a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .project-navigation a:hover {
+    color: var(--color-text);
+  }
+
+  .project-navigation a span {
+    font-size: 1.1rem;
+    transition: transform 160ms ease;
+  }
+
+  .project-navigation a:hover span {
+    transform: translateX(-0.15rem);
   }
 
   .project-header {
@@ -122,7 +164,7 @@ const {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem;
-    margin-top: 3rem;
+    margin: 3rem 0 0;
     padding-block: 2rem;
     border-block: 1px solid var(--color-border);
   }
@@ -204,12 +246,22 @@ const {
 
   @media (max-width: 700px) {
     .project {
-      padding-block: 3rem;
+      padding-block: 1.5rem 3rem;
+    }
+
+    .project-navigation {
+      margin-bottom: 2rem;
     }
 
     .project-meta {
       grid-template-columns: 1fr;
       gap: 1.25rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-navigation a span {
+      transition: none;
     }
   }
 </style>
