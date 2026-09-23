@@ -48,4 +48,9 @@ export const localeRoutes = {
     es: "/es/proyectos/power-automate/",
     en: "/en/projects/power-automate/",
   },
+
+  magnolia: {
+    es: "/es/proyectos/magnolia/",
+    en: "/en/projects/magnolia/",
+  },
 } as const;
