@@ -8,9 +8,9 @@ const projects = await getCollection(
   ({ data }) => data.language === "es",
 );
 
-const featuredProjects = projects
-  .filter((project) => project.data.featured)
-  .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+const sortedProjects = projects.sort(
+  (a, b) => (b.data.year ?? 0) - (a.data.year ?? 0),
+);
 ---
 
 <BaseLayout
@@ -33,7 +33,7 @@ const featuredProjects = projects
 
     <div class="projects-list">
       {
-        featuredProjects.map((project) => (
+        sortedProjects.map((project) => (
           <ProjectCard
             title={project.data.title}
             summary={project.data.summary}

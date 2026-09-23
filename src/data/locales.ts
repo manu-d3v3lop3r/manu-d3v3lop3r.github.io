@@ -38,4 +38,14 @@ export const localeRoutes = {
     es: "/es/proyectos/gestion-documental/",
     en: "/en/projects/document-management/",
   },
+
+  "android-tourism": {
+    es: "/es/proyectos/turismo-android/",
+    en: "/en/projects/android-tourism/",
+  },
+
+  "power-automate": {
+    es: "/es/proyectos/power-automate/",
+    en: "/en/projects/power-automate/",
+  },
 } as const;

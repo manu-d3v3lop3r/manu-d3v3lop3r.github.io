@@ -10,7 +10,10 @@ const projects = defineCollection({
 
   schema: z.object({
     title: z.string(),
+
     slug: z.string(),
+
+    routeSlug: z.string().optional(),
 
     language: z.enum(["es", "en"]),
 
