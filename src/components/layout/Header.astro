@@ -1,6 +1,5 @@
 ---
 import { navigation } from "../../data/navigation";
-
 import LanguageSwitcher from "../navigation/LanguageSwitcher.astro";
 
 interface Props {
@@ -8,15 +7,31 @@ interface Props {
 }
 
 const { lang } = Astro.props;
-
 const links = navigation[lang];
+
+const menuLabel = lang === "es" ? "Abrir menú" : "Open menu";
+const closeLabel = lang === "es" ? "Cerrar menú" : "Close menu";
 ---
 
 <header class="site-header">
   <div class="header-inner">
     <a class="site-brand" href={`/${lang}/`}> Software Developer </a>
 
-    <div class="header-actions">
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="main-navigation"
+      aria-label={menuLabel}
+    >
+      <span class="menu-icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+    <div class="header-actions" id="main-navigation">
       <nav
         aria-label={lang === "es" ? "Navegación principal" : "Main navigation"}
       >
@@ -36,26 +51,77 @@ const links = navigation[lang];
   </div>
 </header>
 
+<script>
+  const headers = document.querySelectorAll(".site-header");
+
+  headers.forEach((header) => {
+    const toggle = header.querySelector<HTMLButtonElement>(".menu-toggle");
+    const navigation = header.querySelector<HTMLElement>(".header-actions");
+
+    if (!toggle || !navigation) {
+      return;
+    }
+
+    const openLabel = toggle.getAttribute("aria-label") ?? "Open menu";
+
+    const closeLabel = openLabel === "Open menu" ? "Close menu" : "Cerrar menú";
+
+    const setMenuState = (isOpen: boolean) => {
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      toggle.setAttribute("aria-label", isOpen ? closeLabel : openLabel);
+
+      navigation.classList.toggle("is-open", isOpen);
+      document.body.classList.toggle("menu-open", isOpen);
+    };
+
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+
+      setMenuState(!isOpen);
+    });
+
+    navigation.addEventListener("click", (event) => {
+      const target = event.target;
+
+      if (
+        target instanceof HTMLAnchorElement &&
+        window.matchMedia("(max-width: 900px)").matches
+      ) {
+        setMenuState(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setMenuState(false);
+        toggle.focus();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (!window.matchMedia("(max-width: 900px)").matches) {
+        setMenuState(false);
+      }
+    });
+  });
+</script>
+
 <style>
   .site-header {
+    position: relative;
+    z-index: 10;
     border-bottom: 1px solid var(--color-border);
     background: var(--color-background);
   }
 
   .header-inner {
     width: min(calc(100% - 2rem), var(--content-width));
-    margin-inline: auto;
     min-height: 4.5rem;
+    margin-inline: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-  }
-
-  .header-actions {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
   }
 
   .site-brand {
@@ -63,6 +129,12 @@ const links = navigation[lang];
     font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
   }
 
   .navigation-list {
@@ -84,15 +156,95 @@ const links = navigation[lang];
     color: var(--color-text);
   }
 
+  .menu-toggle {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .menu-icon {
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .menu-icon span {
+    display: block;
+    width: 1.25rem;
+    height: 2px;
+    background: currentColor;
+    border-radius: var(--radius-pill);
+    transition:
+      transform 160ms ease,
+      opacity 160ms ease;
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(1) {
+    transform: translateY(0.4rem) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(3) {
+    transform: translateY(-0.4rem) rotate(-45deg);
+  }
+
   @media (max-width: 900px) {
     .header-inner {
-      align-items: flex-start;
+      min-height: 4.5rem;
+    }
+
+    .menu-toggle {
+      display: inline-flex;
+    }
+
+    .header-actions {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      left: 0;
+      display: none;
       flex-direction: column;
-      padding-block: 1rem;
+      align-items: stretch;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-background);
+    }
+
+    .header-actions.is-open {
+      display: flex;
     }
 
     .navigation-list {
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .navigation-list li {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .navigation-list a {
+      display: block;
+      padding-block: 0.9rem;
+      font-size: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-icon span {
+      transition: none;
     }
   }
 </style>
