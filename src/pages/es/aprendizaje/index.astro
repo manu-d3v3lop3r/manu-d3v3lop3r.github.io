@@ -1,0 +1,310 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Aprendizaje | Portfolio"
+  description="Formación, cursos y aprendizaje continuo en desarrollo de software y tecnologías."
+  lang="es"
+>
+  <article class="learning-page">
+    <header class="page-header">
+      <p class="eyebrow">APRENDIZAJE</p>
+
+      <h1>Formación y aprendizaje continuo</h1>
+
+      <p class="intro">
+        Formación académica, especialización y cursos realizados para ampliar
+        conocimientos en desarrollo de software, web, programación y tecnología.
+      </p>
+    </header>
+
+    <div class="learning-content">
+      <section class="learning-section">
+        <header class="section-header">
+          <p class="section-label">FORMACIÓN</p>
+          <h2>Formación principal</h2>
+        </header>
+
+        <div class="learning-list">
+          <article class="learning-item">
+            <h3>Desarrollo de Aplicaciones Multiplataforma</h3>
+
+            <p class="learning-type">
+              Formación Profesional de Grado Superior · DAM
+            </p>
+
+            <p>
+              Formación orientada al desarrollo de aplicaciones multiplataforma,
+              programación, bases de datos, desarrollo web y diferentes
+              tecnologías de software.
+            </p>
+          </article>
+
+          <article class="learning-item">
+            <h3>Master Full Stack Development</h3>
+
+            <p class="learning-type">MasterD · Formación especializada</p>
+
+            <p>
+              Formación especializada en desarrollo Full Stack, ampliando
+              conocimientos relacionados con frontend, backend y desarrollo de
+              aplicaciones web.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="learning-section">
+        <header class="section-header">
+          <p class="section-label">CURSOS</p>
+          <h2>Cursos y especialización</h2>
+        </header>
+
+        <div class="course-list">
+          <article class="course-item">
+            <h3>Java y Programación Orientada a Objetos</h3>
+            <p>
+              Formación en Java y fundamentos de programación orientada a
+              objetos.
+            </p>
+            <span class="course-provider">Mouredev</span>
+          </article>
+
+          <article class="course-item">
+            <h3>Python Essentials 1</h3>
+            <p>Formación en fundamentos de programación con Python.</p>
+            <span class="course-provider">Cisco</span>
+          </article>
+
+          <article class="course-item">
+            <h3>Python Essentials 2</h3>
+            <p>Formación avanzada dentro del itinerario Python Essentials.</p>
+            <span class="course-provider">Cisco</span>
+          </article>
+
+          <article class="course-item">
+            <h3>JavaScript Essentials 1</h3>
+            <p>
+              Formación en fundamentos de JavaScript y programación para
+              aplicaciones web.
+            </p>
+            <span class="course-provider">Cisco</span>
+          </article>
+
+          <article class="course-item">
+            <h3>Introducción al desarrollo web</h3>
+            <p>Formación introductoria en HTML y CSS.</p>
+            <span class="course-provider">Google</span>
+          </article>
+
+          <article class="course-item">
+            <h3>Introducción al desarrollo de aplicaciones móviles</h3>
+            <p>
+              Formación introductoria relacionada con el desarrollo de
+              aplicaciones móviles.
+            </p>
+            <span class="course-provider">Google</span>
+          </article>
+
+          <article class="course-item">
+            <h3>Excel</h3>
+            <p>Formación en el uso de Microsoft Excel.</p>
+          </article>
+
+          <article class="course-item">
+            <h3>Prompt Engineering</h3>
+            <p>
+              Formación sobre diseño y utilización de prompts para trabajar con
+              sistemas de inteligencia artificial.
+            </p>
+          </article>
+
+          <article class="course-item">
+            <h3>Responsible AI & Prompt Engineering</h3>
+            <p>
+              Formación relacionada con el uso responsable de inteligencia
+              artificial y técnicas de prompt engineering.
+            </p>
+          </article>
+
+          <article class="course-item">
+            <h3>Ciberseguridad para el teletrabajo</h3>
+            <p>
+              Formación relacionada con buenas prácticas de ciberseguridad en
+              entornos de teletrabajo.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="learning-section">
+        <header class="section-header">
+          <p class="section-label">ENFOQUE</p>
+          <h2>Cómo sigo aprendiendo</h2>
+        </header>
+
+        <div class="learning-text">
+          <p>
+            Mi aprendizaje no se limita a cursos. En proyectos profesionales
+            también he tenido que investigar tecnologías, herramientas y
+            configuraciones nuevas para resolver problemas concretos.
+          </p>
+
+          <p>
+            Este enfoque me ha permitido aprender especialmente a través de la
+            práctica: entender un problema, investigar las alternativas, probar
+            una solución y adaptarla al entorno real.
+          </p>
+
+          <p>
+            Actualmente mantengo el interés en seguir profundizando en
+            desarrollo de software, backend, desarrollo web, automatización y
+            arquitectura de aplicaciones.
+          </p>
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .learning-page {
+    width: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+    padding-block: 4rem 6rem;
+  }
+
+  .page-header {
+    max-width: 850px;
+    margin-bottom: 5rem;
+  }
+
+  .eyebrow,
+  .section-label {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .page-header h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .intro {
+    max-width: 750px;
+    font-size: 1.25rem;
+  }
+
+  .learning-content {
+    max-width: 950px;
+  }
+
+  .learning-section {
+    padding-block: 4rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .learning-section:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .section-header {
+    max-width: 700px;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-header h2 {
+    margin: 0;
+  }
+
+  .learning-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .learning-item {
+    padding: 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .learning-item h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .learning-type {
+    margin-bottom: 1rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+
+  .course-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .course-item {
+    display: flex;
+    min-height: 190px;
+    flex-direction: column;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .course-item h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+  }
+
+  .course-item p {
+    margin-bottom: 1.5rem;
+  }
+
+  .course-provider {
+    margin-top: auto;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  .learning-text {
+    max-width: 750px;
+  }
+
+  .learning-text p + p {
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 700px) {
+    .learning-page {
+      padding-block: 3rem 5rem;
+    }
+
+    .page-header {
+      margin-bottom: 4rem;
+    }
+
+    .learning-section {
+      padding-block: 3rem;
+    }
+
+    .course-list {
+      grid-template-columns: 1fr;
+    }
+
+    .learning-item,
+    .course-item {
+      padding: 1.5rem;
+    }
+  }
+</style>

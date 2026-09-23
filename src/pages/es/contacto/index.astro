@@ -1,0 +1,200 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { socialLinks } from "../../../data/social";
+---
+
+<BaseLayout
+  title="Contacto | Portfolio"
+  description="Contacto profesional de Software Developer."
+  lang="es"
+>
+  <article class="contact-page">
+    <header class="page-header">
+      <p class="eyebrow">CONTACTO</p>
+
+      <h1>Hablemos</h1>
+
+      <p class="intro">
+        Si quieres conocer más sobre mi experiencia, proyectos o perfil
+        profesional, puedes ponerte en contacto conmigo.
+      </p>
+    </header>
+
+    <div class="contact-content">
+      <section class="contact-section">
+        <h2>Contacto profesional</h2>
+
+        <p>
+          Próximamente añadiré aquí mis datos de contacto profesional y los
+          enlaces a mis perfiles públicos.
+        </p>
+
+        <div class="contact-placeholder">
+          <p>
+            <strong>Email:</strong> pendiente de añadir
+          </p>
+
+          <p>
+            <strong>LinkedIn:</strong> pendiente de añadir
+          </p>
+
+          <p>
+            <strong>GitHub:</strong> pendiente de añadir
+          </p>
+        </div>
+      </section>
+
+      <section class="contact-section">
+        <h2>Perfiles</h2>
+
+        <p>
+          Estos enlaces se sustituirán por los perfiles profesionales reales
+          cuando estén confirmados.
+        </p>
+
+        <ul class="social-list">
+          {
+            socialLinks.map((social) => (
+              <li>
+                <a href={social.href} target="_blank" rel="noopener noreferrer">
+                  {social.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section class="contact-section">
+        <h2>Sobre este portfolio</h2>
+
+        <p>
+          Este portfolio reúne proyectos profesionales, académicos y personales
+          para mostrar experiencia práctica, formación y evolución técnica.
+        </p>
+
+        <p>
+          Los proyectos profesionales que contienen información confidencial se
+          presentan mediante casos de estudio sin publicar código fuente ni
+          información interna.
+        </p>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    width: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+    padding-block: 4rem 6rem;
+  }
+
+  .page-header {
+    max-width: 850px;
+    margin-bottom: 5rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .page-header h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .intro {
+    max-width: 750px;
+    font-size: 1.25rem;
+  }
+
+  .contact-content {
+    max-width: 800px;
+  }
+
+  .contact-section {
+    padding-block: 3rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .contact-section:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .contact-section h2 {
+    margin-bottom: 1.25rem;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+  }
+
+  .contact-section p + p {
+    margin-top: 1.25rem;
+  }
+
+  .contact-placeholder {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-subtle);
+  }
+
+  .contact-placeholder p {
+    margin: 0;
+  }
+
+  .social-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .social-list a {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .social-list a:hover {
+    background: var(--color-surface-subtle);
+    color: var(--color-primary-hover);
+  }
+
+  @media (max-width: 700px) {
+    .contact-page {
+      padding-block: 3rem 5rem;
+    }
+
+    .page-header {
+      margin-bottom: 4rem;
+    }
+
+    .contact-section {
+      padding-block: 2.5rem;
+    }
+
+    .social-list {
+      flex-direction: column;
+    }
+
+    .social-list a {
+      justify-content: center;
+    }
+  }
+</style>

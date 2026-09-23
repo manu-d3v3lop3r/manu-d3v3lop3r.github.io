@@ -1,0 +1,199 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Sobre mí | Portfolio"
+  description="Perfil profesional, formación y enfoque de Software Developer."
+  lang="es"
+>
+  <article class="about-page">
+    <header class="page-header">
+      <p class="eyebrow">SOBRE MÍ</p>
+
+      <h1>
+        Software Developer orientado al desarrollo de soluciones útiles y
+        mantenibles.
+      </h1>
+
+      <p class="intro">
+        Soy Software Developer con formación en Desarrollo de Aplicaciones
+        Multiplataforma y especialización en desarrollo Full Stack.
+      </p>
+    </header>
+
+    <div class="about-content">
+      <section>
+        <h2>Perfil profesional</h2>
+
+        <p>
+          Mi experiencia combina desarrollo de aplicaciones web, bases de datos,
+          automatización de procesos, configuración de entornos y sistemas, y
+          gestión de contenidos mediante CMS.
+        </p>
+
+        <p>
+          He trabajado tanto en proyectos profesionales como en proyectos
+          académicos, participando en diferentes fases del desarrollo y
+          aprendiendo a adaptar las soluciones a las necesidades reales de cada
+          proyecto.
+        </p>
+      </section>
+
+      <section>
+        <h2>Formación</h2>
+
+        <div class="education-list">
+          <article class="education-item">
+            <h3>Desarrollo de Aplicaciones Multiplataforma</h3>
+            <p>Formación profesional de Grado Superior (DAM).</p>
+          </article>
+
+          <article class="education-item">
+            <h3>Master Full Stack Development</h3>
+            <p>Formación especializada en desarrollo Full Stack.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Cómo trabajo</h2>
+
+        <p>
+          Me interesa comprender primero el problema y el flujo que debe
+          resolver una aplicación antes de centrarme en la implementación
+          técnica.
+        </p>
+
+        <p>
+          Durante mi experiencia profesional he tenido que investigar
+          tecnologías, resolver problemas de configuración y conexión, trabajar
+          con diferentes herramientas y adaptar soluciones a entornos reales.
+        </p>
+
+        <p>
+          Valoro especialmente el código mantenible, la claridad de las
+          soluciones y la capacidad de seguir aprendiendo cuando un problema
+          requiere conocimientos nuevos.
+        </p>
+      </section>
+
+      <section>
+        <h2>Áreas de interés</h2>
+
+        <ul class="interest-list">
+          <li>Software Development</li>
+          <li>Web Development</li>
+          <li>Backend Development</li>
+          <li>Full Stack Development</li>
+          <li>Process Automation</li>
+          <li>IT & Systems</li>
+        </ul>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .about-page {
+    width: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+    padding-block: 4rem 6rem;
+  }
+
+  .page-header {
+    max-width: 900px;
+    margin-bottom: 5rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .page-header h1 {
+    margin-bottom: 2rem;
+  }
+
+  .intro {
+    max-width: 750px;
+    font-size: 1.25rem;
+  }
+
+  .about-content {
+    max-width: 800px;
+  }
+
+  .about-content section {
+    padding-block: 3rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .about-content section:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .about-content h2 {
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+  }
+
+  .about-content p + p {
+    margin-top: 1.25rem;
+  }
+
+  .education-list {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .education-item {
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .education-item h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  .interest-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .interest-list li {
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface-subtle);
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 700px) {
+    .about-page {
+      padding-block: 3rem 5rem;
+    }
+
+    .page-header {
+      margin-bottom: 4rem;
+    }
+
+    .about-content section {
+      padding-block: 2.5rem;
+    }
+  }
+</style>

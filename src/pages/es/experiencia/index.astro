@@ -1,0 +1,273 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Experiencia | Portfolio"
+  description="Experiencia profesional en desarrollo de software, sistemas, automatización y aplicaciones web."
+  lang="es"
+>
+  <article class="experience-page">
+    <header class="page-header">
+      <p class="eyebrow">EXPERIENCIA</p>
+
+      <h1>Experiencia profesional</h1>
+
+      <p class="intro">
+        Experiencia en desarrollo de aplicaciones web, sistemas, automatización
+        de procesos, gestión de contenidos y soporte técnico.
+      </p>
+    </header>
+
+    <div class="experience-list">
+      <section class="experience-item">
+        <header class="experience-header">
+          <div>
+            <h2>Técnico en Operaciones de Sistemas Informáticos</h2>
+            <p class="company">Empresa confidencial</p>
+          </div>
+
+          <p class="duration">≈ 1 año</p>
+        </header>
+
+        <div class="experience-content">
+          <p>
+            Desarrollo y mantenimiento de una aplicación web orientada a la
+            digitalización y gestión de documentación para un entorno
+            profesional.
+          </p>
+
+          <h3>Desarrollo de software y web</h3>
+
+          <ul>
+            <li>
+              Desarrollo y mantenimiento de funcionalidades de una aplicación
+              web.
+            </li>
+            <li>
+              Trabajo con HTML, CSS, JavaScript, Bootstrap, jQuery y DataTables.
+            </li>
+            <li>Desarrollo con PHP y trabajo con bases de datos MySQL.</li>
+            <li>
+              Integración de almacenamiento y gestión documental mediante Google
+              Drive y Google Apps Script.
+            </li>
+          </ul>
+
+          <h3>Entornos y sistemas</h3>
+
+          <ul>
+            <li>
+              Configuración de un equipo físico con Windows para utilizarlo como
+              servidor junto con otro compañero.
+            </li>
+            <li>Configuración y trabajo con Apache, PHP y MySQL.</li>
+            <li>
+              Uso de XAMPP para facilitar el desarrollo, ejecución y
+              configuración del entorno.
+            </li>
+            <li>Uso de VirtualBox.</li>
+            <li>
+              Configuración de IPs, puertos, usuarios, permisos y estructura de
+              carpetas.
+            </li>
+            <li>
+              Investigación y resolución de problemas relacionados con
+              conexiones y seguridad.
+            </li>
+          </ul>
+
+          <h3>Automatización</h3>
+
+          <ul>
+            <li>
+              Desarrollo y configuración de automatizaciones mediante Microsoft
+              Power Automate.
+            </li>
+            <li>
+              Automatización de procesos internos relacionados con la gestión de
+              solicitudes.
+            </li>
+          </ul>
+
+          <h3>CMS y portal institucional</h3>
+
+          <ul>
+            <li>Trabajo con Magnolia CMS mediante su interfaz gráfica.</li>
+            <li>Creación y modificación de páginas.</li>
+            <li>
+              Trabajo con componentes, plantillas, contenidos, imágenes, menús,
+              navegación y formularios.
+            </li>
+            <li>
+              Participación en la migración y reorganización de contenidos.
+            </li>
+            <li>
+              Organización de los elementos teniendo en cuenta la accesibilidad
+              y la facilidad de navegación.
+            </li>
+          </ul>
+
+          <h3>Mantenimiento y soporte</h3>
+
+          <ul>
+            <li>Revisiones de seguridad y pruebas.</li>
+            <li>Copias de seguridad.</li>
+            <li>Soporte a usuarios.</li>
+            <li>Instalación y configuración de software.</li>
+            <li>Creación y configuración de equipos.</li>
+            <li>Gestión de permisos y cuentas.</li>
+            <li>
+              Uso de PowerShell para ejecutar comandos relacionados con
+              conexiones e instalaciones.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="experience-item">
+        <header class="experience-header">
+          <div>
+            <h2>Web Application Developer</h2>
+            <p class="company">Prácticas</p>
+          </div>
+
+          <p class="duration">3 meses</p>
+        </header>
+
+        <div class="experience-content">
+          <p>
+            Participación en el desarrollo de una aplicación web orientada a la
+            digitalización y gestión documental.
+          </p>
+
+          <h3>Principales tecnologías y tareas</h3>
+
+          <ul>
+            <li>HTML, CSS y JavaScript.</li>
+            <li>Bootstrap, jQuery y DataTables.</li>
+            <li>PHP y MySQL.</li>
+            <li>Google Apps Script.</li>
+            <li>
+              Desarrollo y trabajo con funcionalidades relacionadas con la carga
+              y gestión de documentación.
+            </li>
+            <li>Trabajo con el entorno local y configuración del servidor.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .experience-page {
+    width: min(calc(100% - 2rem), var(--content-width));
+    margin-inline: auto;
+    padding-block: 4rem 6rem;
+  }
+
+  .page-header {
+    max-width: 850px;
+    margin-bottom: 5rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .page-header h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .intro {
+    max-width: 750px;
+    font-size: 1.25rem;
+  }
+
+  .experience-list {
+    max-width: 900px;
+  }
+
+  .experience-item {
+    padding-block: 4rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .experience-item:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .experience-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .experience-header h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .company,
+  .duration {
+    color: var(--color-text-muted);
+  }
+
+  .duration {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+  }
+
+  .experience-content {
+    max-width: 800px;
+  }
+
+  .experience-content > p {
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+  }
+
+  .experience-content h3 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .experience-content ul {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+
+  .experience-content li + li {
+    margin-top: 0.6rem;
+  }
+
+  @media (max-width: 700px) {
+    .experience-page {
+      padding-block: 3rem 5rem;
+    }
+
+    .page-header {
+      margin-bottom: 4rem;
+    }
+
+    .experience-header {
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .experience-item {
+      padding-block: 3rem;
+    }
+  }
+</style>
