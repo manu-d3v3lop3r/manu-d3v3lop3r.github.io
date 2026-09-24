@@ -3,52 +3,65 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Software Developer | About | Portfolio"
-  description="Professional Software Developer profile with experience in web development, backend, automation, systems and CMS."
+  title="About | Manuel Jiménez"
+  description="Professional profile of Manuel Jiménez, a Software Developer with a Higher Technician qualification in Multiplatform Application Development and experience in web development, automation, technology platforms and CMS."
   lang="en"
 >
   <article class="about-page">
     <header class="page-header">
-      <p class="eyebrow">ABOUT ME</p>
+      <p class="eyebrow">PROFESSIONAL PROFILE</p>
+
+      <p class="profile-name">Manuel Jiménez</p>
 
       <h1>
-        Software Developer focused on building useful and maintainable
-        solutions.
+        Software Developer with experience in software development, web
+        platforms and automation.
       </h1>
 
       <p class="intro">
-        I am a Software Developer with a Higher Technician qualification in
-        Multiplatform Application Development and further training in Full Stack
-        Development.
+        I am Manuel Jiménez, a Software Developer with a Higher Technician
+        qualification in Multiplatform Application Development and further
+        training in Full Stack Development. My background combines professional
+        experience, technical training and academic projects across different
+        areas of software development and technology.
       </p>
     </header>
 
     <div class="about-content">
       <section>
-        <h2>Professional profile</h2>
+        <h2>Professional Experience &amp; Approach</h2>
 
         <p>
-          My experience combines web application development, databases, process
-          automation, environment and systems configuration, and content
-          management through CMS platforms.
+          My experience combines web platform development and improvement,
+          process automation, content management through CMS platforms,
+          technical documentation, technology evaluation and support for
+          internal systems and platforms.
         </p>
 
         <p>
-          I have worked on both professional and academic projects,
-          participating in different stages of development and learning to adapt
-          solutions to the real needs of each project.
+          I have worked in both professional and academic environments using
+          different technologies and tools, contributing to projects that
+          require an understanding of both user needs and the technical context
+          in which a solution needs to operate.
+        </p>
+
+        <p>
+          This experience has helped me develop a practical view of software,
+          understanding that a solution depends not only on the technology
+          involved, but also on how well it addresses the problem, integrates
+          into its environment and can be maintained and evolved.
         </p>
       </section>
 
       <section>
-        <h2>Education</h2>
+        <h2>Academic Education</h2>
 
         <div class="education-list">
           <article class="education-item">
             <h3>Multiplatform Application Development</h3>
             <p>
-              Higher Technician qualification in Multiplatform Application
-              Development (DAM).
+              IES Gabriel García Márquez · Higher Technician qualification in
+              Multiplatform Application Development (DAM).
             </p>
           </article>
 
@@ -60,28 +73,30 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
       </section>
 
       <section>
-        <h2>How I work</h2>
+        <h2>Professional Approach</h2>
 
         <p>
-          I am interested in understanding the problem and the workflow an
-          application needs to solve before focusing on the technical
-          implementation.
+          I am interested in understanding the problem, workflow and
+          requirements a solution needs to address before focusing on its
+          technical implementation.
         </p>
 
         <p>
-          Throughout my professional experience, I have had to research
-          technologies, solve configuration and connection problems, work with
-          different tools and adapt solutions to real-world environments.
+          Throughout my professional experience, I have worked with different
+          technologies and tools, researching solutions, resolving issues and
+          adapting processes and platforms to the needs of each environment.
         </p>
 
         <p>
-          I particularly value maintainable code, clear solutions and the
-          ability to keep learning when a problem requires new knowledge.
+          I also consider continuous learning an important part of software
+          development. Technology, tools and technical challenges are constantly
+          evolving, which is why I maintain a strong focus on training and
+          continued technical development.
         </p>
       </section>
 
       <section>
-        <h2>Areas of interest</h2>
+        <h2>Professional Areas of Interest</h2>
 
         <ul class="interest-list">
           <li>Software Development</li>
@@ -89,7 +104,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
           <li>Backend Development</li>
           <li>Full Stack Development</li>
           <li>Process Automation</li>
-          <li>IT & Systems</li>
+          <li>IT &amp; Systems</li>
         </ul>
       </section>
     </div>
@@ -115,6 +130,15 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.08em;
+  }
+
+  .profile-name {
+    margin-bottom: 1rem;
+    color: var(--color-text);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
   .page-header h1 {

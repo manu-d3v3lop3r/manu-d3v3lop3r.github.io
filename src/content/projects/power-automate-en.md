@@ -40,6 +40,7 @@ A flow was developed using Microsoft Power Automate to automate part of the
 process.
 
 The information received through the form was stored in Microsoft Lists.
+
 Based on certain parameters selected in the list, the automation process was
 triggered.
 
@@ -65,8 +66,11 @@ The general process was:
 
 The development was carried out together with another person.
 
-My contribution focused on learning and configuring Power Automate to adapt
-the automation to the actual process.
+My contribution focused on analysing the existing process and learning and
+configuring Power Automate to adapt the automation to its actual workflow.
+
+I also participated in translating the different steps of the existing
+process into a functional automation.
 
 ## Main challenge
 

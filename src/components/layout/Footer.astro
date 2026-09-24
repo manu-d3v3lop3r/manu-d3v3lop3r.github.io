@@ -5,10 +5,13 @@ interface Props {
 
 const { lang } = Astro.props;
 
-const footerText =
+const footerRole =
   lang === "es"
     ? "Software Developer · Madrid, España"
     : "Software Developer · Madrid, Spain";
+
+const footerDescription =
+  lang === "es" ? "Portfolio profesional" : "Professional portfolio";
 
 const copyright =
   lang === "es" ? "Todos los derechos reservados." : "All rights reserved.";
@@ -16,9 +19,12 @@ const copyright =
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <div>
+    <div class="footer-identity">
       <p class="footer-name">Software Developer</p>
-      <p class="footer-location">{footerText}</p>
+
+      <p class="footer-role">{footerRole}</p>
+
+      <p class="footer-description">{footerDescription}</p>
     </div>
 
     <p class="copyright">
@@ -41,14 +47,37 @@ const copyright =
     gap: 1rem;
   }
 
+  .footer-identity {
+    display: grid;
+    gap: 0.25rem;
+  }
+
   .footer-name {
     color: var(--color-text);
     font-weight: 700;
   }
 
-  .footer-location,
+  .footer-role,
+  .footer-description,
   .copyright {
     color: var(--color-text-muted);
     font-size: 0.875rem;
+  }
+
+  .footer-description,
+  .copyright {
+    margin: 0;
+  }
+
+  @media (min-width: 700px) {
+    .footer-inner {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 2rem;
+    }
+
+    .copyright {
+      text-align: right;
+    }
   }
 </style>

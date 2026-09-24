@@ -3,14 +3,16 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="CV | Portfolio"
-  description="Professional CV of a Software Developer with experience in web development, systems and automation."
+  title="CV | Manuel Jiménez"
+  description="Professional CV of Manuel Jiménez, a Software Developer with experience in web development, systems and automation."
   lang="en"
 >
   <article class="cv-page">
     <header class="cv-header">
       <div>
         <p class="eyebrow">CURRICULUM VITAE</p>
+
+        <p class="cv-name">Manuel Jiménez</p>
 
         <h1>Software Developer</h1>
 
@@ -43,7 +45,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
             <div class="timeline-heading">
               <div>
                 <h3>IT Systems Operations Technician</h3>
-                <p>Confidential company</p>
+                <p>UNED Madrid</p>
               </div>
 
               <span>≈ 1 year</span>
@@ -51,29 +53,39 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 
             <ul>
               <li>
-                Development and maintenance of web applications for document
-                digitization and management.
+                Participation in the digital modernization of internal processes
+                through automation and improvements to technology platforms.
               </li>
               <li>
-                Work with HTML, CSS, JavaScript, Bootstrap, jQuery, DataTables,
-                PHP and MySQL.
+                Automation of administrative processes using Microsoft Power
+                Automate, reducing manual intervention in repetitive tasks and
+                improving operational efficiency.
               </li>
               <li>
-                Environment and server configuration using Windows, Apache, PHP,
-                MySQL and XAMPP.
+                Migration and redesign of the institutional portal and intranet,
+                moving from WordPress to Magnolia CMS.
               </li>
               <li>
-                Configuration of IP addresses, ports, users, permissions and
-                folder structures.
-              </li>
-              <li>Process automation using Microsoft Power Automate.</li>
-              <li>
-                Work with Magnolia CMS on pages, components, templates, content,
-                navigation and forms.
+                Work with Magnolia CMS to configure and customize pages,
+                components, templates, content, navigation and forms.
               </li>
               <li>
-                Maintenance, backups, user support, software installation and
-                computer configuration.
+                Development and improvement of internal web platforms, including
+                participation in the technical SEO optimization of the
+                institutional portal.
+              </li>
+              <li>
+                Preparation of technical documentation and user manuals related
+                to digitized systems and processes.
+              </li>
+              <li>
+                Evaluation of hardware and software solutions to optimize
+                internal processes and support the organization's technological
+                evolution.
+              </li>
+              <li>
+                Technical support and incident resolution for internal systems
+                and platforms.
               </li>
             </ul>
           </article>
@@ -82,7 +94,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
             <div class="timeline-heading">
               <div>
                 <h3>Web Application Developer</h3>
-                <p>Internship</p>
+                <p>ESMASA (Internship)</p>
               </div>
 
               <span>3 months</span>
@@ -97,10 +109,16 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
                 Development with HTML, CSS, JavaScript, Bootstrap, jQuery and
                 DataTables.
               </li>
-              <li>Work with PHP and MySQL.</li>
               <li>
-                Use of Google Apps Script and work with the local environment
-                and server.
+                Work with PHP and MySQL for application and data management.
+              </li>
+              <li>
+                Use of Google Apps Script and Google Drive within the document
+                management workflow.
+              </li>
+              <li>
+                Work with the local environment and the configuration required
+                to run the application.
               </li>
             </ul>
           </article>
@@ -116,7 +134,9 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
         <div class="education-list">
           <article class="education-item">
             <h3>Multiplatform Application Development</h3>
-            <p>Higher Technician qualification · DAM</p>
+            <p>
+              IES Gabriel García Márquez · Higher Technician qualification · DAM
+            </p>
           </article>
 
           <article class="education-item">
@@ -139,7 +159,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
           </article>
 
           <article>
-            <h3>Web & Backend</h3>
+            <h3>Web &amp; Backend</h3>
             <p>
               Spring Boot · Bootstrap · jQuery · DataTables · REST APIs · AJAX ·
               JSON
@@ -157,12 +177,12 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
           </article>
 
           <article>
-            <h3>CMS & Platforms</h3>
+            <h3>CMS &amp; Platforms</h3>
             <p>Magnolia · WordPress · SharePoint · Joomla</p>
           </article>
 
           <article>
-            <h3>Tools & Systems</h3>
+            <h3>Tools &amp; Systems</h3>
             <p>
               Git · GitHub · Postman · XAMPP · Apache · VirtualBox · PowerShell
             </p>
@@ -179,38 +199,46 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
         <div class="projects-list">
           <article>
             <h3>Document Management and Digitization</h3>
+
             <p>
               Professional project involving the development of a web
               application for document digitization and management.
             </p>
-            <a href="/en/projects/document-management/">View project</a>
+
+            <a href="/en/projects/document-management/"> View project </a>
           </article>
 
           <article>
             <h3>Android Tourism Application</h3>
+
             <p>
               Academic project involving a mobile application for creating
               personalized tourist routes in Madrid.
             </p>
-            <a href="/en/projects/android-tourism/">View project</a>
+
+            <a href="/en/projects/android-tourism/"> View project </a>
           </article>
 
           <article>
             <h3>Request Management Automation</h3>
+
             <p>
               Automation of an internal process using Microsoft Forms, Microsoft
               Lists and Power Automate.
             </p>
-            <a href="/en/projects/power-automate/">View project</a>
+
+            <a href="/en/projects/power-automate/"> View project </a>
           </article>
 
           <article>
             <h3>Institutional Portal Redesign and Migration</h3>
+
             <p>
               Professional work with Magnolia CMS to reorganize and migrate
               content within a new institutional portal.
             </p>
-            <a href="/en/projects/magnolia/">View project</a>
+
+            <a href="/en/projects/magnolia/"> View project </a>
           </article>
         </div>
       </section>
@@ -266,6 +294,15 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.08em;
+  }
+
+  .cv-name {
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
   .cv-header h1 {

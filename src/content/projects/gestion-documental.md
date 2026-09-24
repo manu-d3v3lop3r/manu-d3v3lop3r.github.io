@@ -6,7 +6,7 @@ type: "professional"
 status: "completed"
 featured: true
 confidential: true
-summary: "Aplicación web profesional para digitalizar, almacenar y gestionar documentación, combinando desarrollo web, base de datos y configuración de un entorno de servidor."
+summary: "Aplicación web profesional para digitalizar, almacenar y gestionar documentación, combinando desarrollo web, base de datos, almacenamiento documental y configuración de un entorno de servidor."
 technologies:
   - HTML
   - CSS
@@ -32,8 +32,8 @@ digitalización y gestión de documentación.
 
 Antes de la aplicación, gran parte de la documentación se gestionaba en
 formato físico mediante documentos, carpetas y archivadores. Esto dificultaba
-la localización de información y aumentaba el riesgo de pérdida o deterioro
-de documentos.
+la localización de información y aumentaba el riesgo de pérdida o deterioro de
+documentos.
 
 El objetivo era disponer de un proceso digital que permitiera almacenar la
 documentación y consultar la información asociada de una forma más
@@ -84,16 +84,16 @@ El proceso podía resumirse de la siguiente forma:
 6. La aplicación mostraba posteriormente la información registrada y la
    referencia correspondiente al documento.
 
-La aplicación combinaba una interfaz web con el procesamiento realizado en el
-servidor y el almacenamiento de información y documentación.
+La solución combinaba una interfaz web, procesamiento en el servidor,
+almacenamiento estructurado de datos y almacenamiento documental.
 
 ## Tecnologías y desarrollo
 
-La parte web se desarrolló utilizando HTML, CSS y JavaScript, junto con
-Bootstrap, jQuery y DataTables.
+La interfaz de la aplicación se desarrolló utilizando HTML, CSS y JavaScript,
+junto con Bootstrap, jQuery y DataTables.
 
-PHP se utilizó dentro de la aplicación y para trabajar con el entorno de
-servidor y la gestión de la información.
+PHP se utilizó como parte de la aplicación para gestionar la lógica necesaria
+y trabajar con el entorno de servidor y la información procesada.
 
 MySQL se utilizó como base de datos relacional para almacenar los datos
 asociados a la documentación.
@@ -151,9 +151,9 @@ utilizarían la solución.
 Uno de los principales retos fue comprender correctamente el flujo de trabajo
 que debía representar la aplicación.
 
-No se trataba únicamente de desarrollar formularios, sino de entender cómo
-se utilizaba realmente la documentación y qué información debía quedar
-asociada a cada documento.
+No se trataba únicamente de desarrollar formularios, sino de entender cómo se
+utilizaba realmente la documentación y qué información debía quedar asociada
+a cada documento.
 
 Otro reto importante fue la configuración del servidor.
 
@@ -172,6 +172,11 @@ técnicos de forma autónoma.
 Cuando aparecieron problemas relacionados con el servidor, las conexiones o
 la configuración, fue necesario buscar información, probar alternativas y
 adaptar la solución al entorno disponible.
+
+Esta experiencia permitió comprender que el desarrollo de una aplicación no
+termina en el código: también es necesario tener en cuenta el entorno donde
+la solución debe ejecutarse y las necesidades reales de las personas que la
+utilizan.
 
 ## Resultado
 

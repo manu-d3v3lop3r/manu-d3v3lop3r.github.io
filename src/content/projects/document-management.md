@@ -6,7 +6,7 @@ type: "professional"
 status: "completed"
 featured: true
 confidential: true
-summary: "Professional web application for digitizing, storing and managing documents, combining web development, database management and server environment configuration."
+summary: "Professional web application for digitizing, storing and managing documents, combining web development, database management, document storage and server environment configuration."
 technologies:
   - HTML
   - CSS
@@ -81,16 +81,16 @@ The process could be summarized as follows:
 6. The application subsequently displayed the registered information and the
    corresponding document reference.
 
-The application combined a web interface with server-side processing and
-information and document storage.
+The solution combined a web interface, server-side processing, structured
+data storage and document storage.
 
 ## Technologies and development
 
 The web interface was developed using HTML, CSS and JavaScript, together with
 Bootstrap, jQuery and DataTables.
 
-PHP was used within the application and to work with the server environment
-and information management.
+PHP was used as part of the application to handle the required logic and work
+with the server environment and processed information.
 
 MySQL was used as a relational database for storing data associated with the
 documentation.
@@ -165,6 +165,10 @@ technical problems independently.
 When server, connection or configuration problems appeared, it was necessary
 to research the issue, test alternatives and adapt the solution to the
 available environment.
+
+This experience also reinforced the importance of considering not only the
+application code, but also the environment where the solution must run and
+the real needs of the people using it.
 
 ## Result
 

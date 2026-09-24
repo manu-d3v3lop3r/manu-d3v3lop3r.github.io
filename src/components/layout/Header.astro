@@ -11,11 +11,14 @@ const links = navigation[lang];
 
 const menuLabel = lang === "es" ? "Abrir menú" : "Open menu";
 const closeLabel = lang === "es" ? "Cerrar menú" : "Close menu";
+
+const themeLabel =
+  lang === "es" ? "Cambiar tema de color" : "Change color theme";
 ---
 
 <header class="site-header">
   <div class="header-inner">
-    <a class="site-brand" href={`/${lang}/`}> Software Developer </a>
+    <a class="site-brand" href={`/${lang}/`}>Software Developer</a>
 
     <button
       class="menu-toggle"
@@ -46,7 +49,23 @@ const closeLabel = lang === "es" ? "Cerrar menú" : "Close menu";
         </ul>
       </nav>
 
-      <LanguageSwitcher lang={lang} />
+      <div class="header-tools">
+        <LanguageSwitcher lang={lang} />
+
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label={themeLabel}
+          aria-pressed="false"
+          data-theme-toggle
+        >
+          <span class="theme-icon theme-icon-light" aria-hidden="true">
+            ☀
+          </span>
+
+          <span class="theme-icon theme-icon-dark" aria-hidden="true"> ☾ </span>
+        </button>
+      </div>
     </div>
   </div>
 </header>
@@ -57,13 +76,15 @@ const closeLabel = lang === "es" ? "Cerrar menú" : "Close menu";
   headers.forEach((header) => {
     const toggle = header.querySelector<HTMLButtonElement>(".menu-toggle");
     const navigation = header.querySelector<HTMLElement>(".header-actions");
+    const themeToggle = header.querySelector<HTMLButtonElement>(
+      "[data-theme-toggle]",
+    );
 
     if (!toggle || !navigation) {
       return;
     }
 
     const openLabel = toggle.getAttribute("aria-label") ?? "Open menu";
-
     const closeLabel = openLabel === "Open menu" ? "Close menu" : "Cerrar menú";
 
     const setMenuState = (isOpen: boolean) => {
@@ -72,6 +93,16 @@ const closeLabel = lang === "es" ? "Cerrar menú" : "Close menu";
 
       navigation.classList.toggle("is-open", isOpen);
       document.body.classList.toggle("menu-open", isOpen);
+    };
+
+    const updateThemeButton = () => {
+      if (!themeToggle) {
+        return;
+      }
+
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+
+      themeToggle.setAttribute("aria-pressed", String(currentTheme === "dark"));
     };
 
     toggle.addEventListener("click", () => {
@@ -109,13 +140,31 @@ const closeLabel = lang === "es" ? "Cerrar menú" : "Close menu";
         setMenuState(false);
       }
     });
+
+    if (themeToggle) {
+      updateThemeButton();
+
+      themeToggle.addEventListener("click", () => {
+        const root = document.documentElement;
+        const currentTheme = root.getAttribute("data-theme");
+        const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+        root.setAttribute("data-theme", nextTheme);
+        root.style.colorScheme = nextTheme;
+
+        localStorage.setItem("portfolio-theme", nextTheme);
+
+        updateThemeButton();
+      });
+    }
   });
 </script>
 
 <style>
   .site-header {
-    position: relative;
-    z-index: 10;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     border-bottom: 1px solid var(--color-border);
     background: var(--color-background);
   }
@@ -160,6 +209,47 @@ const closeLabel = lang === "es" ? "Cerrar menú" : "Close menu";
 
   .navigation-list a:hover {
     color: var(--color-text);
+  }
+
+  .header-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .theme-toggle {
+    display: inline-flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .theme-toggle:hover {
+    background: var(--color-surface-subtle);
+  }
+
+  .theme-icon {
+    font-size: 1.15rem;
+    line-height: 1;
+  }
+
+  .theme-icon-dark {
+    display: none;
+  }
+
+  html[data-theme="dark"] .theme-icon-light {
+    display: none;
+  }
+
+  html[data-theme="dark"] .theme-icon-dark {
+    display: inline;
   }
 
   .menu-toggle {
@@ -245,6 +335,11 @@ const closeLabel = lang === "es" ? "Cerrar menú" : "Close menu";
       display: block;
       padding-block: 0.9rem;
       font-size: 1rem;
+    }
+
+    .header-tools {
+      justify-content: flex-end;
+      padding-top: 0.25rem;
     }
   }
 

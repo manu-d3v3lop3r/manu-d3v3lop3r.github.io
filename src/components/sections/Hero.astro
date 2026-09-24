@@ -9,9 +9,10 @@ const content =
   lang === "es"
     ? {
         eyebrow: "SOFTWARE DEVELOPER",
-        title: "Desarrollo software, aplicaciones web y automatizaciones.",
+        name: "Manuel Jiménez",
+        title: "Construyo soluciones de software a partir de problemas reales.",
         description:
-          "Experiencia en desarrollo, sistemas y proyectos tecnológicos, con interés en crear soluciones claras, mantenibles y útiles.",
+          "Software Developer con experiencia en desarrollo web, gestión de datos, sistemas y automatización. He trabajado en aplicaciones utilizadas en entornos reales y en proyectos donde el desarrollo requiere entender el problema, trabajar con diferentes tecnologías y convertir una necesidad concreta en una solución funcional.",
         areas: ["Software Development", "Web", "Backend", "Automation"],
         location: "Madrid · España",
         projects: "Ver proyectos",
@@ -19,9 +20,10 @@ const content =
       }
     : {
         eyebrow: "SOFTWARE DEVELOPER",
-        title: "Software development, web applications and automation.",
+        name: "Manuel Jiménez",
+        title: "I build software solutions around real-world problems.",
         description:
-          "Experience in development, systems and technology projects, with a focus on creating clear, maintainable and useful solutions.",
+          "Software Developer with experience in web development, data management, systems and automation. I have worked on applications used in real-world environments and on projects where development means understanding the problem, working across different technologies and turning a specific need into a functional solution.",
         areas: ["Software Development", "Web", "Backend", "Automation"],
         location: "Madrid · Spain",
         projects: "View projects",
@@ -32,6 +34,8 @@ const content =
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-content">
     <p class="hero-eyebrow">{content.eyebrow}</p>
+
+    <p class="hero-name">{content.name}</p>
 
     <h1 id="hero-title">{content.title}</h1>
 
@@ -75,12 +79,21 @@ const content =
   }
 
   .hero-eyebrow {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
     color: var(--color-primary);
     font-family: var(--font-mono);
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.08em;
+  }
+
+  .hero-name {
+    margin-bottom: 1.25rem;
+    color: var(--color-text);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
   .hero h1 {
@@ -159,6 +172,10 @@ const content =
   @media (max-width: 700px) {
     .hero {
       padding-block: 4rem 5rem;
+    }
+
+    .hero-name {
+      margin-bottom: 1rem;
     }
 
     .hero h1 {

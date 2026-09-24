@@ -3,50 +3,65 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Software Developer | Sobre mí | Portfolio"
-  description="Perfil profesional de Software Developer con experiencia en desarrollo web, backend, automatización, sistemas y CMS."
+  title="Software Developer | Manuel Jiménez"
+  description="Perfil profesional de Manuel Jiménez, Software Developer con formación en Desarrollo de Aplicaciones Multiplataforma y experiencia en desarrollo web, automatización, plataformas tecnológicas y CMS."
   lang="es"
 >
   <article class="about-page">
     <header class="page-header">
-      <p class="eyebrow">SOBRE MÍ</p>
+      <p class="eyebrow">PERFIL PROFESIONAL</p>
+
+      <p class="profile-name">Manuel Jiménez</p>
 
       <h1>
-        Software Developer orientado al desarrollo de soluciones útiles y
-        mantenibles.
+        Software Developer con experiencia en desarrollo de software,
+        plataformas web y automatización.
       </h1>
 
       <p class="intro">
-        Soy Software Developer con formación en Desarrollo de Aplicaciones
-        Multiplataforma y especialización en desarrollo Full Stack.
+        Soy Manuel Jiménez, Software Developer con formación en Desarrollo de
+        Aplicaciones Multiplataforma y especialización en desarrollo Full Stack.
+        Mi trayectoria combina experiencia profesional, formación técnica y
+        proyectos académicos en diferentes áreas del desarrollo y la tecnología.
       </p>
     </header>
 
     <div class="about-content">
       <section>
-        <h2>Perfil profesional</h2>
+        <h2>Experiencia y enfoque profesional</h2>
 
         <p>
-          Mi experiencia combina desarrollo de aplicaciones web, bases de datos,
-          automatización de procesos, configuración de entornos y sistemas, y
-          gestión de contenidos mediante CMS.
+          Mi experiencia combina desarrollo y mejora de plataformas web,
+          automatización de procesos, gestión de contenidos mediante CMS,
+          documentación técnica, evaluación de soluciones tecnológicas y soporte
+          de sistemas y plataformas internas.
         </p>
 
         <p>
-          He trabajado tanto en proyectos profesionales como en proyectos
-          académicos, participando en diferentes fases del desarrollo y
-          aprendiendo a adaptar las soluciones a las necesidades reales de cada
-          proyecto.
+          He trabajado en entornos profesionales y académicos con diferentes
+          tecnologías y herramientas, participando en proyectos que requieren
+          comprender tanto las necesidades del usuario como el contexto técnico
+          en el que debe funcionar una solución.
+        </p>
+
+        <p>
+          Esta experiencia me ha permitido desarrollar una visión práctica del
+          software, entendiendo que una solución no depende únicamente de la
+          tecnología utilizada, sino también de cómo responde al problema, cómo
+          se integra en su entorno y cómo puede mantenerse y evolucionar.
         </p>
       </section>
 
       <section>
-        <h2>Formación</h2>
+        <h2>Formación académica</h2>
 
         <div class="education-list">
           <article class="education-item">
             <h3>Desarrollo de Aplicaciones Multiplataforma</h3>
-            <p>Formación profesional de Grado Superior (DAM).</p>
+            <p>
+              IES Gabriel García Márquez · Formación profesional de Grado
+              Superior (DAM).
+            </p>
           </article>
 
           <article class="education-item">
@@ -57,29 +72,31 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
       </section>
 
       <section>
-        <h2>Cómo trabajo</h2>
+        <h2>Enfoque profesional</h2>
 
         <p>
-          Me interesa comprender primero el problema y el flujo que debe
-          resolver una aplicación antes de centrarme en la implementación
-          técnica.
+          Me interesa comprender primero el problema, el flujo de trabajo y las
+          necesidades que debe cubrir una solución antes de centrarme en su
+          implementación técnica.
         </p>
 
         <p>
-          Durante mi experiencia profesional he tenido que investigar
-          tecnologías, resolver problemas de configuración y conexión, trabajar
-          con diferentes herramientas y adaptar soluciones a entornos reales.
+          Durante mi experiencia profesional he trabajado con diferentes
+          tecnologías y herramientas, investigando soluciones, resolviendo
+          incidencias y adaptando procesos y plataformas a las necesidades del
+          entorno.
         </p>
 
         <p>
-          Valoro especialmente el código mantenible, la claridad de las
-          soluciones y la capacidad de seguir aprendiendo cuando un problema
-          requiere conocimientos nuevos.
+          También considero importante seguir aprendiendo. El desarrollo de
+          software requiere enfrentarse continuamente a tecnologías,
+          herramientas y problemas nuevos, por lo que mantengo una orientación
+          constante hacia la formación y la mejora técnica.
         </p>
       </section>
 
       <section>
-        <h2>Áreas de interés</h2>
+        <h2>Áreas profesionales de interés</h2>
 
         <ul class="interest-list">
           <li>Software Development</li>
@@ -87,7 +104,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
           <li>Backend Development</li>
           <li>Full Stack Development</li>
           <li>Process Automation</li>
-          <li>IT & Systems</li>
+          <li>IT &amp; Systems</li>
         </ul>
       </section>
     </div>
@@ -113,6 +130,15 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.08em;
+  }
+
+  .profile-name {
+    margin-bottom: 1rem;
+    color: var(--color-text);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
   .page-header h1 {
