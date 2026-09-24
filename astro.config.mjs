@@ -1,5 +1,7 @@
 import { defineConfig } from "astro/config";
 
+import sitemap from "@astrojs/sitemap";
+
 export default defineConfig({
   site: "https://manu-d3v3lop3r.github.io",
 
@@ -11,4 +13,6 @@ export default defineConfig({
       redirectToDefaultLocale: true,
     },
   },
+
+  integrations: [sitemap()],
 });
