@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manu-d3v3lop3r.github.io/sitemap-index.xml
