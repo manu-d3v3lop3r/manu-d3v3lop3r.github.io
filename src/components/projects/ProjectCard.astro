@@ -34,7 +34,7 @@ const {
       {technologies.map((technology) => <li>{technology}</li>)}
     </ul>
 
-    <a class="project-link" href={href}>
+    <a class="project-link" href={href} aria-label={`${linkLabel}: ${title}`}>
       <span>{linkLabel}</span>
       <span class="project-link-arrow" aria-hidden="true">→</span>
     </a>

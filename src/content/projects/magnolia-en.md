@@ -1,5 +1,5 @@
 ---
-title: "Institutional Portal Redesign and Migration"
+title: "Institutional Portal Redesign and Migration | Professional Project"
 slug: "magnolia-en"
 routeSlug: "magnolia"
 language: "en"

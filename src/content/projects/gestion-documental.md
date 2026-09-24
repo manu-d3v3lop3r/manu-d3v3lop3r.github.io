@@ -1,5 +1,5 @@
 ---
-title: "Gestión y digitalización documental"
+title: "Gestión y digitalización documental | Proyecto profesional"
 slug: "gestion-documental"
 language: "es"
 type: "professional"

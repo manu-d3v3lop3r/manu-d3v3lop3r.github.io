@@ -1,0 +1,131 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Página no encontrada | Portfolio"
+  description="La página que buscas no existe o ya no está disponible."
+  lang="es"
+>
+  <article class="not-found-page">
+    <div class="not-found-content">
+      <p class="error-code">404</p>
+
+      <h1>Página no encontrada</h1>
+
+      <p class="message">
+        La página que buscas no existe, ha cambiado de dirección o ya no está
+        disponible.
+      </p>
+
+      <div class="actions">
+        <a class="button button-primary" href="/es/"> Volver al inicio </a>
+
+        <a class="button button-secondary" href="/es/proyectos/">
+          Ver proyectos
+        </a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .not-found-page {
+    width: min(calc(100% - 2rem), var(--content-width));
+    min-height: 60vh;
+    margin-inline: auto;
+    display: grid;
+    place-items: center;
+    padding-block: 4rem 6rem;
+  }
+
+  .not-found-content {
+    width: min(100%, 700px);
+    text-align: center;
+  }
+
+  .error-code {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.06em;
+  }
+
+  .not-found-content h1 {
+    margin-bottom: 1.25rem;
+  }
+
+  .message {
+    max-width: 600px;
+    margin-inline: auto;
+    color: var(--color-text-secondary);
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .button {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease;
+  }
+
+  .button-primary {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .button-primary:hover {
+    border-color: var(--color-primary-hover);
+    background: var(--color-primary-hover);
+  }
+
+  .button-secondary {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .button-secondary:hover {
+    background: var(--color-surface-subtle);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .button {
+      transition: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .not-found-page {
+      min-height: 55vh;
+      padding-block: 3rem 5rem;
+    }
+
+    .actions {
+      flex-direction: column;
+    }
+
+    .button {
+      width: 100%;
+    }
+  }
+</style>

@@ -25,6 +25,9 @@ const routeEntry = Object.values(localeRoutes).find(
 
 const alternateSpanishPath = routeEntry?.es;
 const alternateEnglishPath = routeEntry?.en;
+
+const openGraphLocale = lang === "es" ? "es_ES" : "en_US";
+const alternateOpenGraphLocale = lang === "es" ? "en_US" : "es_ES";
 ---
 
 <!doctype html>
@@ -75,7 +78,16 @@ const alternateEnglishPath = routeEntry?.en;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_GB"} />
+    <meta property="og:locale" content={openGraphLocale} />
+
+    {
+      alternateSpanishPath && alternateEnglishPath && (
+        <meta
+          property="og:locale:alternate"
+          content={alternateOpenGraphLocale}
+        />
+      )
+    }
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />

@@ -1,5 +1,5 @@
 ---
-title: "Document Management and Digitization"
+title: "Document Management and Digitization | Professional Project"
 slug: "document-management"
 language: "en"
 type: "professional"

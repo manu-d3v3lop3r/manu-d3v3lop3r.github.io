@@ -1,5 +1,5 @@
 ---
-title: "Rediseño y migración de portal institucional"
+title: "Rediseño y migración de portal institucional | Proyecto profesional"
 slug: "magnolia"
 language: "es"
 type: "professional"

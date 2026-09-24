@@ -1,5 +1,5 @@
 ---
-title: "Automatización de gestión de solicitudes"
+title: "Automatización de gestión de solicitudes | Proyecto profesional"
 slug: "power-automate"
 language: "es"
 type: "professional"

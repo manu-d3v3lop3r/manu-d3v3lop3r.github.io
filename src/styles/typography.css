@@ -2,20 +2,17 @@ h1,
 h2,
 h3,
 h4,
-p {
+h5,
+h6 {
   margin: 0;
-}
-
-h1,
-h2,
-h3,
-h4 {
   color: var(--color-text);
   font-weight: 700;
   line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 h1 {
+  max-width: 18ch;
   font-size: clamp(2.5rem, 6vw, 5rem);
   letter-spacing: -0.04em;
 }
@@ -29,10 +26,15 @@ h3 {
   font-size: clamp(1.5rem, 3vw, 1.75rem);
 }
 
+h4 {
+  font-size: 1.25rem;
+}
+
 p {
   max-width: 70ch;
-  color: var(--color-text-secondary);
+  margin: 0;
   font-size: 1rem;
+  line-height: 1.7;
 }
 
 a {

@@ -93,6 +93,12 @@ const closeLabel = lang === "es" ? "Cerrar menú" : "Close menu";
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
+        const isOpen = toggle.getAttribute("aria-expanded") === "true";
+
+        if (!isOpen) {
+          return;
+        }
+
         setMenuState(false);
         toggle.focus();
       }

@@ -1,5 +1,6 @@
 :root {
   /* Colors */
+
   --color-background: #fafaf9;
   --color-surface: #ffffff;
   --color-surface-subtle: #f4f4f2;
@@ -15,6 +16,7 @@
   --color-focus: #2563eb;
 
   /* Typography */
+
   --font-sans:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
@@ -24,6 +26,7 @@
     "Liberation Mono", "Courier New", monospace;
 
   /* Spacing */
+
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -36,14 +39,37 @@
   --space-10: 6rem;
 
   /* Radius */
+
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-pill: 999px;
 
   /* Layout */
+
   --content-width: 1200px;
 
   /* Focus */
+
   --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #111111;
+    --color-surface: #181818;
+    --color-surface-subtle: #222222;
+
+    --color-text: #f5f5f5;
+    --color-text-secondary: #a3a3a3;
+    --color-text-muted: #a3a3a3;
+
+    --color-border: #2e2e2e;
+
+    --color-primary: #60a5fa;
+    --color-primary-hover: #93c5fd;
+    --color-focus: #60a5fa;
+
+    --focus-ring: 0 0 0 3px rgba(96, 165, 250, 0.4);
+  }
 }

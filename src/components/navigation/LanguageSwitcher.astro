@@ -24,8 +24,11 @@ const targetPath = routeEntry
     : "/en/";
 ---
 
-<div class="language-switcher">
-  <span class="current-language" aria-current="true">
+<div
+  class="language-switcher"
+  aria-label={lang === "es" ? "Selector de idioma" : "Language selector"}
+>
+  <span class="current-language">
     {currentLabel}
   </span>
 

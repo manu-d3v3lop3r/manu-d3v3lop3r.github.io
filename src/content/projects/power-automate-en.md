@@ -1,5 +1,5 @@
 ---
-title: "Internal Request Management Automation"
+title: "Internal Request Management Automation | Professional Project"
 slug: "power-automate-en"
 routeSlug: "power-automate"
 language: "en"

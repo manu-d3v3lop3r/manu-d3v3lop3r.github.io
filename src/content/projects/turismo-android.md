@@ -1,5 +1,5 @@
 ---
-title: "Aplicación Android de turismo"
+title: "Aplicación Android de turismo | Proyecto académico"
 slug: "turismo-android"
 language: "es"
 type: "academic"
