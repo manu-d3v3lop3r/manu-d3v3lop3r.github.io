@@ -7,6 +7,7 @@ import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 
 import { localeRoutes } from "../data/locales";
+import { contact } from "../data/contact";
 
 interface Props {
   title: string;
@@ -28,6 +29,66 @@ const alternateEnglishPath = routeEntry?.en;
 
 const openGraphLocale = lang === "es" ? "es_ES" : "en_US";
 const alternateOpenGraphLocale = lang === "es" ? "en_US" : "es_ES";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Software Developer Portfolio",
+  url: Astro.url.origin,
+  inLanguage: lang,
+  about: {
+    "@type": "Person",
+    name: "Manuel Jiménez",
+    jobTitle: "Software Developer",
+    description:
+      "Software Developer based in Madrid, Spain, with experience in web development, backend development, full stack development and automation.",
+    url: Astro.url.origin,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Madrid",
+      addressCountry: "ES",
+    },
+    knowsLanguage: ["es", "en"],
+    knowsAbout: [
+      "Software Development",
+      "Web Development",
+      "Backend Development",
+      "Full Stack Development",
+      "Automation",
+      "Java",
+      "Kotlin",
+      "Python",
+      "JavaScript",
+      "PHP",
+      "HTML",
+      "CSS",
+      "XML",
+      "SQL",
+      "Spring Boot",
+      "Bootstrap",
+      "jQuery",
+      "DataTables",
+      "REST APIs",
+      "AJAX",
+      "JSON",
+      "Firebase",
+      "Power Automate",
+      "Google Apps Script",
+      "Magnolia CMS",
+      "WordPress",
+      "SharePoint",
+      "Joomla",
+      "Git",
+      "GitHub",
+      "Postman",
+      "XAMPP",
+      "Apache",
+      "VirtualBox",
+      "MySQL",
+    ],
+    sameAs: [contact.github, contact.linkedin],
+  },
+};
 ---
 
 <!doctype html>
@@ -92,6 +153,11 @@ const alternateOpenGraphLocale = lang === "es" ? "en_US" : "es_ES";
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
   </head>
 
   <body>

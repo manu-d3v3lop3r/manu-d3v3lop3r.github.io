@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { contact } from "../../../data/contact";
 ---
 
 <BaseLayout
@@ -24,22 +25,36 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
         <h2>Contacto profesional</h2>
 
         <p>
-          Próximamente añadiré aquí mis datos de contacto profesional y los
-          enlaces a mis perfiles públicos.
+          Puedes encontrarme en LinkedIn para contactar conmigo y conocer más
+          sobre mi perfil profesional.
         </p>
 
-        <div class="contact-placeholder">
-          <p>
-            <strong>Email:</strong> pendiente de añadir
-          </p>
+        <div class="contact-links">
+          <a
+            class="contact-link contact-link-primary"
+            href={contact.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <strong>LinkedIn</strong>
+              <small>Perfil profesional y contacto</small>
+            </span>
+            <span aria-hidden="true">↗</span>
+          </a>
 
-          <p>
-            <strong>LinkedIn:</strong> pendiente de añadir
-          </p>
-
-          <p>
-            <strong>GitHub:</strong> pendiente de añadir
-          </p>
+          <a
+            class="contact-link"
+            href={contact.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>
+              <strong>GitHub</strong>
+              <small>Proyectos y código público</small>
+            </span>
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </section>
 
@@ -114,18 +129,55 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
     margin-top: 1.25rem;
   }
 
-  .contact-placeholder {
+  .contact-links {
     display: grid;
     gap: 0.75rem;
     margin-top: 2rem;
-    padding: 1.5rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface-subtle);
   }
 
-  .contact-placeholder p {
-    margin: 0;
+  .contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-text);
+    text-decoration: none;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .contact-link:hover {
+    background: var(--color-surface-subtle);
+    border-color: var(--color-primary);
+  }
+
+  .contact-link-primary {
+    border-color: var(--color-primary);
+  }
+
+  .contact-link strong,
+  .contact-link small {
+    display: block;
+  }
+
+  .contact-link strong {
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-link small {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  .contact-link > span:last-child {
+    flex-shrink: 0;
+    color: var(--color-primary);
+    font-size: 1.25rem;
   }
 
   @media (max-width: 700px) {
@@ -139,6 +191,12 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 
     .contact-section {
       padding-block: 2.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-link {
+      transition: none;
     }
   }
 </style>
