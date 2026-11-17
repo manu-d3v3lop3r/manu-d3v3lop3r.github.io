@@ -34,6 +34,11 @@ export const localeRoutes = {
     en: "/en/contact/",
   },
 
+  "banking-api": {
+    es: "/es/proyectos/api-bancaria/",
+    en: "/en/projects/banking-api/",
+  },
+
   "document-management": {
     es: "/es/proyectos/gestion-documental/",
     en: "/en/projects/document-management/",

@@ -1,0 +1,294 @@
+---
+import { Picture } from "astro:assets";
+import profilePhoto from "../../assets/manuel-jimenez.png";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContactCTA from "../sections/ContactCTA.astro";
+import { education, person, spokenLanguages } from "../../data/profile";
+import { route, type Lang } from "../../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const t =
+  lang === "es"
+    ? {
+        title: `Sobre mí | ${person.name}`,
+        description:
+          "Perfil profesional de Manuel Jiménez, desarrollador de software en Madrid formado en DAM y Full Stack, con experiencia en desarrollo web, automatización de procesos y CMS.",
+        eyebrow: "Sobre mí",
+        heading: "Desarrollador Full Stack con foco en problemas reales.",
+        intro: [
+          "Soy Manuel Jiménez, desarrollador Full Stack en Madrid. Me formé como Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM) y completé un máster profesional en Full Stack Development. Mi foco actual es el backend con Java y Spring Boot: diseño de APIs REST, seguridad y testing.",
+          "Mi experiencia profesional se ha desarrollado en el sector público: en una empresa de servicios municipales construí desde cero una aplicación web de gestión documental que llegó a producción, y en una universidad pública automaticé procesos administrativos y participé en la migración del portal institucional y la intranet a Magnolia CMS.",
+        ],
+        approachTitle: "Cómo trabajo",
+        approach: [
+          {
+            title: "Entender antes de construir",
+            text: "Analizo el flujo real de trabajo y hablo con las personas que van a usar la solución antes de escribir código.",
+          },
+          {
+            title: "Software que se usa",
+            text: "Me importa que la herramienta llegue a producción y resuelva el problema, no solo que funcione en local.",
+          },
+          {
+            title: "Aprender investigando",
+            text: "Cuando una tecnología es nueva para mí —Power Automate, Magnolia, la API de Google Maps— la estudio, pruebo alternativas y la adapto al caso real.",
+          },
+          {
+            title: "Documentar",
+            text: "Escribo documentación técnica y manuales de usuario para que otros puedan mantener y usar lo que construyo.",
+          },
+        ],
+        educationTitle: "Formación",
+        learningLink: "Ver formación y certificaciones",
+        languagesTitle: "Idiomas",
+        lookingTitle: "Qué busco",
+        looking:
+          "Un puesto como desarrollador web, backend o full stack en un equipo donde pueda seguir creciendo técnicamente, aprender buenas prácticas (arquitectura, testing, revisión de código) y aportar desde el primer día.",
+      }
+    : {
+        title: `About | ${person.name}`,
+        description:
+          "Professional profile of Manuel Jiménez, a Madrid-based software developer trained in Multiplatform Application Development and Full Stack, with experience in web development, process automation and CMS.",
+        eyebrow: "About",
+        heading: "Full Stack Developer focused on real-world problems.",
+        intro: [
+          "I'm Manuel Jiménez, a Full Stack Developer based in Madrid. I trained as a Higher Technician in Multiplatform Application Development (DAM) and completed a professional master's in Full Stack Development. My current focus is backend development with Java and Spring Boot: REST API design, security and testing.",
+          "My professional experience is in the public sector: at a municipal services company I built a document management web app from scratch that went into production, and at a public university I automated administrative processes and helped migrate the institutional website and intranet to Magnolia CMS.",
+        ],
+        approachTitle: "How I work",
+        approach: [
+          {
+            title: "Understand before building",
+            text: "I analyse the real workflow and talk to the people who will use the solution before writing code.",
+          },
+          {
+            title: "Software that gets used",
+            text: "I care about the tool reaching production and solving the problem, not just working on my machine.",
+          },
+          {
+            title: "Learn by investigating",
+            text: "When a technology is new to me —Power Automate, Magnolia, the Google Maps API— I study it, try alternatives and adapt it to the real case.",
+          },
+          {
+            title: "Document",
+            text: "I write technical documentation and user manuals so others can maintain and use what I build.",
+          },
+        ],
+        educationTitle: "Education",
+        learningLink: "View education and certifications",
+        languagesTitle: "Languages",
+        lookingTitle: "What I'm looking for",
+        looking:
+          "A web, backend or full stack developer role in a team where I can keep growing technically, learn good practices (architecture, testing, code review) and contribute from day one.",
+      };
+---
+
+<BaseLayout title={t.title} description={t.description} lang={lang} ogType="profile">
+  <div class="page container">
+    <header class="about-header">
+      <div class="page-header">
+        <p class="eyebrow">{t.eyebrow}</p>
+        <h1>{t.heading}</h1>
+        <div class="intro">
+          {t.intro.map((paragraph) => <p class="lead">{paragraph}</p>)}
+        </div>
+      </div>
+
+      <figure class="about-photo">
+        <Picture
+          src={profilePhoto}
+          alt={lang === "es"
+            ? `Fotografía de ${person.name}`
+            : `Photo of ${person.name}`}
+          formats={["avif", "webp"]}
+          widths={[320, 480, 720]}
+          sizes="(max-width: 860px) 70vw, 20rem"
+        />
+      </figure>
+    </header>
+
+    <section class="about-section" aria-labelledby="approach-title">
+      <h2 id="approach-title">{t.approachTitle}</h2>
+      <div class="card-grid">
+        {
+          t.approach.map((item) => (
+            <article class="card">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="about-section split" aria-labelledby="education-title">
+      <div>
+        <h2 id="education-title">{t.educationTitle}</h2>
+        <ul class="plain-list">
+          {
+            education.map((item) => (
+              <li>
+                <h3>{item.title[lang]}</h3>
+                <p class="meta">
+                  {item.institution} · {item.period[lang]}
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+        <a class="text-link" href={route("learning", lang)}>
+          {t.learningLink} <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div>
+        <h2>{t.languagesTitle}</h2>
+        <dl class="languages">
+          {
+            spokenLanguages.map((language) => (
+              <div>
+                <dt>{language.name[lang]}</dt>
+                <dd>{language.level[lang]}</dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        <h2 class="looking-title">{t.lookingTitle}</h2>
+        <p class="looking">{t.looking}</p>
+      </div>
+    </section>
+  </div>
+
+  <ContactCTA lang={lang} />
+</BaseLayout>
+
+<style>
+  .about-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-photo {
+    margin: 0;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+  }
+
+  .about-photo :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 15%;
+  }
+
+  @media (max-width: 860px) {
+    .about-header {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .about-photo {
+      grid-row: 1;
+      width: min(70vw, 16rem);
+      margin-bottom: 2rem;
+    }
+  }
+
+  .intro {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .about-section {
+    padding-block: 3.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .about-section h2 {
+    margin-bottom: 1.75rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .card h3 {
+    margin-bottom: 0.6rem;
+    font-size: 1.15rem;
+  }
+
+  .card p {
+    color: var(--color-text-secondary);
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 4rem;
+  }
+
+  .plain-list {
+    display: grid;
+    gap: 1.5rem;
+    margin: 0 0 1.75rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .plain-list h3 {
+    margin-bottom: 0.35rem;
+    font-size: 1.1rem;
+  }
+
+  .languages {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0 0 3rem;
+  }
+
+  .languages div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .languages dt {
+    font-weight: 600;
+  }
+
+  .languages dd {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+  }
+
+  .looking-title {
+    margin-bottom: 1rem !important;
+  }
+
+  .looking {
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 800px) {
+    .split {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .about-section {
+      padding-block: 2.5rem;
+    }
+  }
+</style>

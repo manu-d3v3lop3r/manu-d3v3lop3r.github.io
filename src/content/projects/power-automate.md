@@ -1,9 +1,10 @@
 ---
-title: "Automatización de gestión de solicitudes | Proyecto profesional"
+title: "Automatización de gestión de solicitudes"
 slug: "power-automate"
 language: "es"
 type: "professional"
 status: "completed"
+order: 3
 featured: false
 confidential: false
 summary: "Automatización de un proceso interno de gestión de quejas, sugerencias y felicitaciones mediante Microsoft Forms, Microsoft Lists y correo electrónico."

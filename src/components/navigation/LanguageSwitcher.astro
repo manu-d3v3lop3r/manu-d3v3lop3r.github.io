@@ -1,59 +1,75 @@
 ---
-import { localeRoutes } from "../../data/locales";
+import { getAlternates, type Lang } from "../../i18n/utils";
 
 interface Props {
-  lang: "es" | "en";
+  lang: Lang;
 }
 
 const { lang } = Astro.props;
 
-const targetLang = lang === "es" ? "en" : "es";
-const targetLabel = lang === "es" ? "English" : "Español";
-const currentLabel = lang === "es" ? "Español" : "English";
+const alternates = getAlternates(Astro.url.pathname);
 
-const currentPath = Astro.url.pathname;
+const options = [
+  { code: "es", label: "ES", name: "Español" },
+  { code: "en", label: "EN", name: "English" },
+] as const;
 
-const routeEntry = Object.values(localeRoutes).find(
-  (route) => route.es === currentPath || route.en === currentPath,
-);
-
-const targetPath = routeEntry
-  ? routeEntry[targetLang]
-  : targetLang === "es"
-    ? "/es/"
-    : "/en/";
+const groupLabel = lang === "es" ? "Idioma" : "Language";
 ---
 
-<div
-  class="language-switcher"
-  aria-label={lang === "es" ? "Selector de idioma" : "Language selector"}
->
-  <span class="current-language">
-    {currentLabel}
-  </span>
-
-  <a href={targetPath} hreflang={targetLang}>
-    {targetLabel}
-  </a>
+<div class="language-switcher" role="group" aria-label={groupLabel}>
+  {
+    options.map((option) =>
+      option.code === lang ? (
+        <span class="is-current" aria-current="true" title={option.name}>
+          <span aria-hidden="true">{option.label}</span>
+          <span class="visually-hidden">{option.name}</span>
+        </span>
+      ) : (
+        <a
+          href={alternates?.[option.code] ?? `/${option.code}/`}
+          hreflang={option.code}
+          lang={option.code}
+          title={option.name}
+        >
+          <span aria-hidden="true">{option.label}</span>
+          <span class="visually-hidden">{option.name}</span>
+        </a>
+      ),
+    )
+  }
 </div>
 
 <style>
   .language-switcher {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-  }
-
-  .current-language {
-    color: var(--color-text);
+    padding: 0.2rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
     font-weight: 600;
   }
 
+  .language-switcher > * {
+    display: inline-flex;
+    min-width: 2.25rem;
+    min-height: 2.15rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: calc(var(--radius-md) - 3px);
+  }
+
+  .is-current {
+    background: var(--color-surface-subtle);
+    color: var(--color-text);
+  }
+
   a {
-    color: var(--color-text-secondary);
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
+    color: var(--color-text-muted);
+    text-decoration: none;
   }
 
   a:hover {

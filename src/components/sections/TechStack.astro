@@ -1,192 +1,56 @@
 ---
+import { skills, skillLabel } from "../../data/profile";
+import type { Lang } from "../../i18n/utils";
+
 interface Props {
-  lang: "es" | "en";
+  lang: Lang;
 }
 
 const { lang } = Astro.props;
 
-const content =
+const t =
   lang === "es"
     ? {
-        eyebrow: "TECNOLOGÍAS Y HERRAMIENTAS",
+        eyebrow: "Stack técnico",
         title: "Tecnologías y herramientas",
         description:
-          "Tecnologías y herramientas utilizadas a lo largo de mi experiencia profesional, formación académica y proyectos.",
-        categories: [
-          {
-            title: "Lenguajes",
-            items: [
-              "Java",
-              "Kotlin",
-              "Python",
-              "JavaScript",
-              "PHP",
-              "SQL",
-              "HTML",
-              "CSS",
-              "XML",
-            ],
-          },
-          {
-            title: "Frameworks y librerías",
-            items: [
-              "Spring Boot",
-              "Bootstrap",
-              "jQuery",
-              "DataTables",
-              "Materialize",
-              "SweetAlert2",
-            ],
-          },
-          {
-            title: "Web, APIs y datos",
-            items: [
-              "REST APIs",
-              "AJAX",
-              "JSON",
-              "Firebase",
-              "Google Apps Script",
-            ],
-          },
-          {
-            title: "CMS y plataformas",
-            items: ["Magnolia", "WordPress", "SharePoint", "Joomla"],
-          },
-          {
-            title: "Herramientas y sistemas",
-            items: [
-              "Power Automate",
-              "Git",
-              "GitHub",
-              "Postman",
-              "XAMPP",
-              "Apache",
-              "VirtualBox",
-              "MySQL Workbench",
-            ],
-          },
-        ],
+          "Tecnologías con las que he trabajado en experiencia profesional, formación y proyectos.",
       }
     : {
-        eyebrow: "TECHNOLOGIES & TOOLS",
-        title: "Technologies & Tools",
+        eyebrow: "Tech stack",
+        title: "Technologies & tools",
         description:
-          "Technologies and tools used throughout my professional experience, academic education and projects.",
-        categories: [
-          {
-            title: "Languages",
-            items: [
-              "Java",
-              "Kotlin",
-              "Python",
-              "JavaScript",
-              "PHP",
-              "SQL",
-              "HTML",
-              "CSS",
-              "XML",
-            ],
-          },
-          {
-            title: "Frameworks & Libraries",
-            items: [
-              "Spring Boot",
-              "Bootstrap",
-              "jQuery",
-              "DataTables",
-              "Materialize",
-              "SweetAlert2",
-            ],
-          },
-          {
-            title: "Web, APIs & Data",
-            items: [
-              "REST APIs",
-              "AJAX",
-              "JSON",
-              "Firebase",
-              "Google Apps Script",
-            ],
-          },
-          {
-            title: "CMS & Platforms",
-            items: ["Magnolia", "WordPress", "SharePoint", "Joomla"],
-          },
-          {
-            title: "Tools & Systems",
-            items: [
-              "Power Automate",
-              "Git",
-              "GitHub",
-              "Postman",
-              "XAMPP",
-              "Apache",
-              "VirtualBox",
-              "MySQL Workbench",
-            ],
-          },
-        ],
+          "Technologies I have worked with across professional experience, training and projects.",
       };
 ---
 
-<section class="tech-stack" aria-labelledby="tech-stack-title">
+<section class="section container" aria-labelledby="tech-stack-title">
   <header class="section-header">
-    <p class="eyebrow">{content.eyebrow}</p>
-
-    <h2 id="tech-stack-title">{content.title}</h2>
-
-    <p>{content.description}</p>
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h2 id="tech-stack-title">{t.title}</h2>
+    <p>{t.description}</p>
   </header>
 
   <div class="categories">
     {
-      content.categories.map((category) => (
-        <article class="category">
-          <h3>{category.title}</h3>
-
-          <ul>
-            {category.items.map((item) => (
-              <li>{item}</li>
+      skills.map((group) => (
+        <div class="category">
+          <h3>{group.title[lang]}</h3>
+          <ul class="tag-list">
+            {group.items.map((item) => (
+              <li>{skillLabel(item, lang)}</li>
             ))}
           </ul>
-        </article>
+        </div>
       ))
     }
   </div>
 </section>
 
 <style>
-  .tech-stack {
-    width: min(calc(100% - 2rem), var(--content-width));
-    margin-inline: auto;
-    padding-block: 5rem;
-  }
-
-  .section-header {
-    max-width: 800px;
-    margin-bottom: 3rem;
-  }
-
-  .eyebrow {
-    margin-bottom: 1rem;
-    color: var(--color-primary);
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-  }
-
-  .section-header h2 {
-    margin-bottom: 1.25rem;
-  }
-
-  .section-header > p:last-child {
-    font-size: 1.1rem;
-  }
-
   .categories {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
   }
 
@@ -199,33 +63,16 @@ const content =
 
   .category h3 {
     margin-bottom: 1rem;
-    font-size: 1.25rem;
+    font-size: 1.05rem;
   }
 
-  .category ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .category li {
-    padding: 0.35rem 0.65rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-pill);
-    background: var(--color-surface-subtle);
-    color: var(--color-text-secondary);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-  }
-
-  @media (max-width: 700px) {
-    .tech-stack {
-      padding-block: 4rem;
+  @media (max-width: 960px) {
+    .categories {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+  }
 
+  @media (max-width: 640px) {
     .categories {
       grid-template-columns: 1fr;
     }

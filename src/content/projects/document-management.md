@@ -1,27 +1,29 @@
 ---
-title: "Document Management and Digitization | Professional Project"
+title: "Document Management and Digitization"
 slug: "document-management"
 language: "en"
 type: "professional"
 status: "completed"
+order: 1
 featured: true
 confidential: true
-summary: "Professional web application for digitizing, storing and managing documents, combining web development, database management, document storage and server environment configuration."
+summary: "Web application built from scratch to production to digitise and manage administrative and legal documentation: scanned-document uploads, a relational MySQL database and a Bootstrap, jQuery and DataTables interface."
 technologies:
-  - HTML
-  - CSS
-  - JavaScript
-  - Bootstrap
-  - jQuery
-  - DataTables
   - PHP
   - MySQL
-  - Google Drive
+  - JavaScript
+  - jQuery
+  - Bootstrap
+  - DataTables
+  - SweetAlert2
+  - HTML
+  - CSS
   - Google Apps Script
+  - Google Drive
   - Apache
   - XAMPP
   - VirtualBox
-role: "Application development, environment configuration and participation in putting the solution into operation."
+role: "Full stack development (PHP, MySQL, JavaScript), database design and server configuration."
 team: "2 people"
 ---
 
@@ -86,17 +88,15 @@ data storage and document storage.
 
 ## Technologies and development
 
-The web interface was developed using HTML, CSS and JavaScript, together with
-Bootstrap, jQuery and DataTables.
-
-PHP was used as part of the application to handle the required logic and work
-with the server environment and processed information.
-
-MySQL was used as a relational database for storing data associated with the
-documentation.
-
-Google Drive was used for document storage, while Google Apps Script formed
-part of the ecosystem used to work with Google services.
+- **Backend (PHP):** application logic, form processing, scanned-document
+  uploads and database access.
+- **Database (MySQL):** design of the relational model used to classify,
+  store and query documents and their associated data.
+- **Frontend:** HTML, CSS and JavaScript with Bootstrap for the responsive
+  layout, jQuery for interaction, DataTables for searchable, sortable and
+  paginated listings, and SweetAlert2 for confirmations and user feedback.
+- **Google services:** Google Apps Script and Google Drive for document
+  storage.
 
 ## Environment and server
 
@@ -127,11 +127,13 @@ problems during the configuration process.
 
 ## My contribution
 
-The development was carried out by two people, and I was directly involved
-in building the solution.
+The application was built by two people, from scratch to production. My
+contribution included:
 
-My contribution included application development and its workflow, as well
-as tasks related to environment and server configuration.
+- Developing the application and its workflow (frontend and backend).
+- Designing the relational database structure.
+- Implementing the upload and storage of scanned documents.
+- Setting up and maintaining the development environment and the server.
 
 I also participated in the research required to solve configuration,
 connection and security problems.

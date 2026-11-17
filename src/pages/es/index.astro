@@ -7,18 +7,21 @@ import ExperiencePreview from "../../components/sections/ExperiencePreview.astro
 import TechStack from "../../components/sections/TechStack.astro";
 import AboutPreview from "../../components/sections/AboutPreview.astro";
 import ContactCTA from "../../components/sections/ContactCTA.astro";
+import { person } from "../../data/profile";
+
+const lang = "es";
 ---
 
 <BaseLayout
-  title="Manuel Jiménez | Software Developer"
-  description="Portfolio profesional de Software Developer especializado en desarrollo web, backend, aplicaciones y automatización."
-  lang="es"
+  title={`${person.name} | ${person.role[lang]}`}
+  description={"Portfolio de Manuel Jiménez, desarrollador Full Stack en Madrid: APIs REST con Java y Spring Boot, aplicaciones web con PHP, MySQL y JavaScript y automatización de procesos."}
+  lang={lang}
 >
-  <Hero lang="es" />
-  <WhatIDo lang="es" />
-  <SelectedWork lang="es" />
-  <ExperiencePreview lang="es" />
-  <TechStack lang="es" />
-  <AboutPreview lang="es" />
-  <ContactCTA lang="es" />
+  <Hero lang={lang} />
+  <SelectedWork lang={lang} />
+  <WhatIDo lang={lang} />
+  <ExperiencePreview lang={lang} />
+  <TechStack lang={lang} />
+  <AboutPreview lang={lang} />
+  <ContactCTA lang={lang} />
 </BaseLayout>

@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { route } from "../../i18n/utils";
+---
+
+<BaseLayout
+  title="404 · Página no encontrada / Page not found"
+  description="La página que buscas no existe. The page you are looking for does not exist."
+  lang="es"
+  noindex
+>
+  <div class="not-found container">
+    <p class="error-code" aria-hidden="true">404</p>
+
+    <div class="messages">
+      <section lang="es">
+        <h1>Página no encontrada</h1>
+        <p>La página que buscas no existe o ha cambiado de dirección.</p>
+        <div class="button-group">
+          <a class="button button-primary" href={route("home", "es")}>
+            Volver al inicio
+          </a>
+          <a class="button button-secondary" href={route("projects", "es")}>
+            Ver proyectos
+          </a>
+        </div>
+      </section>
+
+      <section lang="en">
+        <h2>Page not found</h2>
+        <p>The page you are looking for doesn't exist or has moved.</p>
+        <div class="button-group">
+          <a class="button button-primary" href={route("home", "en")}>
+            Back to home
+          </a>
+          <a class="button button-secondary" href={route("projects", "en")}>
+            View projects
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .not-found {
+    display: grid;
+    min-height: 60vh;
+    align-content: center;
+    justify-items: center;
+    padding-block: 4rem;
+    text-align: center;
+  }
+
+  .error-code {
+    margin-bottom: 2rem;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: clamp(4rem, 12vw, 7rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.06em;
+  }
+
+  .messages {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem;
+    max-width: 860px;
+  }
+
+  .messages section {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+  }
+
+  .messages h1,
+  .messages h2 {
+    max-width: none;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .messages p {
+    color: var(--color-text-secondary);
+  }
+
+  .button-group {
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 700px) {
+    .messages {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

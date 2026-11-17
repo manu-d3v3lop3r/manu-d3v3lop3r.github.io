@@ -1,10 +1,11 @@
 ---
-title: "Internal Request Management Automation | Professional Project"
+title: "Internal Request Management Automation"
 slug: "power-automate-en"
 routeSlug: "power-automate"
 language: "en"
 type: "professional"
 status: "completed"
+order: 3
 featured: false
 confidential: false
 summary: "Automation of an internal process for managing complaints, suggestions and compliments using Microsoft Forms, Microsoft Lists and email."

@@ -1,89 +1,78 @@
 ---
-title: "Institutional Portal Redesign and Migration | Professional Project"
+title: "Institutional Website Migration to Magnolia CMS"
 slug: "magnolia-en"
 routeSlug: "magnolia"
 language: "en"
 type: "professional"
 status: "completed"
+order: 4
 featured: false
 confidential: false
-summary: "Redesign and migration of an institutional portal using Magnolia CMS, working with pages, components, templates, content, navigation and forms."
+summary: "Migration of a public university's institutional website and intranet from WordPress to Magnolia CMS, reorganising content, navigation and forms using the platform's existing components."
 technologies:
   - Magnolia CMS
-role: "Configuration, creation and modification of pages and components, content organization and migration."
-team: "Team environment"
+  - WordPress
+  - Technical SEO
+  - Information architecture
+role: "Page building, content reorganisation and migration from WordPress."
+team: "IT systems team"
 ---
 
 ## Context
 
-The project involved renewing an existing institutional portal using
-Magnolia CMS.
+The organisation needed to renew its institutional website and intranet,
+which were built on WordPress, and move them to Magnolia CMS, the corporate
+platform chosen for the new portal.
 
-The project started from existing material and content that had to be adapted
-and reorganized within the new portal structure.
+There was a large amount of existing pages and content that had to be adapted
+to the new structure.
 
 ## Problem
 
-The existing content needed to be transferred and reorganized within the new
-portal while maintaining a clear structure and making navigation easier for
-users.
+It was not a straight copy of content. We had to:
 
-The content also had to be adapted to the components and field types
-available in Magnolia CMS.
+- Reorganise information so navigation would be clearer.
+- Adapt each piece of content to the components, templates and field types
+  already defined in Magnolia CMS.
+- Keep menus, images, links and forms working on the new portal.
+- Take care of page structure for technical SEO and accessibility.
 
 ## Solution
 
-The work was carried out directly through the Magnolia CMS graphical
-interface to create and modify the portal pages.
+The work was done in Magnolia CMS's visual editor, building each page from
+the components and templates available on the platform (no new components
+were developed).
 
-Content was organized using the components, templates and field types
-available on the platform.
+For each section of the portal:
 
-The work included:
-
-- Content.
-- Images.
-- Menus.
-- Navigation.
-- Forms.
-- Page structure.
-- Components and templates.
-
-The organization of these elements took accessibility and ease of navigation
-into account.
+1. Review the original content in WordPress.
+2. Decide where it belonged in the new navigation architecture.
+3. Build the page by combining existing components.
+4. Migrate text, images, links and forms.
+5. Review the published page (heading structure, links and navigation).
 
 ## My contribution
 
-I participated in both content organization and the configuration and
-creation of pages within Magnolia CMS.
-
-I worked with the available components and templates and adapted the content
-to the structure of the new portal.
-
-I also participated in the design and implementation of the pages.
+- Built pages for the website and intranet in Magnolia CMS.
+- Migrated and reorganised content, menus and navigation.
+- Contributed to technical SEO and site-structure improvements.
 
 ## Main challenge
 
-The main challenge was understanding how Magnolia CMS worked and learning how
-to work with the structure and possibilities provided by the platform.
-
-It was necessary to understand how to use the different components, templates
-and field types to build the pages correctly.
-
-## Publication
-
-The result was published and integrated into the institutional portal.
+Learning to work with Magnolia CMS, an enterprise platform with a different
+logic from WordPress, and understanding what each component and field type
+allowed in order to represent very varied content without losing clarity.
 
 ## Result
 
-The portal was redesigned and its content was migrated and reorganized within
-the new structure.
+The institutional website and intranet were published on Magnolia CMS with
+their content migrated and reorganised within the new navigation structure.
 
-The work provided practical experience with content management, information
-organization, navigation and CMS configuration.
+## What I would do differently
 
-## What I would improve today
-
-Today I would not make specific changes to the result of the project.
-
-The work fulfilled its intended objective and was successfully published.
+- Build a full content inventory up front (source URL, destination and
+  status) to track migration progress more easily.
+- Define 301 redirects for old URLs from the start to preserve search
+  rankings.
+- With deeper knowledge of the platform, I would like to also take part in
+  developing custom Magnolia components.

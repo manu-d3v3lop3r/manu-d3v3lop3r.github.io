@@ -1,0 +1,251 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { contact } from "../../data/contact";
+import { person } from "../../data/profile";
+import { route, type Lang } from "../../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const t =
+  lang === "es"
+    ? {
+        title: `Contacto | ${person.name}`,
+        description:
+          "Contacta con Manuel Jiménez, desarrollador de software en Madrid, a través de LinkedIn o GitHub.",
+        eyebrow: "Contacto",
+        heading: "Hablemos",
+        intro:
+          "Estoy abierto a oportunidades como desarrollador web, backend o full stack en Madrid o en remoto. Si quieres comentar una vacante o un proyecto, escríbeme.",
+        linkedin: "Perfil profesional y mensajes directos. Es la vía más rápida.",
+        github: "Repositorios y código público.",
+        email: "Correo electrónico directo.",
+        aside: "Antes de escribir",
+        asideItems: [
+          { label: "Ver CV", href: route("cv", lang) },
+          { label: "Ver proyectos", href: route("projects", lang) },
+          { label: "Ver experiencia", href: route("experience", lang) },
+        ],
+        location: "Ubicación",
+        languages: "Idiomas",
+        languagesValue: "Español (nativo) · Inglés (B1)",
+        confidentialTitle: "Sobre los proyectos profesionales",
+        confidential:
+          "Los proyectos realizados para empresas se presentan como casos de estudio, sin publicar código fuente, datos internos ni configuraciones sensibles.",
+      }
+    : {
+        title: `Contact | ${person.name}`,
+        description:
+          "Get in touch with Manuel Jiménez, a Madrid-based software developer, via LinkedIn or GitHub.",
+        eyebrow: "Contact",
+        heading: "Let's talk",
+        intro:
+          "I'm open to web, backend or full stack developer opportunities in Madrid or remote. If you'd like to discuss a role or a project, get in touch.",
+        linkedin: "Professional profile and direct messages. The quickest way.",
+        github: "Repositories and public code.",
+        email: "Direct email.",
+        aside: "Before you write",
+        asideItems: [
+          { label: "View CV", href: route("cv", lang) },
+          { label: "View projects", href: route("projects", lang) },
+          { label: "View experience", href: route("experience", lang) },
+        ],
+        location: "Location",
+        languages: "Languages",
+        languagesValue: "Spanish (native) · English (B1)",
+        confidentialTitle: "About professional projects",
+        confidential:
+          "Projects built for companies are presented as case studies, without publishing source code, internal data or sensitive configuration.",
+      };
+
+const channels = [
+  { name: "LinkedIn", text: t.linkedin, href: contact.linkedin, external: true },
+  contact.email
+    ? { name: contact.email, text: t.email, href: `mailto:${contact.email}`, external: false }
+    : undefined,
+  { name: "GitHub", text: t.github, href: contact.github, external: true },
+].filter((channel) => channel !== undefined);
+---
+
+<BaseLayout title={t.title} description={t.description} lang={lang}>
+  <div class="page container">
+    <header class="page-header">
+      <p class="eyebrow">{t.eyebrow}</p>
+      <h1>{t.heading}</h1>
+      <p class="lead">{t.intro}</p>
+    </header>
+
+    <div class="contact-layout">
+      <ul class="channels">
+        {
+          channels.map((channel, index) => (
+            <li>
+              <a
+                class:list={["channel", { "channel-primary": index === 0 }]}
+                href={channel.href}
+                target={channel.external ? "_blank" : undefined}
+                rel={channel.external ? "noopener noreferrer" : undefined}
+              >
+                <span>
+                  <strong>{channel.name}</strong>
+                  <small>{channel.text}</small>
+                </span>
+                <span class="channel-arrow" aria-hidden="true">
+                  {channel.external ? "↗" : "→"}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <aside class="card contact-aside">
+        <dl>
+          <div>
+            <dt>{t.location}</dt>
+            <dd>{person.location[lang]}</dd>
+          </div>
+          <div>
+            <dt>{t.languages}</dt>
+            <dd>{t.languagesValue}</dd>
+          </div>
+        </dl>
+
+        <h2>{t.aside}</h2>
+        <ul>
+          {
+            t.asideItems.map((item) => (
+              <li>
+                <a class="text-link" href={item.href}>
+                  {item.label} <span aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </aside>
+    </div>
+
+    <section class="confidential" aria-labelledby="confidential-title">
+      <h2 id="confidential-title">{t.confidentialTitle}</h2>
+      <p>{t.confidential}</p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .contact-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .channels {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .channel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-text);
+    text-decoration: none;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease;
+  }
+
+  .channel:hover {
+    border-color: var(--color-primary);
+    background: var(--color-surface-subtle);
+  }
+
+  .channel-primary {
+    border-color: var(--color-primary);
+  }
+
+  .channel strong,
+  .channel small {
+    display: block;
+  }
+
+  .channel strong {
+    margin-bottom: 0.25rem;
+    font-size: 1.15rem;
+  }
+
+  .channel small {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .channel-arrow {
+    flex-shrink: 0;
+    color: var(--color-primary);
+    font-size: 1.25rem;
+  }
+
+  .contact-aside dl {
+    display: grid;
+    gap: 1rem;
+    margin: 0 0 2rem;
+  }
+
+  .contact-aside dt {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+  }
+
+  .contact-aside dd {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .contact-aside h2 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .contact-aside ul {
+    display: grid;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .confidential {
+    max-width: 760px;
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .confidential h2 {
+    margin-bottom: 0.75rem;
+    font-size: 1.15rem;
+  }
+
+  .confidential p {
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 800px) {
+    .contact-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

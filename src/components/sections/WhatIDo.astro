@@ -1,6 +1,8 @@
 ---
+import type { Lang } from "../../i18n/utils";
+
 interface Props {
-  lang: "es" | "en";
+  lang: Lang;
 }
 
 const { lang } = Astro.props;
@@ -8,76 +10,104 @@ const { lang } = Astro.props;
 const content =
   lang === "es"
     ? {
-        eyebrow: "EXPERIENCIA TÉCNICA",
-        title: "Áreas de experiencia",
+        eyebrow: "Qué aporto",
+        title: "Áreas en las que puedo aportar",
         description:
-          "Mi experiencia combina desarrollo de software con una visión práctica de los sistemas y procesos que hay detrás de una solución.",
+          "Combino desarrollo de software con una visión práctica de los procesos y sistemas en los que ese software tiene que funcionar.",
         items: [
           {
-            title: "Desarrollo de software",
+            icon: "api",
+            title: "Backend y APIs REST",
             description:
-              "Construyo aplicaciones y soluciones orientadas a necesidades concretas, trabajando desde la comprensión del problema hasta la implementación y puesta en funcionamiento.",
+              "APIs con Java y Spring Boot: arquitectura por capas, seguridad con Spring Security y JWT, persistencia con JPA, documentación OpenAPI y tests con JUnit y Mockito.",
           },
           {
-            title: "Desarrollo web y backend",
+            icon: "web",
+            title: "Aplicaciones web",
             description:
-              "He trabajado en aplicaciones web conectando interfaces, lógica de aplicación, bases de datos y APIs para convertir procesos y necesidades en herramientas utilizables.",
+              "Aplicaciones completas con PHP, MySQL y JavaScript: modelo de datos, lógica de servidor, interfaces con Bootstrap y jQuery, configuración del servidor y puesta en producción.",
           },
           {
+            icon: "automation",
             title: "Automatización de procesos",
             description:
-              "Identifico tareas y procesos que pueden simplificarse y trabajo en su automatización para reducir trabajo manual y hacer los flujos más controlables.",
+              "Flujos con Power Automate, Microsoft Forms/Lists y Google Apps Script para eliminar tareas manuales repetitivas.",
           },
           {
-            title: "Sistemas y entornos tecnológicos",
+            icon: "mobile",
+            title: "Aplicaciones Android",
             description:
-              "Mi experiencia con servidores, configuraciones, permisos, conexiones y soporte me permite entender el software dentro del entorno en el que realmente tiene que funcionar.",
+              "Apps nativas en Kotlin con Firebase (autenticación y datos) e integración de APIs externas como Google Maps.",
           },
         ],
       }
     : {
-        eyebrow: "TECHNICAL EXPERIENCE",
-        title: "Areas of Experience",
+        eyebrow: "What I bring",
+        title: "Where I can contribute",
         description:
-          "My experience combines software development with a practical understanding of the systems and processes behind a solution.",
+          "I combine software development with a practical understanding of the processes and systems that software has to work within.",
         items: [
           {
-            title: "Software Development",
+            icon: "api",
+            title: "Backend & REST APIs",
             description:
-              "I build applications and software solutions around concrete needs, from understanding the problem through implementation and deployment.",
+              "APIs with Java and Spring Boot: layered architecture, Spring Security with JWT, JPA persistence, OpenAPI documentation and tests with JUnit and Mockito.",
           },
           {
-            title: "Web & Backend Development",
+            icon: "web",
+            title: "Web applications",
             description:
-              "I have worked on web applications connecting interfaces, application logic, databases and APIs to turn processes and needs into usable tools.",
+              "Complete applications with PHP, MySQL and JavaScript: data model, server logic, Bootstrap and jQuery interfaces, server setup and production rollout.",
           },
           {
-            title: "Process Automation",
+            icon: "automation",
+            title: "Process automation",
             description:
-              "I identify tasks and processes that can be simplified and work on automating them to reduce manual work and make workflows more manageable.",
+              "Workflows with Power Automate, Microsoft Forms/Lists and Google Apps Script to remove repetitive manual tasks.",
           },
           {
-            title: "Systems & Technology Environments",
+            icon: "mobile",
+            title: "Android applications",
             description:
-              "My experience with servers, configurations, permissions, connections and technical support helps me understand software within the environment where it actually needs to work.",
+              "Native Kotlin apps with Firebase (authentication and data) and external API integration such as Google Maps.",
           },
         ],
       };
+
+const icons: Record<string, string> = {
+  api: "M8 9l-4 3 4 3M16 9l4 3-4 3M13.5 6l-3 12",
+  web: "M3 5h18v14H3zM3 9h18M7 7h.01M10 7h.01",
+  automation: "M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4",
+  mobile: "M7 2h10v20H7zM11 18h2",
+  systems: "M4 4h16v6H4zM4 14h16v6H4zM8 7h.01M8 17h.01",
+};
 ---
 
-<section class="what-i-do" aria-labelledby="what-i-do-title">
-  <div class="section-header">
+<section class="section container" aria-labelledby="what-i-do-title">
+  <header class="section-header">
     <p class="eyebrow">{content.eyebrow}</p>
-
     <h2 id="what-i-do-title">{content.title}</h2>
-
     <p>{content.description}</p>
-  </div>
+  </header>
 
-  <div class="areas-grid">
+  <div class="card-grid">
     {
       content.items.map((item) => (
-        <article class="area-card">
+        <article class="card area-card">
+          <span class="area-icon" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d={icons[item.icon]} />
+            </svg>
+          </span>
           <h3>{item.title}</h3>
           <p>{item.description}</p>
         </article>
@@ -87,68 +117,22 @@ const content =
 </section>
 
 <style>
-  .what-i-do {
-    width: min(calc(100% - 2rem), var(--content-width));
-    margin-inline: auto;
-    padding-block: 5rem;
-  }
-
-  .section-header {
-    max-width: 800px;
-    margin-bottom: 3rem;
-  }
-
-  .eyebrow {
-    margin-bottom: 1rem;
-    color: var(--color-primary);
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-  }
-
-  .section-header h2 {
+  .area-icon {
+    display: inline-grid;
+    width: 2.75rem;
+    height: 2.75rem;
     margin-bottom: 1.25rem;
-  }
-
-  .section-header > p:last-child {
-    font-size: 1.1rem;
-  }
-
-  .areas-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .area-card {
-    min-height: 220px;
-    padding: 2rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
+    place-items: center;
+    border-radius: var(--radius-md);
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
   }
 
   .area-card h3 {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .area-card p {
-    max-width: 55ch;
-  }
-
-  @media (max-width: 700px) {
-    .what-i-do {
-      padding-block: 4rem;
-    }
-
-    .areas-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .area-card {
-      min-height: auto;
-      padding: 1.5rem;
-    }
+    color: var(--color-text-secondary);
   }
 </style>

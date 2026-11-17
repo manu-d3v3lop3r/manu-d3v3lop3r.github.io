@@ -1,27 +1,29 @@
 ---
-title: "Gestión y digitalización documental | Proyecto profesional"
+title: "Gestión y digitalización documental"
 slug: "gestion-documental"
 language: "es"
 type: "professional"
 status: "completed"
+order: 1
 featured: true
 confidential: true
-summary: "Aplicación web profesional para digitalizar, almacenar y gestionar documentación, combinando desarrollo web, base de datos, almacenamiento documental y configuración de un entorno de servidor."
+summary: "Aplicación web desarrollada desde cero hasta producción para digitalizar y gestionar documentación administrativa y legal: subida de documentos escaneados, base de datos relacional en MySQL e interfaz con Bootstrap, jQuery y DataTables."
 technologies:
-  - HTML
-  - CSS
-  - JavaScript
-  - Bootstrap
-  - jQuery
-  - DataTables
   - PHP
   - MySQL
-  - Google Drive
+  - JavaScript
+  - jQuery
+  - Bootstrap
+  - DataTables
+  - SweetAlert2
+  - HTML
+  - CSS
   - Google Apps Script
+  - Google Drive
   - Apache
   - XAMPP
   - VirtualBox
-role: "Desarrollo de la aplicación, configuración del entorno y participación en la puesta en funcionamiento."
+role: "Desarrollo full stack (PHP, MySQL, JavaScript), diseño de la base de datos y configuración del servidor."
 team: "2 personas"
 ---
 
@@ -89,18 +91,16 @@ almacenamiento estructurado de datos y almacenamiento documental.
 
 ## Tecnologías y desarrollo
 
-La interfaz de la aplicación se desarrolló utilizando HTML, CSS y JavaScript,
-junto con Bootstrap, jQuery y DataTables.
-
-PHP se utilizó como parte de la aplicación para gestionar la lógica necesaria
-y trabajar con el entorno de servidor y la información procesada.
-
-MySQL se utilizó como base de datos relacional para almacenar los datos
-asociados a la documentación.
-
-Google Drive se utilizó como almacenamiento de los documentos y Google Apps
-Script formó parte del ecosistema utilizado para trabajar con los servicios
-de Google.
+- **Backend (PHP):** lógica de la aplicación, procesamiento de formularios,
+  subida de los documentos escaneados y acceso a la base de datos.
+- **Base de datos (MySQL):** diseño del modelo relacional para clasificar,
+  almacenar y consultar la documentación y sus datos asociados.
+- **Frontend:** HTML, CSS y JavaScript con Bootstrap para el diseño
+  responsive, jQuery para la interacción, DataTables para listados con
+  búsqueda, ordenación y paginación, y SweetAlert2 para confirmaciones y
+  avisos al usuario.
+- **Servicios de Google:** Google Apps Script y Google Drive para el
+  almacenamiento de los documentos.
 
 ## Entorno y servidor
 
@@ -131,12 +131,13 @@ conexiones y seguridad durante la configuración.
 
 ## Mi participación
 
-El desarrollo se realizó entre dos personas y participé de forma directa en
-la construcción de la solución.
+La aplicación se desarrolló entre dos personas, desde cero hasta su puesta en
+producción. Mi participación incluyó:
 
-Mi participación incluyó el desarrollo de la aplicación y de su flujo de
-trabajo, así como tareas relacionadas con la configuración del entorno y el
-servidor.
+- Desarrollo de la aplicación y de su flujo de trabajo (frontend y backend).
+- Diseño de la estructura de la base de datos relacional.
+- Implementación de la subida y almacenamiento de documentos escaneados.
+- Configuración y mantenimiento del entorno de desarrollo y del servidor.
 
 También participé en la investigación necesaria para resolver problemas de
 configuración, conexión y seguridad.

@@ -1,0 +1,269 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContactCTA from "../sections/ContactCTA.astro";
+import { experience, person } from "../../data/profile";
+import { route, type Lang } from "../../i18n/utils";
+import { getProjects } from "../../utils/projects";
+import { projectHref } from "../../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const projects = await getProjects(lang);
+const projectTitleByHref = new Map(
+  projects.map((project) => [projectHref(lang, project.data), project.data.title]),
+);
+
+const t =
+  lang === "es"
+    ? {
+        title: `Experiencia profesional | ${person.name}`,
+        description:
+          "Experiencia de Manuel Jiménez como desarrollador de aplicaciones web y técnico de sistemas: gestión documental con PHP y MySQL, automatización con Power Automate y migración a Magnolia CMS.",
+        eyebrow: "Experiencia",
+        heading: "Experiencia profesional",
+        intro:
+          "Desarrollo de aplicaciones web, automatización de procesos y modernización de plataformas en dos organismos públicos de Madrid.",
+        technologies: "Tecnologías",
+        related: "Casos de estudio relacionados",
+      }
+    : {
+        title: `Professional experience | ${person.name}`,
+        description:
+          "Manuel Jiménez's experience as a web application developer and IT systems technician: document management with PHP and MySQL, Power Automate workflows and a Magnolia CMS migration.",
+        eyebrow: "Experience",
+        heading: "Professional experience",
+        intro:
+          "Web application development, process automation and platform modernisation at two public organisations in Madrid.",
+        technologies: "Technologies",
+        related: "Related case studies",
+      };
+---
+
+<BaseLayout title={t.title} description={t.description} lang={lang}>
+  <div class="page container">
+    <header class="page-header">
+      <p class="eyebrow">{t.eyebrow}</p>
+      <h1>{t.heading}</h1>
+      <p class="lead">{t.intro}</p>
+    </header>
+
+    <ol class="jobs">
+      {
+        experience.map((job) => (
+          <li class="job" id={job.id}>
+            <header class="job-header">
+              <div>
+                <h2>{job.role[lang]}</h2>
+                <p class="company">{job.company}</p>
+                <p class="company-context">{job.companyContext[lang]}</p>
+              </div>
+
+              <dl class="job-facts">
+                <div>
+                  <dt class="visually-hidden">
+                    {lang === "es" ? "Duración" : "Duration"}
+                  </dt>
+                  <dd class="duration">{job.period[lang]}</dd>
+                  <dd>{job.duration[lang]}</dd>
+                </div>
+                <div>
+                  <dt class="visually-hidden">
+                    {lang === "es" ? "Ubicación" : "Location"}
+                  </dt>
+                  <dd>{job.location[lang]}</dd>
+                </div>
+              </dl>
+            </header>
+
+            <p class="contract meta">{job.contract[lang]}</p>
+
+            <p class="job-summary">{job.summary[lang]}</p>
+
+            <div class="job-areas">
+              {job.areas.map((area) => (
+                <section>
+                  <h3>{area.title[lang]}</h3>
+                  <ul>
+                    {area.items[lang].map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+
+            <div class="job-footer">
+              <h3 class="visually-hidden">{t.technologies}</h3>
+              <ul class="tag-list" aria-label={t.technologies}>
+                {job.technologies.map((tech) => (
+                  <li>{tech}</li>
+                ))}
+              </ul>
+
+              {job.relatedProjects.length > 0 && (
+                <div class="related">
+                  <p>{t.related}:</p>
+                  <ul>
+                    {job.relatedProjects.map((key) => {
+                      const href = route(key, lang);
+                      return (
+                        <li>
+                          <a class="text-link" href={href}>
+                            {projectTitleByHref.get(href) ?? key}
+                            <span aria-hidden="true">→</span>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+
+  <ContactCTA lang={lang} />
+</BaseLayout>
+
+<style>
+  .jobs {
+    max-width: 920px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .job {
+    padding-block: 3.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .job:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .job-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .job-header h2 {
+    margin-bottom: 0.5rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .company {
+    color: var(--color-text);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .company-context {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .job-facts {
+    display: grid;
+    flex-shrink: 0;
+    gap: 0.25rem;
+    margin: 0;
+    text-align: right;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .job-facts dd {
+    margin: 0;
+  }
+
+  .duration {
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-weight: 600;
+  }
+
+  .contract {
+    margin-bottom: 1.75rem;
+  }
+
+  .job-summary {
+    margin-bottom: 2.25rem;
+    font-size: 1.1rem;
+  }
+
+  .job-areas {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .job-areas h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  .job-areas ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--color-text-secondary);
+  }
+
+  .job-areas li + li {
+    margin-top: 0.5rem;
+  }
+
+  .job-footer {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .related {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.25rem;
+  }
+
+  .related p {
+    color: var(--color-text-muted);
+    font-size: 0.925rem;
+  }
+
+  .related ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (max-width: 700px) {
+    .job {
+      padding-block: 2.5rem;
+    }
+
+    .job-header {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .job-facts {
+      display: flex;
+      gap: 1rem;
+      text-align: left;
+    }
+  }
+</style>

@@ -1,194 +1,275 @@
 ---
+import { Picture } from "astro:assets";
+import profilePhoto from "../../assets/manuel-jimenez.png";
+import { contact } from "../../data/contact";
+import { person } from "../../data/profile";
+import { route, type Lang } from "../../i18n/utils";
+
 interface Props {
-  lang: "es" | "en";
+  lang: Lang;
 }
 
 const { lang } = Astro.props;
 
-const content =
+const t =
   lang === "es"
     ? {
-        eyebrow: "SOFTWARE DEVELOPER",
-        name: "Manuel Jiménez",
-        title: "Construyo soluciones de software a partir de problemas reales.",
+        title: "Convierto procesos y necesidades reales en software que funciona.",
         description:
-          "Software Developer con experiencia en desarrollo web, gestión de datos, sistemas y automatización. He trabajado en aplicaciones utilizadas en entornos reales y en proyectos donde el desarrollo requiere entender el problema, trabajar con diferentes tecnologías y convertir una necesidad concreta en una solución funcional.",
-        areas: ["Software Development", "Web", "Backend", "Automation"],
-        location: "Madrid · España",
+          "Desarrollador Full Stack formado en DAM y en un máster de Full Stack. Construyo APIs REST con Java y Spring Boot, he llevado a producción una aplicación web de gestión documental con PHP y MySQL, y he automatizado procesos en una universidad pública.",
         projects: "Ver proyectos",
         cv: "Ver CV",
+        facts: [
+          { value: "+1 año", label: "de experiencia profesional en el sector público" },
+          { value: "56 tests", label: "en mi API REST con Spring Boot (84 % de cobertura)" },
+          { value: "DAM + Full Stack", label: "formación técnica" },
+        ],
+        factsLabel: "Datos destacados",
+        areasLabel: "Áreas principales",
       }
     : {
-        eyebrow: "SOFTWARE DEVELOPER",
-        name: "Manuel Jiménez",
-        title: "I build software solutions around real-world problems.",
+        title: "I turn real processes and needs into software that works.",
         description:
-          "Software Developer with experience in web development, data management, systems and automation. I have worked on applications used in real-world environments and on projects where development means understanding the problem, working across different technologies and turning a specific need into a functional solution.",
-        areas: ["Software Development", "Web", "Backend", "Automation"],
-        location: "Madrid · Spain",
+          "Full Stack Developer trained in Multiplatform Application Development and a Full Stack master's. I build REST APIs with Java and Spring Boot, I took a PHP and MySQL document management web app to production, and I have automated processes at a public university.",
         projects: "View projects",
         cv: "View CV",
+        facts: [
+          { value: "1+ year", label: "of professional experience in the public sector" },
+          { value: "56 tests", label: "in my Spring Boot REST API (84% line coverage)" },
+          { value: "DAM + Full Stack", label: "technical training" },
+        ],
+        factsLabel: "Highlights",
+        areasLabel: "Main areas",
       };
+
+const areas = ["Java · Spring Boot", "APIs REST", "PHP · MySQL", "JavaScript", "Power Automate"];
 ---
 
-<section class="hero" aria-labelledby="hero-title">
-  <div class="hero-content">
-    <p class="hero-eyebrow">{content.eyebrow}</p>
+<section class="hero container" aria-labelledby="hero-title">
+  <div class="hero-main">
+    <figure class="hero-photo">
+      <Picture
+        src={profilePhoto}
+        alt={lang === "es"
+          ? `Fotografía de ${person.name}`
+          : `Photo of ${person.name}`}
+        formats={["avif", "webp"]}
+        widths={[240, 420, 640, 840]}
+        sizes="(max-width: 860px) 7.5rem, 26rem"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
 
-    <p class="hero-name">{content.name}</p>
+    <div class="hero-content">
+      <p class="eyebrow">{person.name} · {person.role[lang]}</p>
 
-    <h1 id="hero-title">{content.title}</h1>
+      <h1 id="hero-title">{t.title}</h1>
 
-    <p class="hero-description">
-      {content.description}
-    </p>
+      <p class="hero-description lead">{t.description}</p>
 
-    <ul class="hero-areas" aria-label={lang === "es" ? "Áreas" : "Areas"}>
-      {content.areas.map((area) => <li>{area}</li>)}
-    </ul>
+      <ul class="tag-list hero-areas" aria-label={t.areasLabel}>
+        {areas.map((area) => <li>{area}</li>)}
+      </ul>
 
-    <p class="hero-location">{content.location}</p>
+      <div class="button-group">
+        <a class="button button-primary" href={route("projects", lang)}>
+          {t.projects}
+          <span aria-hidden="true">→</span>
+        </a>
 
-    <div class="hero-actions">
-      <a
-        class="button button-primary"
-        href={lang === "es" ? "/es/proyectos/" : "/en/projects/"}
-      >
-        {content.projects}
-      </a>
+        <a class="button button-secondary" href={route("cv", lang)}>
+          {t.cv}
+        </a>
 
-      <a
-        class="button button-secondary"
-        href={lang === "es" ? "/es/cv/" : "/en/cv/"}
-      >
-        {content.cv}
-      </a>
+        <a
+          class="button button-secondary"
+          href={contact.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <p class="hero-location">
+        <svg
+          viewBox="0 0 24 24"
+          width="16"
+          height="16"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"
+          ></path>
+          <circle cx="12" cy="9.5" r="2.5"></circle>
+        </svg>
+        {person.location[lang]}
+      </p>
     </div>
   </div>
+
+  <dl class="hero-facts" aria-label={t.factsLabel}>
+    {
+      t.facts.map((fact) => (
+        <div>
+          <dt>{fact.label}</dt>
+          <dd>{fact.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
 </section>
 
 <style>
   .hero {
-    width: min(calc(100% - 2rem), var(--content-width));
-    margin-inline: auto;
-    padding-block: 6rem 7rem;
+    padding-block: 5.5rem 4rem;
+  }
+
+  .hero-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 26rem);
+    gap: 4rem;
+    align-items: center;
   }
 
   .hero-content {
-    max-width: 900px;
+    grid-row: 1;
+    max-width: 760px;
   }
 
-  .hero-eyebrow {
-    margin-bottom: 1rem;
-    color: var(--color-primary);
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+  .hero-photo {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    margin: 0;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    box-shadow: 0 30px 60px -35px rgba(0, 0, 0, 0.45);
   }
 
-  .hero-name {
-    margin-bottom: 1.25rem;
-    color: var(--color-text);
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+  .hero-photo::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 4px;
+    background: var(--color-primary);
+  }
+
+  .hero-photo :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 15%;
+  }
+
+  @media (max-width: 860px) {
+    .hero-main {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    .hero-photo {
+      grid-column: 1;
+      width: 7.5rem;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      box-shadow: none;
+    }
+
+    .hero-photo::after {
+      display: none;
+    }
+
+    .hero-photo :global(img) {
+      object-position: 50% 12%;
+      transform: scale(1.6);
+      transform-origin: 50% 18%;
+    }
+
+    .hero-content {
+      grid-row: 2;
+    }
   }
 
   .hero h1 {
-    max-width: 900px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
   }
 
   .hero-description {
-    max-width: 700px;
     margin-bottom: 2rem;
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
   }
 
   .hero-areas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 0 0 1.5rem;
-    padding: 0;
-    list-style: none;
-  }
-
-  .hero-areas li {
-    padding: 0.4rem 0.75rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-pill);
-    background: var(--color-surface);
-    color: var(--color-text-secondary);
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
+    margin-bottom: 2rem;
   }
 
   .hero-location {
-    margin-bottom: 2rem;
-    color: var(--color-text-muted);
-    font-size: 0.95rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  .button {
     display: inline-flex;
-    min-height: 2.75rem;
     align-items: center;
-    justify-content: center;
-    padding: 0.7rem 1.1rem;
-    border: 1px solid transparent;
-    border-radius: var(--radius-md);
-    font-weight: 600;
-    text-decoration: none;
+    gap: 0.4rem;
+    margin-top: 1.75rem;
+    color: var(--color-text-muted);
+    font-size: 0.925rem;
   }
 
-  .button-primary {
-    background: var(--color-primary);
-    color: #ffffff;
+  .hero-facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 4.5rem 0 0;
+    border-block: 1px solid var(--color-border);
   }
 
-  .button-primary:hover {
-    background: var(--color-primary-hover);
+  .hero-facts div {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.35rem;
+    padding: 1.75rem 1.5rem 1.75rem 0;
   }
 
-  .button-secondary {
-    border-color: var(--color-border);
-    background: var(--color-surface);
+  .hero-facts div + div {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+  }
+
+  .hero-facts dt {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .hero-facts dd {
+    margin: 0;
     color: var(--color-text);
-  }
-
-  .button-secondary:hover {
-    background: var(--color-surface-subtle);
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   @media (max-width: 700px) {
     .hero {
-      padding-block: 4rem 5rem;
+      padding-block: 3.5rem 2rem;
     }
 
-    .hero-name {
-      margin-bottom: 1rem;
+    .hero-facts {
+      grid-template-columns: 1fr;
+      margin-top: 3rem;
     }
 
-    .hero h1 {
-      margin-bottom: 1.5rem;
+    .hero-facts div,
+    .hero-facts div + div {
+      padding: 1.1rem 0;
+      border-left: 0;
     }
 
-    .hero-actions {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .button {
-      width: 100%;
+    .hero-facts div + div {
+      border-top: 1px solid var(--color-border);
     }
   }
 </style>

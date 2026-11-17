@@ -1,139 +1,75 @@
 ---
-import { getCollection } from "astro:content";
 import ProjectCard from "../projects/ProjectCard.astro";
+import {
+  projectHref,
+  projectTypeLabels,
+  route,
+  type Lang,
+} from "../../i18n/utils";
+import { getProjects } from "../../utils/projects";
 
 interface Props {
-  lang: "es" | "en";
+  lang: Lang;
 }
 
 const { lang } = Astro.props;
 
-const projects = await getCollection(
-  "projects",
-  ({ data }) => data.language === lang && data.featured,
-);
+const projects = await getProjects(lang, { featured: true });
 
-const sortedProjects = projects.sort(
-  (a, b) => (b.data.year ?? 0) - (a.data.year ?? 0),
-);
-
-const content =
+const t =
   lang === "es"
     ? {
-        eyebrow: "PROYECTOS DESTACADOS",
-        title: "Proyectos destacados",
+        eyebrow: "Proyectos destacados",
+        title: "Trabajo seleccionado",
         description:
-          "Una selección de proyectos que refleja mi experiencia en desarrollo de software, desarrollo web, aplicaciones y automatización.",
+          "Casos de estudio con el contexto, el problema, la solución y mi papel en cada proyecto.",
         technologiesLabel: "Tecnologías utilizadas",
-        linkLabel: "Ver proyecto",
+        linkLabel: "Leer caso de estudio",
         allProjects: "Ver todos los proyectos",
+        empty: "Todavía no hay proyectos destacados.",
       }
     : {
-        eyebrow: "SELECTED PROJECTS",
-        title: "Selected Projects",
+        eyebrow: "Featured projects",
+        title: "Selected work",
         description:
-          "A selection of projects reflecting my experience in software development, web development, applications and automation.",
+          "Case studies covering the context, the problem, the solution and my role in each project.",
         technologiesLabel: "Technologies used",
-        linkLabel: "View project",
+        linkLabel: "Read case study",
         allProjects: "View all projects",
+        empty: "There are no featured projects yet.",
       };
 ---
 
-<section class="selected-work" aria-labelledby="selected-work-title">
+<section class="section container" aria-labelledby="selected-work-title">
   <header class="section-header">
-    <p class="eyebrow">{content.eyebrow}</p>
-
-    <h2 id="selected-work-title">{content.title}</h2>
-
-    <p>{content.description}</p>
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h2 id="selected-work-title">{t.title}</h2>
+    <p>{t.description}</p>
   </header>
 
   {
-    sortedProjects.length > 0 ? (
-      <div class="projects-list">
-        {sortedProjects.map((project) => (
+    projects.length > 0 ? (
+      <div class="card-grid">
+        {projects.map((project) => (
           <ProjectCard
             title={project.data.title}
             summary={project.data.summary}
-            type={project.data.type}
+            type={projectTypeLabels[project.data.type][lang]}
             technologies={project.data.technologies}
-            technologiesLabel={content.technologiesLabel}
-            href={
-              lang === "es"
-                ? `/es/proyectos/${project.data.routeSlug ?? project.data.slug}/`
-                : `/en/projects/${project.data.routeSlug ?? project.data.slug}/`
-            }
-            linkLabel={content.linkLabel}
+            technologiesLabel={t.technologiesLabel}
+            href={projectHref(lang, project.data)}
+            linkLabel={t.linkLabel}
           />
         ))}
       </div>
     ) : (
-      <p class="empty-state">
-        {lang === "es"
-          ? "Todavía no hay proyectos destacados."
-          : "There are no selected projects yet."}
-      </p>
+      <p class="card">{t.empty}</p>
     )
   }
 
   <div class="section-action">
-    <a href={lang === "es" ? "/es/proyectos/" : "/en/projects/"}>
-      {content.allProjects}
+    <a class="text-link" href={route("projects", lang)}>
+      {t.allProjects} <span aria-hidden="true">→</span>
     </a>
   </div>
 </section>
-
-<style>
-  .selected-work {
-    width: min(calc(100% - 2rem), var(--content-width));
-    margin-inline: auto;
-    padding-block: 5rem;
-  }
-
-  .section-header {
-    max-width: 800px;
-    margin-bottom: 3rem;
-  }
-
-  .eyebrow {
-    margin-bottom: 1rem;
-    color: var(--color-primary);
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-  }
-
-  .section-header h2 {
-    margin-bottom: 1.25rem;
-  }
-
-  .section-header > p:last-child {
-    font-size: 1.1rem;
-  }
-
-  .projects-list {
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .section-action {
-    margin-top: 2rem;
-  }
-
-  .section-action a {
-    color: var(--color-primary);
-    font-weight: 600;
-  }
-
-  .section-action a:hover {
-    color: var(--color-primary-hover);
-  }
-
-  .empty-state {
-    padding: 2rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background: var(--color-surface-subtle);
-  }
-</style>

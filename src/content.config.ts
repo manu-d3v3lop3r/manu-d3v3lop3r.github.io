@@ -25,7 +25,16 @@ const projects = defineCollection({
 
     featured: z.boolean().default(false),
 
+    /** Display order in listings (lower first). */
+    order: z.number().int().optional(),
+
     confidential: z.boolean().default(false),
+
+    /** Public source code repository. */
+    repository: z.url().optional(),
+
+    /** Live demo, if any. */
+    demo: z.url().optional(),
 
     summary: z.string(),
 

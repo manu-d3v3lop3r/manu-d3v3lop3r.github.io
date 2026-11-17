@@ -1,55 +1,91 @@
 ---
+import { contact } from "../../data/contact";
+import { navigation } from "../../data/navigation";
+import { person } from "../../data/profile";
+import type { Lang } from "../../i18n/utils";
+
 interface Props {
-  lang: "es" | "en";
+  lang: Lang;
 }
 
 const { lang } = Astro.props;
 
-const footerRole =
+const t =
   lang === "es"
-    ? "Software Developer · Madrid, España"
-    : "Software Developer · Madrid, Spain";
+    ? {
+        nav: "Navegación del pie de página",
+        profiles: "Perfiles",
+        built: "Diseñado y desarrollado con Astro.",
+      }
+    : {
+        nav: "Footer navigation",
+        profiles: "Profiles",
+        built: "Designed and built with Astro.",
+      };
 
-const footerDescription =
-  lang === "es" ? "Portfolio profesional" : "Professional portfolio";
-
-const copyright =
-  lang === "es" ? "Todos los derechos reservados." : "All rights reserved.";
+const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="footer-inner">
+  <div class="footer-inner container">
     <div class="footer-identity">
-      <p class="footer-name">Software Developer</p>
-
-      <p class="footer-role">{footerRole}</p>
-
-      <p class="footer-description">{footerDescription}</p>
+      <p class="footer-name">{person.name}</p>
+      <p class="footer-role">
+        {person.role[lang]} · {person.location[lang]}
+      </p>
     </div>
 
+    <nav aria-label={t.nav}>
+      <ul class="footer-links">
+        {
+          navigation[lang].map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <ul class="footer-links footer-social" aria-label={t.profiles}>
+      <li>
+        <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
+          LinkedIn
+        </a>
+      </li>
+      <li>
+        <a href={contact.github} target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      </li>
+      {
+        contact.email && (
+          <li>
+            <a href={`mailto:${contact.email}`}>Email</a>
+          </li>
+        )
+      }
+    </ul>
+
     <p class="copyright">
-      © {new Date().getFullYear()} · {copyright}
+      © {year} {person.name}. {t.built}
     </p>
   </div>
 </footer>
 
 <style>
   .site-footer {
-    margin-top: 6rem;
+    margin-top: 4rem;
     border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
   }
 
   .footer-inner {
-    width: min(calc(100% - 2rem), var(--content-width));
-    margin-inline: auto;
-    padding-block: 2rem;
     display: grid;
-    gap: 1rem;
-  }
-
-  .footer-identity {
-    display: grid;
-    gap: 0.25rem;
+    grid-template-columns: 1.2fr 2fr auto;
+    gap: 2rem;
+    align-items: start;
+    padding-block: 2.5rem;
   }
 
   .footer-name {
@@ -58,26 +94,42 @@ const copyright =
   }
 
   .footer-role,
-  .footer-description,
   .copyright {
     color: var(--color-text-muted);
     font-size: 0.875rem;
   }
 
-  .footer-description,
-  .copyright {
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
     margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.9rem;
   }
 
-  @media (min-width: 700px) {
-    .footer-inner {
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 2rem;
-    }
+  .footer-links a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
 
-    .copyright {
-      text-align: right;
+  .footer-links a:hover {
+    color: var(--color-text);
+    text-decoration: underline;
+  }
+
+  .copyright {
+    grid-column: 1 / -1;
+    max-width: none;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 800px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
   }
 </style>

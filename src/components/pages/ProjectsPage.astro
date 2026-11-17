@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../projects/ProjectCard.astro";
+import { person } from "../../data/profile";
+import { projectHref, projectTypeLabels, type Lang } from "../../i18n/utils";
+import { getProjects } from "../../utils/projects";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const projects = await getProjects(lang);
+
+const t =
+  lang === "es"
+    ? {
+        title: `Proyectos | ${person.name}`,
+        description:
+          "Casos de estudio de Manuel Jiménez: API REST bancaria con Java y Spring Boot, aplicación web de gestión documental (PHP, MySQL), app Android de turismo (Kotlin, Firebase), automatización con Power Automate y migración a Magnolia CMS.",
+        eyebrow: "Proyectos",
+        heading: "Casos de estudio",
+        intro:
+          "Proyectos profesionales, personales y académicos explicados con su contexto, el problema que resolvían, la solución, mi participación y lo que mejoraría hoy.",
+        technologiesLabel: "Tecnologías utilizadas",
+        linkLabel: "Leer caso de estudio",
+      }
+    : {
+        title: `Projects | ${person.name}`,
+        description:
+          "Case studies by Manuel Jiménez: banking REST API with Java and Spring Boot, document management web app (PHP, MySQL), Android tourism app (Kotlin, Firebase), Power Automate workflow and a Magnolia CMS migration.",
+        eyebrow: "Projects",
+        heading: "Case studies",
+        intro:
+          "Professional, personal and academic projects explained with their context, the problem they solved, the solution, my role and what I would improve today.",
+        technologiesLabel: "Technologies used",
+        linkLabel: "Read case study",
+      };
+---
+
+<BaseLayout title={t.title} description={t.description} lang={lang}>
+  <div class="page container">
+    <header class="page-header">
+      <p class="eyebrow">{t.eyebrow}</p>
+      <h1>{t.heading}</h1>
+      <p class="lead">{t.intro}</p>
+    </header>
+
+    <div class="card-grid">
+      {
+        projects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            summary={project.data.summary}
+            type={projectTypeLabels[project.data.type][lang]}
+            technologies={project.data.technologies}
+            technologiesLabel={t.technologiesLabel}
+            href={projectHref(lang, project.data)}
+            linkLabel={t.linkLabel}
+            headingLevel="h2"
+          />
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

@@ -1,10 +1,11 @@
 ---
-title: "Android Tourism Application | Academic Project"
+title: "Android Tourism Application"
 slug: "android-tourism"
 language: "en"
 type: "academic"
 status: "completed"
-featured: true
+order: 2
+featured: false
 confidential: false
 summary: "Android application for creating personalized tourist routes in Madrid based on selected places and available time."
 technologies:

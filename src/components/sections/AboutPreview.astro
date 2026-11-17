@@ -1,59 +1,54 @@
 ---
+import { route, type Lang } from "../../i18n/utils";
+
 interface Props {
-  lang: "es" | "en";
+  lang: Lang;
 }
 
 const { lang } = Astro.props;
 
-const content =
+const t =
   lang === "es"
     ? {
-        eyebrow: "PERFIL PROFESIONAL",
-        title: "Software Developer con una visión práctica del desarrollo.",
+        eyebrow: "Sobre mí",
+        title: "Primero entender el problema; después, construir la solución.",
         paragraphs: [
-          "Soy Software Developer con formación en Desarrollo de Aplicaciones Multiplataforma y especialización en desarrollo Full Stack.",
-          "Mi experiencia combina desarrollo de aplicaciones web, bases de datos, automatización de procesos, plataformas tecnológicas y gestión de contenidos mediante CMS.",
-          "Me interesa seguir creciendo técnicamente, comprender el contexto y las necesidades de cada proyecto antes de implementar una solución, y desarrollar software claro, mantenible y orientado a resultados.",
+          "Me formé como Técnico Superior en Desarrollo de Aplicaciones Multiplataforma y completé un máster en Full Stack Development.",
+          "En mis dos experiencias profesionales he trabajado en organismos públicos donde el software tenía que encajar en procesos reales: digitalizar documentación en papel, automatizar comunicaciones internas o migrar un portal con muchos contenidos.",
+          "Busco seguir creciendo como desarrollador web y backend en un equipo donde pueda aportar, aprender buenas prácticas y construir software claro y mantenible.",
         ],
-        link: "Ver perfil profesional",
+        link: "Conocer mi perfil",
       }
     : {
-        eyebrow: "PROFESSIONAL PROFILE",
-        title: "Software Developer with a practical approach to development.",
+        eyebrow: "About me",
+        title: "Understand the problem first; then build the solution.",
         paragraphs: [
-          "I am a Software Developer with a Higher Technician qualification in Multiplatform Application Development and further training in Full Stack Development.",
-          "My experience combines web application development, databases, process automation, technology platforms and content management through CMS solutions.",
-          "I am interested in continuing to grow technically, understanding the context and needs of each project before implementing a solution, and developing software that is clear, maintainable and outcome-oriented.",
+          "I trained as a Higher Technician in Multiplatform Application Development and completed a master's in Full Stack Development.",
+          "In both of my professional roles I worked in public organisations where software had to fit real processes: digitising paper documentation, automating internal communications or migrating a content-heavy portal.",
+          "I am looking to keep growing as a web and backend developer in a team where I can contribute, learn good practices and build clear, maintainable software.",
         ],
-        link: "View professional profile",
+        link: "Read my profile",
       };
 ---
 
-<section class="about-preview" aria-labelledby="about-preview-title">
+<section class="section container" aria-labelledby="about-preview-title">
   <div class="about-content">
-    <div class="section-header">
-      <p class="eyebrow">{content.eyebrow}</p>
-
-      <h2 id="about-preview-title">{content.title}</h2>
+    <div>
+      <p class="eyebrow">{t.eyebrow}</p>
+      <h2 id="about-preview-title">{t.title}</h2>
     </div>
 
     <div class="about-text">
-      {content.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-    </div>
+      {t.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
 
-    <a class="about-link" href={lang === "es" ? "/es/sobre-mi/" : "/en/about/"}>
-      {content.link}
-    </a>
+      <a class="text-link" href={route("about", lang)}>
+        {t.link} <span aria-hidden="true">→</span>
+      </a>
+    </div>
   </div>
 </section>
 
 <style>
-  .about-preview {
-    width: min(calc(100% - 2rem), var(--content-width));
-    margin-inline: auto;
-    padding-block: 5rem;
-  }
-
   .about-content {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
@@ -62,57 +57,22 @@ const content =
     border-block: 1px solid var(--color-border);
   }
 
-  .section-header {
-    max-width: 520px;
-  }
-
-  .eyebrow {
-    margin-bottom: 1rem;
-    color: var(--color-primary);
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-  }
-
-  .section-header h2 {
-    max-width: 520px;
-  }
-
   .about-text {
     display: grid;
     gap: 1.25rem;
+    justify-items: start;
   }
 
   .about-text p {
-    max-width: 65ch;
+    color: var(--color-text-secondary);
     font-size: 1.05rem;
   }
 
-  .about-link {
-    grid-column: 2;
-    justify-self: start;
-    color: var(--color-primary);
-    font-weight: 600;
-  }
-
-  .about-link:hover {
-    color: var(--color-primary-hover);
-  }
-
   @media (max-width: 800px) {
-    .about-preview {
-      padding-block: 4rem;
-    }
-
     .about-content {
       grid-template-columns: 1fr;
       gap: 2rem;
       padding-block: 3rem;
-    }
-
-    .about-link {
-      grid-column: auto;
     }
   }
 </style>
