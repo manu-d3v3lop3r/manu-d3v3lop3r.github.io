@@ -10,11 +10,18 @@ export default defineConfig({
     defaultLocale: "es",
     routing: {
       prefixDefaultLocale: true,
-      redirectToDefaultLocale: true,
+      // "/" is served by src/pages/index.astro (instant, language-aware redirect).
+      redirectToDefaultLocale: false,
     },
   },
 
-  integrations: [sitemap({ filter: (page) => !page.includes("/og/") })],
+  integrations: [
+    sitemap({
+      // Exclude the root redirect page and build-time OG images.
+      filter: (page) =>
+        page !== "https://manu-d3v3lop3r.github.io/" && !page.includes("/og/"),
+    }),
+  ],
 
   vite: {
     build: {

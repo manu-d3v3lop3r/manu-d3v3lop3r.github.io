@@ -1,5 +1,81 @@
 ---
-// Required by Astro i18n: with `redirectToDefaultLocale`, the root URL "/"
-// is automatically redirected to the default locale ("/es/").
-// This page is never rendered.
+/**
+ * Root URL ("/"): sends visitors to their language instantly.
+ *
+ * - JavaScript: Spanish/co-official languages (es, ca, gl, eu) go to /es/,
+ *   any other language to /en/, using location.replace (no extra history entry).
+ * - Without JavaScript: <meta refresh> with 0 s delay to the default locale.
+ * - Painted with the site's background colour (light/dark) to avoid a white flash.
+ * The inline script is allowed by the CSP through its SHA-256 hash.
+ */
+import { cspHash } from "../utils/csp";
+
+const site = Astro.site ?? Astro.url;
+const defaultHref = "/es/";
+const canonical = new URL(defaultHref, site).href;
+
+const redirectScript = `(() => {
+  const langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
+  const first = langs[0] || "es";
+  const target = /^(es|ca|gl|eu)\\b/i.test(first) ? "/es/" : "/en/";
+  location.replace(target + location.search + location.hash);
+})();`;
+
+Astro.csp?.insertScriptHash(cspHash(redirectScript));
 ---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manuel Jiménez · Desarrollador Full Stack</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={new URL("/es/", site).href} />
+    <link rel="alternate" hreflang="en" href={new URL("/en/", site).href} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f0f10" media="(prefers-color-scheme: dark)" />
+    <script is:inline set:html={redirectScript} />
+    <noscript><meta http-equiv="refresh" content={`0;url=${defaultHref}`} /></noscript>
+  </head>
+  <body>
+    <noscript>
+      <p><a href="/es/">Español</a> · <a href="/en/">English</a></p>
+    </noscript>
+  </body>
+</html>
+
+<style>
+  :root {
+    color-scheme: light dark;
+  }
+
+  html,
+  body {
+    margin: 0;
+    min-height: 100%;
+    background: #fafaf9;
+    color: #171717;
+    font-family: system-ui, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html,
+    body {
+      background: #0f0f10;
+      color: #f4f4f5;
+    }
+  }
+
+  p {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  a {
+    color: inherit;
+  }
+</style>
