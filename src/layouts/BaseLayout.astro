@@ -1,4 +1,9 @@
 ---
+// Self-hosted variable fonts (latin subsets are only downloaded when used).
+// No requests to third-party font CDNs: better privacy and a strict CSP.
+import "@fontsource-variable/inter/wght.css";
+import "@fontsource-variable/jetbrains-mono/wght.css";
+
 import "../styles/tokens.css";
 import "../styles/global.css";
 import "../styles/typography.css";
@@ -9,12 +14,18 @@ import Footer from "../components/layout/Footer.astro";
 import { contact } from "../data/contact";
 import { person, knowsAbout } from "../data/profile";
 import { getAlternates, type Lang } from "../i18n/utils";
+import { getCollection } from "astro:content";
+import { cspHash, projectTransitionName } from "../utils/csp";
 
 interface Props {
   title: string;
   description: string;
   lang: Lang;
   ogType?: "website" | "article" | "profile";
+  /** Site-relative path of the social sharing image (1200×630). */
+  ogImagePath?: string;
+  /** Alternative text for the social sharing image. */
+  ogImageAlt?: string;
   noindex?: boolean;
 }
 
@@ -23,6 +34,8 @@ const {
   description,
   lang,
   ogType = "website",
+  ogImagePath = "/og-image.jpg",
+  ogImageAlt: customOgImageAlt,
   noindex = false,
 } = Astro.props;
 
@@ -33,8 +46,12 @@ const alternates = getAlternates(Astro.url.pathname);
 const openGraphLocale = lang === "es" ? "es_ES" : "en_US";
 const alternateOpenGraphLocale = lang === "es" ? "en_US" : "es_ES";
 const siteName = `${person.name} · ${person.role[lang]}`;
-const ogImage = new URL("/og-image.jpg", site).href;
-const ogImageAlt = `${person.name} — ${person.role[lang]}`;
+const ogImage = new URL(ogImagePath, site).href;
+const ogImageType = ogImagePath.endsWith(".png") ? "image/png" : "image/jpeg";
+const ogImageAlt =
+  customOgImageAlt ?? `${person.name} — ${person.role[lang]}`;
+// The Person schema always uses the profile card, not a per-page image.
+const personImage = new URL("/og-image.jpg", site).href;
 
 const sameAs = [contact.github, contact.linkedin].filter(Boolean);
 
@@ -54,7 +71,7 @@ const structuredData = {
       "@id": `${site.origin}/#person`,
       name: person.name,
       jobTitle: person.role[lang],
-      image: ogImage,
+      image: personImage,
       description: person.headline[lang],
       url: site.origin,
       address: {
@@ -70,6 +87,39 @@ const structuredData = {
 };
 
 const skipLabel = lang === "es" ? "Saltar al contenido" : "Skip to content";
+
+/*
+ * Inline code is allowed by the Content Security Policy only through its
+ * SHA-256 hash, registered here before Astro writes the CSP <meta> tag.
+ */
+
+// Applies the saved/OS theme before first paint to avoid a flash of the wrong theme.
+const themeScript = `(() => {
+  let theme;
+  try {
+    const stored = localStorage.getItem("portfolio-theme");
+    if (stored === "light" || stored === "dark") theme = stored;
+  } catch {
+    /* Storage unavailable (private mode, blocked cookies…) */
+  }
+  theme ??= window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.style.colorScheme = theme;
+})();`;
+
+// One `view-transition-name` per project, so a card title morphs into the case study heading.
+const projectSegments = (await getCollection("projects")).map(
+  ({ data }) => data.routeSlug ?? data.slug,
+);
+const transitionStyles = [...new Set(projectSegments)]
+  .map((segment) => {
+    const name = projectTransitionName(segment);
+    return `[data-vt="${name}"]{view-transition-name:${name}}`;
+  })
+  .join("");
+
+Astro.csp?.insertScriptHash(cspHash(themeScript));
+Astro.csp?.insertStyleHash(cspHash(transitionStyles));
 ---
 
 <!doctype html>
@@ -78,25 +128,8 @@ const skipLabel = lang === "es" ? "Saltar al contenido" : "Skip to content";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <script is:inline>
-      (() => {
-        let theme;
-
-        try {
-          const stored = localStorage.getItem("portfolio-theme");
-          if (stored === "light" || stored === "dark") theme = stored;
-        } catch {
-          /* Storage unavailable (private mode, blocked cookies…) */
-        }
-
-        theme ??= window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-
-        document.documentElement.dataset.theme = theme;
-        document.documentElement.style.colorScheme = theme;
-      })();
-    </script>
+    <script is:inline set:html={themeScript} />
+    <style is:inline set:html={transitionStyles} />
 
     <title>{title}</title>
 
@@ -106,7 +139,8 @@ const skipLabel = lang === "es" ? "Saltar al contenido" : "Skip to content";
       name="robots"
       content={noindex ? "noindex, follow" : "index, follow"}
     />
-    <meta name="generator" content={Astro.generator} />
+    <!-- Only the origin is sent to external sites (never full URLs). -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
 
     <meta
       name="theme-color"
@@ -161,12 +195,14 @@ const skipLabel = lang === "es" ? "Saltar al contenido" : "Skip to content";
     }
 
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content={ogImageType} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={ogImageAlt} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
@@ -190,6 +226,11 @@ const skipLabel = lang === "es" ? "Saltar al contenido" : "Skip to content";
 </html>
 
 <style>
+  main {
+    /* Lets decorative full-bleed backgrounds overflow without a horizontal scrollbar. */
+    overflow-x: clip;
+  }
+
   main:focus {
     outline: none;
     box-shadow: none;

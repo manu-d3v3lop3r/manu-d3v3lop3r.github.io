@@ -1,6 +1,7 @@
 ---
 import { Picture } from "astro:assets";
-import profilePhoto from "../../assets/manuel-jimenez.png";
+// Background removed with scripts/photo-cutout.mjs so the photo adapts to the theme.
+import profilePhoto from "../../assets/manuel-jimenez-cutout.png";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContactCTA from "../sections/ContactCTA.astro";
 import { education, person, spokenLanguages } from "../../data/profile";
@@ -106,6 +107,7 @@ const t =
             ? `Fotografía de ${person.name}`
             : `Photo of ${person.name}`}
           formats={["avif", "webp"]}
+          fallbackFormat="webp"
           widths={[320, 480, 720]}
           sizes="(max-width: 860px) 70vw, 20rem"
         />
@@ -182,7 +184,18 @@ const t =
     overflow: hidden;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    background: #fff;
+    /* Transparent cutout over a theme-aware backdrop (matches the home hero). */
+    background:
+      radial-gradient(
+        circle at 50% 38%,
+        var(--color-primary-soft),
+        transparent 62%
+      ),
+      linear-gradient(
+        180deg,
+        var(--color-surface-subtle),
+        var(--color-surface) 70%
+      );
   }
 
   .about-photo :global(img) {

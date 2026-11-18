@@ -11,6 +11,7 @@ import {
   type Lang,
 } from "../i18n/utils";
 import { getProjects } from "../utils/projects";
+import { projectTransitionName } from "../utils/csp";
 
 interface Props {
   project: CollectionEntry<"projects">;
@@ -83,6 +84,8 @@ const t =
   description={summary}
   lang={lang}
   ogType="article"
+  ogImagePath={`/og/${lang}/${project.data.routeSlug ?? project.data.slug}.png`}
+  ogImageAlt={`${title} — ${projectTypeLabels[type][lang]} · ${person.name}`}
 >
   <article class="project container">
     <nav class="breadcrumb" aria-label={t.breadcrumb}>
@@ -95,7 +98,11 @@ const t =
 
     <header class="project-header">
       <p class="eyebrow">{projectTypeLabels[type][lang]}</p>
-      <h1>{title}</h1>
+      <h1
+        data-vt={projectTransitionName(project.data.routeSlug ?? project.data.slug)}
+      >
+        {title}
+      </h1>
       <p class="lead">{summary}</p>
 
       <dl class="project-meta">

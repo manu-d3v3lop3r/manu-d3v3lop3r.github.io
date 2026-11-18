@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { contact } from "../../data/contact";
 import {
   certifications,
+  cvPdf,
   education,
   experience,
   person,
@@ -29,7 +30,8 @@ const t =
         description:
           "Currículum de Manuel Jiménez, desarrollador de software en Madrid: experiencia, formación, stack técnico, certificaciones e idiomas.",
         eyebrow: "Currículum",
-        print: "Imprimir / Guardar PDF",
+        print: "Imprimir",
+        download: "Descargar PDF",
         profile: "Perfil",
         summary:
           "Desarrollador Full Stack formado en DAM y en un máster de Full Stack, con experiencia en el sector público. Desarrollo APIs REST con Java y Spring Boot (Spring Security, JWT, JPA, tests con JUnit y Mockito), he llevado desde cero hasta producción una aplicación web de gestión documental (PHP, MySQL, JavaScript) y he automatizado procesos administrativos con Power Automate. Orientado a entender el problema, documentar y entregar software que se utiliza.",
@@ -46,7 +48,8 @@ const t =
         description:
           "CV of Manuel Jiménez, Madrid-based software developer: experience, education, tech stack, certifications and languages.",
         eyebrow: "Résumé",
-        print: "Print / Save as PDF",
+        print: "Print",
+        download: "Download PDF",
         profile: "Profile",
         summary:
           "Full Stack Developer trained in Multiplatform Application Development and a Full Stack master's, with public-sector experience. I build REST APIs with Java and Spring Boot (Spring Security, JWT, JPA, JUnit and Mockito tests), took a document management web app from scratch to production (PHP, MySQL, JavaScript) and automated administrative processes with Power Automate. Focused on understanding the problem, documenting and delivering software that gets used.",
@@ -70,6 +73,7 @@ const displayUrl = (url: string) =>
         <p class="eyebrow">{t.eyebrow}</p>
         <h1>{person.name}</h1>
         <p class="cv-role">{person.role[lang]}</p>
+        <p class="cv-availability">{person.availability[lang]}</p>
 
         <ul class="cv-contact">
           <li>{person.location[lang]}</li>
@@ -92,7 +96,24 @@ const displayUrl = (url: string) =>
         </ul>
       </div>
 
-      <button class="button button-primary no-print" type="button" data-print>
+      <div class="cv-actions no-print">
+      <a class="button button-primary" href={cvPdf[lang]} download>
+        <svg
+          viewBox="0 0 24 24"
+          width="18"
+          height="18"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M5 21h14"></path>
+        </svg>
+        {t.download}
+      </a>
+      <button class="button button-secondary" type="button" data-print>
         <svg
           viewBox="0 0 24 24"
           width="18"
@@ -108,6 +129,7 @@ const displayUrl = (url: string) =>
         </svg>
         {t.print}
       </button>
+      </div>
     </header>
 
     <section class="cv-section">
@@ -265,6 +287,23 @@ const displayUrl = (url: string) =>
     color: var(--color-primary);
     font-size: 1.25rem;
     font-weight: 600;
+  }
+
+  .cv-availability {
+    margin: -0.75rem 0 1rem;
+    color: #15803d;
+    font-size: 0.925rem;
+    font-weight: 600;
+  }
+
+  :global(html[data-theme="dark"]) .cv-availability {
+    color: #4ade80;
+  }
+
+  .cv-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 
   .cv-contact {
@@ -489,6 +528,12 @@ const displayUrl = (url: string) =>
       margin-bottom: 6pt;
       font-size: 12pt;
       color: #1d4ed8;
+    }
+
+    .cv-availability {
+      margin: -3pt 0 6pt;
+      color: #15803d !important;
+      font-size: 10pt;
     }
 
     .cv-section {

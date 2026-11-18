@@ -23,6 +23,14 @@ const {
   maxTechnologies = 7,
 } = Astro.props;
 
+import { projectTransitionName } from "../../utils/csp";
+
+// Shared with the project page heading so the title morphs between pages
+// (the CSS rule is emitted, CSP-hashed, by BaseLayout).
+const transitionName = projectTransitionName(
+  href.split("/").filter(Boolean).pop() ?? "",
+);
+
 const visibleTechnologies = technologies.slice(0, maxTechnologies);
 const hiddenCount = technologies.length - visibleTechnologies.length;
 ---
@@ -31,7 +39,7 @@ const hiddenCount = technologies.length - visibleTechnologies.length;
   <p class="project-type">{type}</p>
 
   <Heading class="project-title">
-    <a href={href}>{title}</a>
+    <a href={href} data-vt={transitionName}>{title}</a>
   </Heading>
 
   <p class="project-summary">{summary}</p>

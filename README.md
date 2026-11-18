@@ -11,7 +11,10 @@ Construido con [Astro](https://astro.build) como sitio estático, sin frameworks
 - **Bilingüe (ES/EN)** con rutas localizadas, selector de idioma que mantiene la página equivalente y etiquetas `hreflang`.
 - **Fuente única de datos** para experiencia, formación, certificaciones y stack (`src/data/profile.ts`): Inicio, Sobre mí, Experiencia, Formación y CV se generan a partir de ella.
 - **Casos de estudio** de proyectos en Markdown con Content Collections y validación de esquema con Zod.
-- **CV imprimible**: la página `/cv/` tiene estilos de impresión A4 y un botón para guardarla como PDF.
+- **CV imprimible y descargable**: la página `/cv/` tiene estilos de impresión A4 y en cada build se generan los PDF (`/cv/manuel-jimenez-cv-es.pdf` y `-en.pdf`) con `scripts/cv-pdf.mjs`, siempre sincronizados con la web.
+- **Imágenes Open Graph por proyecto** generadas en el build con Satori.
+- **View Transitions** nativas entre páginas y animaciones al hacer scroll solo con CSS.
+- **Seguridad**: Content Security Policy estricta con hashes, sin scripts ni fuentes de terceros, GitHub Actions fijadas por SHA con permisos mínimos. Ver [SECURITY.md](SECURITY.md).
 - **Tema claro/oscuro** respetando la preferencia del sistema, sin parpadeo inicial.
 - **Accesibilidad**: enlace "saltar al contenido", estados de foco visibles, `aria-current` en la navegación, contraste AA y soporte de `prefers-reduced-motion`.
 - **SEO**: metadatos Open Graph/Twitter, URL canónicas, datos estructurados `schema.org` (Person + WebSite) y sitemap automático.

@@ -16,7 +16,18 @@ export const person = {
     es: "Java · Spring Boot · PHP · JavaScript. Desarrollo web, APIs REST y automatización de procesos.",
     en: "Java · Spring Boot · PHP · JavaScript. Web development, REST APIs and process automation.",
   },
+  /** Shown in the hero and on the CV so recruiters see it at a glance. */
+  availability: {
+    es: "Disponible para nuevas oportunidades · Madrid o remoto",
+    en: "Open to new opportunities · Madrid or remote",
+  },
 } as const;
+
+/** Downloadable CV, generated at build time by scripts/cv-pdf.mjs. */
+export const cvPdf: Localized = {
+  es: "/cv/manuel-jimenez-cv-es.pdf",
+  en: "/cv/manuel-jimenez-cv-en.pdf",
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                 Experience                                 */

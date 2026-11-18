@@ -30,3 +30,6 @@ credentials.*
 
 # jetbrains setting folder
 .idea/
+
+# Lighthouse CI reports
+.lighthouseci/

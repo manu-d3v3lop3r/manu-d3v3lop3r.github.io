@@ -17,7 +17,7 @@ export const navigation = {
       href: "/es/experiencia/",
     },
     {
-      label: "Aprendizaje",
+      label: "Formación",
       href: "/es/aprendizaje/",
     },
     {
@@ -48,7 +48,7 @@ export const navigation = {
       href: "/en/experience/",
     },
     {
-      label: "Learning",
+      label: "Education",
       href: "/en/learning/",
     },
     {

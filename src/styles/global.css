@@ -292,3 +292,58 @@ a {
     scroll-behavior: auto !important;
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/*                         Motion (progressive enhancement)                   */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * Native cross-document View Transitions: pages cross-fade and elements that
+ * share a `view-transition-name` (e.g. a project card title and the project
+ * page heading) morph between pages. Zero JavaScript; browsers without support
+ * simply navigate as usual. Disabled when the user prefers reduced motion.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 220ms;
+  }
+
+  ::view-transition-group(*) {
+    animation-duration: 320ms;
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+}
+
+/*
+ * Scroll-driven reveal: content fades in as it enters the viewport, driven by
+ * CSS scroll timelines (no JavaScript, no layout thrashing). Only on screen and
+ * only where supported, so content is never hidden in print or older browsers.
+ */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    main .section-header,
+    main .card-grid > *,
+    main .pager-link {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}

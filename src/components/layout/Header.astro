@@ -214,6 +214,8 @@ const labels =
     background: color-mix(in srgb, var(--color-background) 88%, transparent);
     backdrop-filter: saturate(180%) blur(12px);
     -webkit-backdrop-filter: saturate(180%) blur(12px);
+    /* Keeps the header still while the page content transitions. */
+    view-transition-name: site-header;
   }
 
   .header-inner {
